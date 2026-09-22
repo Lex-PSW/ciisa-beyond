@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const mobileQuery = window.matchMedia('(max-width: 767px)');
   const sources = {
-    desktop: 'assets/video/hero-bg-desktop.mp4',
-    mobile: 'assets/video/hero-bg-movile.mp4'
+    desktop: 'assets/video/bg-beyond-h.mp4',
+    mobile: 'assets/video/bg-beyond-v.mp4'
   };
   let currentSource;
 

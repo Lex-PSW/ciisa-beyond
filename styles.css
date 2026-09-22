@@ -195,6 +195,7 @@ html { scroll-behavior:smooth; }
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  padding-bottom: 48px;
 }
 
 /* Noise texture overlay 
@@ -254,11 +255,10 @@ html { scroll-behavior:smooth; }
   border-radius: 50%;
   background: conic-gradient(
     from 0deg,
-    var(--neon-rose),
-    var(--neon-purple),
-    var(--electric-blue),
+    var(--ciisa-green),
+    var(--psw-mint),
     var(--electric-pyx),
-    var(--neon-rose)
+    var(--ciisa-green)
   );
   transform: translate(-50%, -50%) rotate(0deg) scale(0.96);
   filter: blur(16px);
@@ -312,9 +312,10 @@ html { scroll-behavior:smooth; }
   position: relative;
   z-index: 5;
   flex: 1;
-  display: grid;
-  grid-template-columns: 1fr 500px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 40px;
   padding: 40px 60px 80px;
   max-width: 1280px;
@@ -331,6 +332,15 @@ html { scroll-behavior:smooth; }
 }
 
 .cip-hero__content { max-width: 640px; }
+
+.cip-hero__date-container .cip-hero__sub {
+  display: block;
+  max-width: min(760px, 100%);
+  margin-left: auto;
+  margin-right: auto;
+  white-space: normal;
+  word-break: keep-all;
+}
 
 .cip-hero__headlines {
   position: relative;
@@ -403,7 +413,7 @@ html { scroll-behavior:smooth; }
 .cip-hero__headline-span--ciisa { color: var(--ciisa-green); }
 .cip-hero__headline-span--psw { color: var(--psw-mint); }
 .cip-hero__headline-span--pulse {
-  background-image: linear-gradient(115deg, var(--neon-rose), var(--neon-purple), var(--electric-blue), var(--electric-pyx), var(--neon-rose));
+  background-image: linear-gradient(115deg, var(--ciisa-green), var(--psw-mint), var(--electric-pyx), var(--ciisa-green));
   background-size: 300% 300%;
   background-position: 0% 50%;
   background-clip: text;
@@ -431,10 +441,10 @@ html { scroll-behavior:smooth; }
 }
 
 .cip-hero__sub {
-  font-size: 17px;
+  font-size: clamp(10px, 1.25vw, 17px);
   font-weight: 400;
   color: var(--white);
-  line-height: 1.6;
+  line-height: 1.45;
   margin-top: 13px;
   margin-bottom: 40px;
   max-width: 480px;
@@ -446,9 +456,9 @@ html { scroll-behavior:smooth; }
   text-align: center;
 }
 .cip-hero__sub--traking {
-  letter-spacing: 0.2em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  font-weight: 200;
+  font-weight: 300;
 }
 
 .cip-cta-group {
@@ -491,7 +501,7 @@ html { scroll-behavior:smooth; }
 }
 
 .cip-btn--outline {
-  --cip-gradient: linear-gradient(115deg, var(--neon-rose), var(--neon-purple), var(--electric-blue), var(--electric-pyx), var(--neon-rose));
+  --cip-gradient: linear-gradient(115deg, var(--ciisa-green), var(--psw-mint), var(--electric-pyx), var(--ciisa-green));
   position: relative;
   isolation: isolate;
   background: transparent;
@@ -537,11 +547,13 @@ html { scroll-behavior:smooth; }
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  width: 100%;
   height: 520px;
 }
 
 .cip-hero__image--featured {
-  height: 560px;
+  height: auto;
+  width: 100%;
 }
 
 .cip-hero__image-glow {
@@ -569,6 +581,44 @@ html { scroll-behavior:smooth; }
 .cip-hero__photo--large {
   width: min(500px, 100%);
   max-height: 700px;
+}
+
+.cip-hero__logo-stack {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+}
+
+.cip-hero__lottie {
+  position: relative;
+  width: 100%;
+  filter: drop-shadow(0 20px 60px rgba(11,30,75,0.6));
+}
+.cip-hero__lottie svg {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+}
+
+.cip-hero__lottie--beyond { width: 100%; }
+.cip-hero__lottie--ciisa { width: 15%; }
+
+/* Giro infinito de la "O" de Beyond, controlado por JS/CSS (no por keyframes de Lottie) */
+.cip-beyond-o-spin {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  animation: cip-beyond-o-spin 3.4s linear infinite;
+}
+@keyframes cip-beyond-o-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cip-beyond-o-spin { animation: none; }
 }
 
 .cip-hero__photo-sequence {
@@ -678,7 +728,7 @@ html { scroll-behavior:smooth; }
 
 .cip-hero__scroll {
   position: absolute;
-  bottom: 32px;
+  bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -689,7 +739,8 @@ html { scroll-behavior:smooth; }
   font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  z-index: 10;
+  z-index: 8;
+  pointer-events: none;
   animation: scrollBounce 2s ease-in-out infinite;
 }
 .cip-hero__scroll svg { width:20px; height:20px; }
@@ -718,7 +769,7 @@ html { scroll-behavior:smooth; }
   font-weight: 800;
   line-height: 1.1;
   margin: 0;
-  background-image: linear-gradient(115deg, var(--neon-rose), var(--neon-purple), var(--electric-blue), var(--electric-pyx), var(--neon-rose));
+  background-image: linear-gradient(115deg, var(--ciisa-green), var(--psw-mint), var(--electric-pyx), var(--ciisa-green));
   background-size: 300% 300%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -761,6 +812,110 @@ html { scroll-behavior:smooth; }
 }
 
 /* =============================================
+   MARCAS PARTICIPANTES (carrusel)
+   ============================================= */
+.cip-brands-wrap {
+  position: relative;
+  z-index: 5;
+  padding: 100px 0 140px;
+  overflow: hidden;
+  background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.55) 60%, var(--black) 100%);
+}
+
+.cip-brands-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 60px;
+}
+
+.cip-brands__viewport {
+  margin-top: 56px;
+  overflow: hidden;
+  width: 100%;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, black 64px, black calc(100% - 64px), transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, black 64px, black calc(100% - 64px), transparent 100%);
+}
+
+.cip-brands__track {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  width: max-content;
+  cursor: grab;
+  touch-action: pan-y;
+  will-change: transform;
+}
+.cip-brands__track.is-dragging { cursor: grabbing; }
+
+.cip-brands__item {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cip-brands__item img {
+  display: block;
+  height: 64px;
+  width: auto;
+  object-fit: contain;
+  opacity: 0.7;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+.cip-brands__item--hpe img {
+  height: 62px;
+}
+.cip-brands__item--hpi img {
+  height: 74px;
+}
+.cip-brands__item--sm img {
+  height: 49px;
+}
+.cip-brands__item--xl img {
+  height: 79px;
+}
+.cip-brands__item:hover img {
+  opacity: 1;
+  transform: scale(1.06);
+}
+
+@media (max-width: 900px) {
+  .cip-brands-wrap { padding: 64px 0 90px; }
+  .cip-brands-inner { padding: 0 24px; }
+  .cip-brands-wrap .cip-agenda-header { gap: 12px; margin-bottom: 44px; }
+  .cip-brands-wrap .cip-agenda-header__line { max-width: 32px; }
+  .cip-brands-wrap .cip-agenda-header__title {
+    font-size: clamp(14px, 4.2vw, 18px);
+    letter-spacing: 0.16em;
+    white-space: normal;
+    text-align: center;
+  }
+  .cip-brands__viewport {
+    margin-top: 36px;
+    -webkit-mask-image: linear-gradient(to right, transparent 0, black 24px, black calc(100% - 24px), transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0, black 24px, black calc(100% - 24px), transparent 100%);
+  }
+  .cip-brands__track { gap: 32px; }
+  .cip-brands__item img { height: 44px; }
+  .cip-brands__item--hpe img { height: 43px; }
+  .cip-brands__item--hpi img { height: 51px; }
+  .cip-brands__item--sm img { height: 34px; }
+  .cip-brands__item--xl img { height: 54px; }
+}
+
+@media (max-width: 420px) {
+  .cip-brands-wrap .cip-agenda-header__title { font-size: 13px; letter-spacing: 0.12em; }
+  .cip-brands__track { gap: 24px; }
+  .cip-brands__item img { height: 36px; }
+  .cip-brands__item--hpe img { height: 35px; }
+  .cip-brands__item--hpi img { height: 42px; }
+  .cip-brands__item--sm img { height: 28px; }
+  .cip-brands__item--xl img { height: 44px; }
+}
+
+/* =============================================
    ② AGENDA DEL EVENTO
    ============================================= */
 .cip-agenda-wrap {
@@ -785,7 +940,7 @@ html { scroll-behavior:smooth; }
   flex: 1;
   max-width: 160px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--neon-rose), var(--electric-pyx), transparent);
+  background: linear-gradient(90deg, transparent, var(--ciisa-green), var(--psw-mint), var(--electric-pyx), transparent);
   opacity: 0.6;
 }
 .cip-agenda-header__title {
@@ -800,7 +955,7 @@ html { scroll-behavior:smooth; }
 
 .cip-agenda-labels {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   align-items: end;
   max-width: 1200px;
   margin: 0 auto;
@@ -814,7 +969,7 @@ html { scroll-behavior:smooth; }
   font-family: var(--font-head);
   font-weight: 700;
   letter-spacing: 0.03em;
-  font-size: 13px;
+  font-size: 14px;
   white-space: nowrap;
   color: currentColor;
 }
@@ -880,8 +1035,8 @@ html { scroll-behavior:smooth; }
   animation: cip-agenda-pulse 5s ease-in-out infinite;
 }
 
-.cip-agenda-marker--rose   { color: var(--neon-rose); }
-.cip-agenda-marker--purple { color: var(--neon-purple); }
+.cip-agenda-marker--rose   { color: var(--ciisa-green); }
+.cip-agenda-marker--purple { color: var(--psw-mint); }
 .cip-agenda-marker--blue   { color: var(--electric-pyx); }
 
 @keyframes cip-agenda-pulse {
@@ -893,7 +1048,7 @@ html { scroll-behavior:smooth; }
 
 .cip-agenda-icons {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 16px;
   margin-top: 56px;
 }
@@ -909,8 +1064,8 @@ html { scroll-behavior:smooth; }
   box-shadow: 0 0 16px currentColor, inset 0 0 10px rgba(255,255,255,0.08);
 }
 .cip-agenda-icon svg { width: 30px; height: 30px; color: currentColor; }
-.cip-agenda-icon--rose   { color: var(--neon-rose); }
-.cip-agenda-icon--purple { color: var(--neon-purple); }
+.cip-agenda-icon--rose   { color: var(--ciisa-green); }
+.cip-agenda-icon--purple { color: var(--psw-mint); }
 .cip-agenda-icon--blue   { color: var(--electric-pyx); }
 
 .cip-agenda-tagline {
@@ -933,11 +1088,12 @@ html { scroll-behavior:smooth; }
 
 @media (max-width: 900px) {
   .cip-agenda-inner { padding: 0 24px; }
-  .cip-agenda-icons { grid-template-columns: repeat(5, 1fr); gap: 8px; }
-  .cip-agenda-icon { width: 52px; height: 52px; }
-  .cip-agenda-icon svg { width: 22px; height: 22px; }
-  .cip-agenda-marker { width: 100px; }
-  .cip-agenda-marker__time { font-size: 10px; }
+  .cip-agenda-labels { gap: 4px; }
+  .cip-agenda-icons { grid-template-columns: repeat(6, 1fr); gap: 8px; }
+  .cip-agenda-icon { width: 48px; height: 48px; }
+  .cip-agenda-icon svg { width: 20px; height: 20px; }
+  .cip-agenda-marker { width: 90px; }
+  .cip-agenda-marker__time { font-size: 9.5px; }
   .cip-agenda-marker__label { font-size: 9px; }
 }
 
@@ -988,8 +1144,8 @@ html { scroll-behavior:smooth; }
     box-shadow: 0 0 14px rgba(0,0,0,0.35), inset 0 0 10px rgba(255,255,255,0.05);
   }
 
-  .cip-agenda-card--rose   { color: var(--neon-rose); }
-  .cip-agenda-card--purple { color: var(--neon-purple); }
+  .cip-agenda-card--rose   { color: var(--ciisa-green); }
+  .cip-agenda-card--purple { color: var(--psw-mint); }
   .cip-agenda-card--blue   { color: var(--electric-pyx); }
 
   .cip-agenda-card__icon {
@@ -1020,6 +1176,11 @@ html { scroll-behavior:smooth; }
     font-size: 13px;
     white-space: nowrap;
     color: currentColor;
+  }
+  .cip-agenda-card__label.cip-agenda-card__label--solo {
+    margin-left: auto;
+    text-align: right;
+    font-size: 13px;
   }
   .cip-agenda-card__label {
     font-size: 11px;
@@ -1411,10 +1572,91 @@ html { scroll-behavior:smooth; }
 
 .cip-form-left__features { margin-top:40px; display:flex; flex-direction:column; gap:20px; }
 
+.cip-badges-stage {
+  display: grid;
+  width: 100%;
+  max-width: 100%;
+  align-self: center;
+  justify-items: center;
+}
+.cip-badges-intro,
+.cip-badges-grid {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.cip-badges-intro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.cip-badges-intro.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+.cip-badges-intro.is-hidden {
+  opacity: 0;
+  transform: scale(1.08);
+  pointer-events: none;
+}
+.cip-badges-intro__img {
+  width: 100%;
+  max-width: min(75%, 260px);
+  height: auto;
+  filter: drop-shadow(0 0 40px rgba(188,242,0,0.45));
+}
+
+.cip-badges-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 100%;
+  justify-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+.cip-badges-grid.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.cip-badge-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 150px;
+  aspect-ratio: 1 / 1;
+  padding: 16px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  opacity: 0;
+  transform: translateY(28px) scale(0.9);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.cip-badge-item.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.cip-badge-item__img {
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+  width: auto;
+  display: block;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cip-badge-item { transition: none; opacity: 1; transform: none; }
+}
+
 .cip-form-section--gradient-bg {
   position: relative;
   overflow: hidden;
-  background-image: linear-gradient(115deg, var(--neon-rose), var(--neon-purple), var(--electric-blue), var(--electric-pyx), var(--neon-rose));
+  background-image: linear-gradient(115deg, var(--ciisa-green), var(--psw-mint), var(--electric-pyx), var(--ciisa-green));
   background-size: 300% 300%;
   background-position: 0% 50%;
   animation: cip-headline-gradient-flow 10s ease-in-out infinite;
@@ -1491,6 +1733,24 @@ html { scroll-behavior:smooth; }
 }
 .cip-register__cta { margin-top: 32px; }
 
+.cip-register-form {
+  width: 100%;
+  max-width: 640px;
+  height: 900px;
+  margin: 40px auto 0;
+}
+.cip-register-form iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+  overflow: hidden;
+}
+
+@media (max-width: 640px) {
+  .cip-register-form { height: 1050px; }
+}
+
 .cip-countdown {
   display: flex;
   justify-content: center;
@@ -1516,7 +1776,7 @@ html { scroll-behavior:smooth; }
   line-height: 1;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
-  background-image: linear-gradient(90deg, var(--neon-rose), var(--neon-purple), var(--electric-blue), var(--electric-pyx));
+  background-image: linear-gradient(90deg, var(--ciisa-green), var(--psw-mint), var(--electric-pyx));
   background-size: 300% 300%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -2034,8 +2294,6 @@ html { scroll-behavior:smooth; }
    RESPONSIVO
    ============================================= */
 @media (max-width: 1100px) {
-  .cip-hero__body { grid-template-columns: 1fr; }
-  .cip-hero__image--featured { height: 320px; order: -1; }
   .cip-hero__photo--large { width: min(420px, 100%); max-height: 320px; }
   .cip-hero__photo-sequence { width: min(420px, 100%); height: 320px; }
   .cip-calendars-grid { grid-template-columns: 1fr 1fr; }
@@ -2044,9 +2302,7 @@ html { scroll-behavior:smooth; }
 
 @media (max-width: 900px) {
   .cip-hero__nav    { padding: 20px 24px; }
-  .cip-hero__body   { grid-template-columns: 1fr; padding: 24px 24px 60px; }
-  .cip-hero__image  { height: 280px; order: -1; }
-  .cip-hero__image--featured { height: 320px; order: -1; }
+  .cip-hero__body   { padding: 24px 24px 60px; }
   .cip-hero__photo  { width: 220px; }
   .cip-hero__photo--large { width: min(420px, 100%); max-height: 320px; }
   .cip-stat-card--left  { display:none; }
@@ -2068,6 +2324,32 @@ html { scroll-behavior:smooth; }
 }
 
 @media (max-width: 640px) {
+  .cip-hero {
+    padding-bottom: 20px;
+  }
+
+  .cip-hero__body {
+    padding-bottom: 82px;
+  }
+
+  .cip-hero__date-container {
+    padding: 0 20px;
+  }
+
+  .cip-hero__sub {
+    font-size: 10px;
+    line-height: 1.5;
+    letter-spacing: 0.08em;
+    margin-bottom: 24px;
+  }
+
+  .cip-hero__scroll {
+    bottom: 10px;
+    gap: 6px;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+  }
+
   .cip-step-grid {
     grid-template-columns: 1fr;
     gap: 24px;
