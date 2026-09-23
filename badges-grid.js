@@ -29,6 +29,14 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
+  // En móvil/tablet el bloque queda apilado debajo del texto: si se dispara apenas
+  // asoma por el borde inferior, la secuencia ocurre fuera de la vista. Ahí se
+  // espera a que el bloque esté casi completo y lejos del borde inferior.
+  const isStacked = window.matchMedia('(max-width: 900px)').matches;
+  const observerOptions = isStacked
+    ? { threshold: 0.7, rootMargin: '0px 0px -20% 0px' }
+    : { threshold: 0.3 };
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -36,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.3 });
+  }, observerOptions);
 
   observer.observe(stage);
 });

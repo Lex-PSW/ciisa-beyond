@@ -607,6 +607,14 @@ html { scroll-behavior:smooth; }
 .cip-hero__lottie--beyond { width: 100%; }
 .cip-hero__lottie--ciisa { width: 15%; }
 
+/* CiiSA mark relative to the Beyond wordmark's width: tablet 20%, mobile 30% */
+@media (max-width: 1024px) {
+  .cip-hero__lottie--ciisa { width: 20%; }
+}
+@media (max-width: 640px) {
+  .cip-hero__lottie--ciisa { width: 30%; }
+}
+
 /* Giro infinito de la "O" de Beyond, controlado por JS/CSS (no por keyframes de Lottie) */
 .cip-beyond-o-spin {
   transform-box: fill-box;
@@ -1656,17 +1664,7 @@ html { scroll-behavior:smooth; }
 .cip-form-section--gradient-bg {
   position: relative;
   overflow: hidden;
-  background-image: linear-gradient(115deg, var(--ciisa-green), var(--psw-mint), var(--electric-pyx), var(--ciisa-green));
-  background-size: 300% 300%;
-  background-position: 0% 50%;
-  animation: cip-headline-gradient-flow 10s ease-in-out infinite;
-}
-.cip-form-section--gradient-bg::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.4);
-  z-index: 0;
+  background: var(--black);
 }
 .cip-form-section--gradient-bg .cip-form-inner {
   position: relative;
@@ -1688,6 +1686,23 @@ html { scroll-behavior:smooth; }
 }
 
 .cip-location-header { grid-column: 1 / -1; }
+/* Desktop/laptop: detalles a la izquierda, foto a la derecha, mapa debajo */
+@media (min-width: 901px) {
+  .cip-location-header {
+    grid-column: 1;
+    align-self: center;
+  }
+}
+/* Mismo tamaño y peso que .cip-pulse-claim__desc */
+.cip-location-header .cip-section__desc {
+  font-size: 18px;
+  font-weight: 200;
+  line-height: 1.7;
+  max-width: 640px;
+}
+.cip-location-header .cip-section__desc strong {
+  font-weight: 700;
+}
 
 .cip-location-map {
   position: relative;
@@ -2389,3 +2404,35 @@ html { scroll-behavior:smooth; }
   .cip-hero__logo { width: 70%; }
   .psw__logo { width: 5%; }
 }
+/* Nav en móvil: logo 40% / botón 60% */
+@media (max-width: 640px) {
+  .cip-hero__nav {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    gap: 16px;
+  }
+  .cip-hero__nav > .cip-hero__logo,
+  .cip-hero__nav > .cip-btn {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+  .cip-hero__nav .cip-logo { display: block; }
+  .cip-hero__nav .cip-logo .cip-hero__logo {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .cip-hero__nav > .cip-btn {
+    justify-content: center;
+    text-align: center;
+    white-space: normal;
+    padding: 10px 12px !important;
+    font-size: 12px !important;
+    line-height: 1.25;
+  }
+}
+
+/* Título de registro con ornamentos laterales (mismo patrón que la agenda) */
+.cip-register__heading { margin-bottom: 24px; }
+.cip-register__heading .cip-section__title { margin: 0; white-space: nowrap; }
