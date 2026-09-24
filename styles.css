@@ -884,6 +884,13 @@ html { scroll-behavior:smooth; }
 .cip-brands__item--xl img {
   height: 79px;
 }
+/* Wordmarks muy anchos (Autodesk, Fortinet, Sophos): menos altura para igualar el peso visual */
+.cip-brands__item--wide img {
+  height: 36px;
+}
+.cip-brands__item--ibm img {
+  height: 89px;
+}
 .cip-brands__item:hover img {
   opacity: 1;
   transform: scale(1.06);
@@ -911,6 +918,8 @@ html { scroll-behavior:smooth; }
   .cip-brands__item--hpi img { height: 51px; }
   .cip-brands__item--sm img { height: 34px; }
   .cip-brands__item--xl img { height: 54px; }
+  .cip-brands__item--wide img { height: 26px; }
+  .cip-brands__item--ibm img { height: 62px; }
 }
 
 @media (max-width: 420px) {
@@ -921,6 +930,8 @@ html { scroll-behavior:smooth; }
   .cip-brands__item--hpi img { height: 42px; }
   .cip-brands__item--sm img { height: 28px; }
   .cip-brands__item--xl img { height: 44px; }
+  .cip-brands__item--wide img { height: 21px; }
+  .cip-brands__item--ibm img { height: 51px; }
 }
 
 /* =============================================

@@ -8,6 +8,12 @@
     { file: 'microsoft.svg', name: 'Microsoft' },
     { file: 'lenovo.svg', name: 'Lenovo', size: 'sm' },
     { file: 'poly.svg', name: 'Poly', size: 'xl' },
+    { file: 'autodesk.svg', name: 'Autodesk', size: 'wide' },
+    { file: 'cyberpower.svg', name: 'CyberPower', size: 'sm' },
+    { file: 'fortinet.svg', name: 'Fortinet', size: 'wide' },
+    { file: 'honeywell.svg', name: 'Honeywell', size: 'sm' },
+    { file: 'ibm.svg', name: 'IBM', size: 'ibm' },
+    { file: 'sophos.svg', name: 'Sophos', size: 'wide' },
     { file: 'ciisa-fs.svg', name: 'CiiSA FS', size: 'xl' },
     { file: 'asus.svg', name: 'ASUS', size: 'sm' }
   ];
