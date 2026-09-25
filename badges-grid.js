@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const stage = document.querySelector('[data-badges-stage]');
-  if (!stage) return;
+  document.querySelectorAll('[data-badges-stage]').forEach(initBadgesStage);
+});
+
+function initBadgesStage(stage) {
 
   const intro = stage.querySelector('[data-badges-intro]');
   const grid = stage.querySelector('[data-badges-grid]');
@@ -47,4 +49,4 @@ document.addEventListener('DOMContentLoaded', () => {
   }, observerOptions);
 
   observer.observe(stage);
-});
+}

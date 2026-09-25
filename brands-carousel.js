@@ -1,22 +1,6 @@
 (function () {
-  var LOGOS = [
-    { file: 'hpe.svg', name: 'HPE', size: 'hpe' },
-    { file: 'hpi.svg', name: 'HPI', size: 'hpi' },
-    { file: 'pyxoom-hr-ai.svg', name: 'Pyxoom' },
-    { file: 'hpe-networking.svg', name: 'HPE Networking' },
-    { file: 'dell.svg', name: 'Dell' },
-    { file: 'microsoft.svg', name: 'Microsoft' },
-    { file: 'lenovo.svg', name: 'Lenovo', size: 'sm' },
-    { file: 'poly.svg', name: 'Poly', size: 'xl' },
-    { file: 'autodesk.svg', name: 'Autodesk', size: 'wide' },
-    { file: 'cyberpower.svg', name: 'CyberPower', size: 'sm' },
-    { file: 'fortinet.svg', name: 'Fortinet', size: 'wide' },
-    { file: 'honeywell.svg', name: 'Honeywell', size: 'sm' },
-    { file: 'ibm.svg', name: 'IBM', size: 'ibm' },
-    { file: 'sophos.svg', name: 'Sophos', size: 'wide' },
-    { file: 'ciisa-fs.svg', name: 'CiiSA FS', size: 'xl' },
-    { file: 'asus.svg', name: 'ASUS', size: 'sm' }
-  ];
+  // Lista compartida con la grilla de logos (logos-data.js)
+  var LOGOS = window.CIISA_LOGOS || [];
 
   var BASE_PATH = 'assets/img/logos/';
   var REPEATS = 3;
