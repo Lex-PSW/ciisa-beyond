@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1146.7 272">
+  <!-- Generator: Adobe Illustrator 30.8.1, SVG Export Plug-In . SVG Version: 2.1.4 Build 1)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: none;
+      }
+
+      .st1 {
+        clip-path: url(#clippath-1);
+      }
+
+      .st2 {
+        isolation: isolate;
+      }
+
+      .st3 {
+        fill: url(#Degradado_sin_nombre);
+      }
+
+      .st4 {
+        clip-path: url(#clippath);
+      }
+
+      .st5 {
+        fill: #f7f7f7;
+      }
+    </style>
+    <clipPath id="clippath">
+      <path class="st0" d="M613,14.5c-67.1,0-121.5,54.4-121.5,121.5s54.4,121.5,121.5,121.5,121.5-54.4,121.5-121.5-54.4-121.5-121.5-121.5ZM613,210.8c-41.3,0-74.8-33.5-74.8-74.8s33.5-74.8,74.8-74.8,74.8,33.5,74.8,74.8-33.5,74.8-74.8,74.8Z"/>
+    </clipPath>
+    <clipPath id="clippath-1">
+      <rect class="st0" x="486.5" y="9.5" width="252.9" height="252.9"/>
+    </clipPath>
+    <linearGradient id="Degradado_sin_nombre" data-name="Degradado sin nombre" x1="664.4" y1="821.1" x2="664.4" y2="925.2" gradientTransform="translate(0 -806)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#edf664"/>
+      <stop offset=".5" stop-color="#e5f53d"/>
+      <stop offset=".6" stop-color="#dcf034" stop-opacity=".9"/>
+      <stop offset=".7" stop-color="#c6e31e" stop-opacity=".5"/>
+      <stop offset=".8" stop-color="#b5d90d" stop-opacity=".2"/>
+      <stop offset=".9" stop-color="#abd403" stop-opacity="0"/>
+      <stop offset="1" stop-color="#a8d200" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <g id="D">
+    <g id="_6_D">
+      <path class="st5" d="M1069.4,61c14,7.4,24.8,17.8,32.4,31.2s11.5,28.8,11.5,46.3-3.8,32.7-11.5,46.1c-7.7,13.4-18.5,23.9-32.5,31.3-14,7.4-30.3,11.1-48.8,11.1h-66.3V49.9h66.3c18.7,0,35,3.7,48.9,11.1h0ZM1055.8,176.3c9.1-8.9,13.6-21.5,13.6-37.8s-4.5-29-13.6-38.1-21.8-13.6-38.1-13.6h-20.4v102.9h20.4c16.3,0,29-4.4,38.1-13.4h0Z"/>
+    </g>
+  </g>
+  <g id="N">
+    <g id="_5_N">
+      <path class="st5" d="M922.9,227h-43.1l-72.1-109.2v109.2h-43.1V49.9h43.1l72.1,109.7V49.9h43.1v177.1h0Z"/>
+    </g>
+  </g>
+  <g class="st4">
+    <g class="st1">
+      <image class="st2" width="529" height="526" transform="translate(485.9 10) scale(.5)" xlink:href="Beyond Logo-1.png"/>
+    </g>
+  </g>
+  <path class="st3" d="M686,119.2c-16.9-78-89.8-103.7-89.8-103.7,122.2-7.4,136.4,100.2,136.4,100.2l-46.5,3.5h0Z"/>
+  <g id="Y">
+    <g id="_3_Y">
+      <path class="st5" d="M487.8,49.9l-61.3,118.5v58.5h-43.1v-58.5l-61.3-118.5h48.9l34.3,74.2,34-74.2h48.5Z"/>
+    </g>
+  </g>
+  <g id="E">
+    <g id="_2_E">
+      <path class="st5" d="M242.7,84.5v35.8h57.8v33.3h-57.8v38.8h65.3v34.6h-108.4V49.9h108.4v34.5h-65.3Z"/>
+    </g>
+  </g>
+  <g id="B">
+    <g id="_1_B">
+      <path class="st5" d="M165.2,151.4c6.2,8,9.3,17.1,9.3,27.4,0,14.8-5.2,26.5-15.5,35.2s-24.8,13-43.2,13H33.3V49.9h79.7c18,0,32.1,4.1,42.2,12.4s15.3,19.4,15.3,33.5-2.7,19.1-8.2,26c-5.5,6.9-12.7,11.7-21.8,14.4,10.2,2.2,18.5,7.3,24.7,15.3h0ZM76.5,121.6h28.2c7.1,0,12.5-1.6,16.3-4.7s5.7-7.7,5.7-13.8-1.9-10.7-5.7-13.9c-3.8-3.2-9.2-4.8-16.3-4.8h-28.2v37.1h0ZM125,187.3c4-3.3,5.9-8,5.9-14.2s-2.1-11.1-6.2-14.6-9.8-5.3-17-5.3h-31.3v39.1h31.8c7.2,0,12.8-1.6,16.8-4.9h0Z"/>
+    </g>
+  </g>
+</svg>

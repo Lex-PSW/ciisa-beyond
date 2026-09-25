@@ -48,7 +48,9 @@
 
     var setWidth = 0;
     function measure() {
-      setWidth = track.scrollWidth / REPEATS;
+      // Distancia real entre el primer logo y el primero de la siguiente repetición
+      // (incluye el gap final, que scrollWidth no cuenta).
+      setWidth = track.children[LOGOS.length].offsetLeft - track.children[0].offsetLeft;
     }
 
     var offset = 0;
@@ -66,10 +68,19 @@
       return ((v % setWidth) + setWidth) % setWidth;
     }
 
+    var wheelVel = 0; // inercia de la rueda, px/frame
+
     function tick() {
-      if (!dragging && !paused) {
-        offset = wrap(offset + SPEED);
-        apply();
+      if (!dragging) {
+        if (Math.abs(wheelVel) > 0.1) {
+          offset = wrap(offset + wheelVel);
+          wheelVel *= 0.92;
+          apply();
+        } else if (!paused) {
+          wheelVel = 0;
+          offset = wrap(offset + SPEED);
+          apply();
+        }
       }
       requestAnimationFrame(tick);
     }
@@ -103,10 +114,27 @@
       onPointerUp();
     });
 
+    // Rueda del mouse / trackpad: recorre el carrusel mientras el cursor está encima.
+    viewport.addEventListener('wheel', function (e) {
+      var delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+      if (!delta) return;
+      e.preventDefault();
+      if (e.deltaMode === 1) delta *= 16; // líneas -> px
+      // Cada golpe de rueda suma velocidad y se frena solo: un giro recorre
+      // varios logos en vez de un solo paso.
+      wheelVel = Math.max(-90, Math.min(90, wheelVel + delta * 0.2));
+    }, { passive: false });
+
     viewport.addEventListener('mouseenter', function () { paused = true; });
     viewport.addEventListener('mouseleave', function () { paused = false; });
 
     window.addEventListener('resize', measure);
+    // Los SVG sin dimensiones miden 0 hasta cargar: si se mide antes, el ancho del
+    // set sale mínimo y el carrusel reinicia en HPE. Se vuelve a medir al cargar cada uno.
+    track.querySelectorAll('img').forEach(function (img) {
+      if (!img.complete) img.addEventListener('load', measure);
+    });
+    window.addEventListener('load', measure);
 
     // Give images a frame to lay out before measuring the natural width.
     requestAnimationFrame(function () {
