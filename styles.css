@@ -2472,11 +2472,13 @@ html { scroll-behavior:smooth; }
 /* "Sobre Beyond" ahora va justo debajo del hero: hereda el fundido de video -> negro que antes
    daba la sección de marcas (transparente arriba, negro sólido después). */
 #ilusionista {
+  /* Fundido más largo: el negro sólido llega hasta el último tercio de la sección */
   background: linear-gradient(
     to bottom,
-    transparent 0,
-    rgba(0, 0, 0, 0.55) 100px,
-    var(--black) 200px,
+    transparent 0%,
+    rgba(0, 0, 0, 0.3) 25%,
+    rgba(0, 0, 0, 0.7) 50%,
+    var(--black) 80%,
     var(--black) 100%
   );
 }
@@ -2651,4 +2653,284 @@ html { scroll-behavior:smooth; }
 }
 @media (prefers-reduced-motion: reduce) {
   .cip-whatsapp:hover, .cip-whatsapp:focus-visible, .cip-whatsapp:active { animation: none; transform: none; }
+}
+
+/* Experiencia Beyond: la ola animada (desktop) y las cartas (móvil) quedan ocultas;
+   se reemplazan por una grilla 3x2 de tarjetas. */
+.cip-agenda-labels,
+.cip-agenda-wave,
+.cip-agenda-icons,
+.cip-agenda-cards { display: none !important; }
+
+.cip-exp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 64px;
+}
+.cip-exp-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 190px;
+  padding: 32px 24px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  border-radius: 0;
+  transition: background 0.3s ease;
+}
+.cip-exp-card::after {
+  content: '';
+  position: absolute;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--ciisa-green), var(--psw-mint), var(--electric-pyx), var(--ciisa-green));
+  background-size: 300% 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.cip-exp-card:hover { background: rgba(255, 255, 255, 0.08); }
+.cip-exp-card:hover::after {
+  opacity: 1;
+  animation: cip-exp-border-flow 3s linear infinite;
+}
+@keyframes cip-exp-border-flow {
+  from { background-position: 0% 50%; }
+  to   { background-position: 150% 50%; }
+}
+.cip-exp-card__icon { width: 44px; height: 44px; margin-bottom: 6px; }
+.cip-exp-card__icon svg { width: 100%; height: 100%; display: block; }
+.cip-exp-card:nth-child(1) .cip-exp-card__icon,
+.cip-exp-card:nth-child(2) .cip-exp-card__icon { color: var(--ciisa-green); }
+.cip-exp-card:nth-child(3) .cip-exp-card__icon,
+.cip-exp-card:nth-child(4) .cip-exp-card__icon { color: var(--psw-mint); }
+.cip-exp-card:nth-child(5) .cip-exp-card__icon,
+.cip-exp-card:nth-child(6) .cip-exp-card__icon { color: var(--electric-pyx); }
+.cip-exp-card__time {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+}
+.cip-exp-card__label {
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.3;
+  color: var(--white);
+}
+
+@media (max-width: 640px) {
+  .cip-exp-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-bottom: 44px; }
+  .cip-exp-card { min-height: 150px; padding: 22px 14px; }
+  .cip-exp-card__icon { width: 36px; height: 36px; }
+  .cip-exp-card__label { font-size: 15px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cip-exp-card:hover::after { animation: none; }
+}
+
+/* Fila 1: cifras + subtítulo, sin caja. Hover: fundido a bold. */
+.cip-exp-head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 8px 4px 20px;
+  text-align: left;
+  cursor: default;
+}
+.cip-exp-head__num {
+  font-family: var(--font-head);
+  font-weight: 200;
+  font-size: clamp(64px, 7.5vw, 112px);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  column-gap: 12px;
+}
+.cip-exp-head__suffix {
+  font-size: 0.32em;
+  letter-spacing: 0;
+  color: var(--white);
+  white-space: nowrap;
+}
+.cip-exp-head__label {
+  font-family: var(--font-head);
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 1.3;
+  color: var(--white);
+}
+/* Hover: fundido cruzado entre la versión delgada y la bold (sin pasar por los pesos intermedios).
+   Las dos capas se apilan en la misma celda; la bold define el ancho para que nada salte. */
+.cip-exp-fade { display: grid; }
+.cip-exp-fade > span {
+  grid-area: 1 / 1;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  column-gap: inherit;
+  transition: opacity 0.45s ease;
+}
+.cip-exp-fade__bold { font-weight: 700; opacity: 0; }
+.cip-exp-head:hover .cip-exp-fade__base { opacity: 0; }
+.cip-exp-head:hover .cip-exp-fade__bold { opacity: 1; }
+
+/* Fila 2: descripciones (misma caja y hover de borde degradado) */
+.cip-exp-card {
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+  min-height: 0;
+}
+.cip-exp-card__desc {
+  margin: 0;
+  font-weight: 200;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--white);
+}
+.cip-exp-card__list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.cip-exp-card__list li {
+  position: relative;
+  padding-left: 18px;
+}
+.cip-exp-card__list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  background-image: linear-gradient(115deg, var(--ciisa-green), var(--psw-mint), var(--electric-pyx), var(--ciisa-green));
+  background-size: 300% 300%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: cip-headline-gradient-flow 10s ease-in-out infinite;
+}
+/* Móvil: una columna, cada cifra seguida de su descripción */
+@media (max-width: 640px) {
+  .cip-exp-grid { grid-template-columns: 1fr; }
+  .cip-exp-head { padding: 12px 0 4px; }
+  .cip-exp-head__num { font-size: clamp(56px, 17vw, 80px); }
+  .cip-exp-head__label { font-size: 18px; }
+  .cip-exp-card__desc { font-size: 14px; }
+  .cip-exp-grid > :nth-child(1) { order: 1; }
+  .cip-exp-grid > :nth-child(4) { order: 2; }
+  .cip-exp-grid > :nth-child(7) { order: 3; }
+  .cip-exp-grid > :nth-child(2) { order: 4; }
+  .cip-exp-grid > :nth-child(5) { order: 5; }
+  .cip-exp-grid > :nth-child(8) { order: 6; }
+  .cip-exp-grid > :nth-child(3) { order: 7; }
+  .cip-exp-grid > :nth-child(6) { order: 8; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cip-exp-fade > span { transition: none; }
+}
+
+/* Tarjetas de Experiencia Beyond: título bold y palabras clave destacadas */
+.cip-exp-card__title {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 17px;
+  margin-bottom: 4px;
+}
+.cip-exp-card__desc strong {
+  font-weight: 700;
+  color: var(--white);
+}
+
+/* Tablet y móvil (≤1024px): numerales y subtítulos fijos en bold, sin fundido */
+@media (max-width: 1024px) {
+  .cip-exp-fade__base { opacity: 0 !important; }
+  .cip-exp-fade__bold { opacity: 1 !important; }
+  .cip-exp-fade > span { transition: none; }
+}
+
+/* Tablet (641–1024px, p. ej. 768): 2 columnas, numeral a la izquierda y su descripción a la derecha */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .cip-exp-grid {
+    /* 222px: "Conferencias de casos" (210px en bold 18px) cabe y "de éxito" baja al 2º renglón */
+    grid-template-columns: 222px minmax(0, 1fr);
+    column-gap: 24px;
+    row-gap: 20px;
+    align-items: center;
+  }
+  .cip-exp-grid > :nth-child(1) { grid-area: 1 / 1; }
+  .cip-exp-grid > :nth-child(4) { grid-area: 1 / 2; }
+  .cip-exp-grid > :nth-child(7) { grid-area: 2 / 1 / 3 / -1; }
+  .cip-exp-grid > :nth-child(2) { grid-area: 3 / 1; }
+  .cip-exp-grid > :nth-child(5) { grid-area: 3 / 2; }
+  .cip-exp-grid > :nth-child(8) { grid-area: 4 / 1 / 5 / -1; }
+  .cip-exp-grid > :nth-child(3) { grid-area: 5 / 1; }
+  .cip-exp-grid > :nth-child(6) { grid-area: 5 / 2; }
+  .cip-exp-head { padding: 0; }
+  .cip-exp-head__num { font-size: clamp(56px, 9vw, 88px); }
+  .cip-exp-head__label { font-size: 18px; }
+  .cip-exp-card { align-self: stretch; justify-content: center; }
+}
+
+/* Separador entre filas: línea blanca de 0.2px, solo en tablet y móvil */
+.cip-exp-sep { display: none; }
+@media (max-width: 1024px) {
+  .cip-exp-sep {
+    display: block;
+    height: 0.2px;
+    background: var(--white);
+    margin: 8px 0;
+  }
+}
+
+/* Salto de línea solo en móvil (p. ej. "Experiencia / Beyond") */
+.cip-br-mobile { display: none; }
+@media (max-width: 640px) {
+  .cip-br-mobile { display: inline; }
+  .cip-agenda-header__title:has(.cip-br-mobile) { text-align: center; line-height: 1.2; }
+
+  /* Numerales y subtítulos centrados en móvil */
+  .cip-exp-head { align-items: center; text-align: center; }
+  .cip-exp-head__num,
+  .cip-exp-fade > span { justify-content: center; }
+}
+
+/* Tagline de la agenda centrado en móvil */
+@media (max-width: 640px) {
+  .cip-agenda-tagline {
+    text-align: center;
+    gap: 12px;
+    letter-spacing: 0.18em;
+    line-height: 1.7;
+  }
+  .cip-agenda-tagline__line { max-width: 32px; flex: 0 0 32px; }
+}
+
+/* Botón de registro: 90% del ancho del contenedor, versión con orilla animada, en mayúsculas */
+.cip-register__cta { width: 100%; }
+.cip-register__btn {
+  display: flex;
+  justify-content: center;
+  width: 90%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  padding-top: 18px;
+  padding-bottom: 18px;
 }
