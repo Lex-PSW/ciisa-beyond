@@ -2886,13 +2886,18 @@ html { scroll-behavior:smooth; }
   .cip-exp-card { align-self: stretch; justify-content: center; }
 }
 
-/* Separador entre filas: línea blanca de 0.2px, solo en tablet y móvil */
+/* Separador entre filas: línea de 0.8px con degradado animado, solo en tablet y móvil */
 .cip-exp-sep { display: none; }
 @media (max-width: 1024px) {
   .cip-exp-sep {
     display: block;
-    height: 0.2px;
-    background: var(--white);
+    /* 1px real escalado a 0.8: una altura fraccionaria (0.8px) se redondea a 0 o 1 píxel según
+       la posición vertical y la línea parpadea al redimensionar. */
+    height: 1px;
+    transform: scaleY(0.8);
+    background: linear-gradient(90deg, var(--ciisa-green), var(--psw-mint), var(--electric-pyx), var(--ciisa-green));
+    background-size: 300% 100%;
+    animation: cip-exp-border-flow 3s linear infinite;
     margin: 8px 0;
   }
 }
@@ -2933,4 +2938,247 @@ html { scroll-behavior:smooth; }
   font-weight: 700;
   padding-top: 18px;
   padding-bottom: 18px;
+}
+
+/* ===== Registro propio (rsvp-form.js) ===== */
+.cip-rsvp {
+  width: 100%;
+  text-align: left;
+}
+.cip-rsvp__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.cip-rsvp__field { display: flex; flex-direction: column; gap: 8px; }
+.cip-rsvp__field--full { grid-column: 1 / -1; }
+.cip-rsvp__label {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.8);
+}
+.cip-rsvp input[type="text"],
+.cip-rsvp input[type="email"],
+.cip-rsvp input[type="tel"] {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px 16px;
+  font: inherit;
+  font-size: 16px; /* evita el zoom automático en iOS */
+  color: var(--white);
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 0;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.cip-rsvp input:focus {
+  outline: none;
+  border-color: var(--psw-mint);
+  background: rgba(0, 0, 0, 0.75);
+}
+/* Validación por campo */
+.cip-rsvp input::placeholder { color: rgba(255, 255, 255, 0.35); }
+.cip-rsvp__field.is-invalid input { border-color: #ff6b6b; }
+.cip-rsvp__field.is-valid input { border-color: rgba(188, 242, 0, 0.6); }
+.cip-rsvp__error {
+  min-height: 1.2em;
+  font-size: 13px;
+  line-height: 1.3;
+  color: #ff8a8a;
+}
+.cip-rsvp__check-wrap { margin: 4px 0 16px; }
+.cip-rsvp__check {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+}
+.cip-rsvp__check input {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin: 1px 0 0;
+  accent-color: var(--ciisa-green);
+  cursor: pointer;
+}
+.cip-rsvp__check-wrap .cip-rsvp__error { display: block; margin: 6px 0 0 32px; }
+.cip-rsvp__status a,
+.cip-rsvp__status a { color: var(--psw-mint); }
+.cip-rsvp__status {
+  min-height: 1.4em;
+  margin: 0 0 12px;
+  font-size: 14px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+}
+.cip-rsvp__status.is-error { color: #ff8a8a; }
+.cip-rsvp button[disabled] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  animation-play-state: paused;
+}
+.cip-rsvp.is-busy button[disabled] { cursor: progress; }
+
+@media (max-width: 640px) {
+  .cip-rsvp__grid { grid-template-columns: 1fr; }
+}
+
+/* Modal de agradecimiento */
+.cip-thanks {
+  width: min(520px, calc(100% - 32px));
+  margin: auto; /* el reset global quita el centrado nativo de <dialog> */
+  inset: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--white);
+}
+.cip-thanks::backdrop {
+  background: rgba(0, 0, 0, 0.75);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.cip-thanks__box {
+  position: relative;
+  padding: 40px 32px 32px;
+  text-align: center;
+  background: #080F1E;
+  border: 1px solid var(--border);
+}
+.cip-thanks__box::before {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; top: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--ciisa-green), var(--psw-mint), var(--electric-pyx), var(--ciisa-green));
+  background-size: 300% 100%;
+  animation: cip-exp-border-flow 3s linear infinite;
+}
+.cip-thanks__eyebrow {
+  margin: 0 0 10px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--psw-mint);
+}
+.cip-thanks__title {
+  margin: 0 0 14px;
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: clamp(26px, 5vw, 34px);
+  line-height: 1.15;
+}
+.cip-thanks__text {
+  margin: 0 0 28px;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+}
+.cip-thanks__text strong { font-weight: 700; color: var(--white); }
+.cip-thanks[open] .cip-thanks__box { animation: cip-thanks-in 0.35s ease-out; }
+@keyframes cip-thanks-in {
+  from { opacity: 0; transform: translateY(16px) scale(0.97); }
+  to   { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cip-thanks[open] .cip-thanks__box,
+  .cip-thanks__box::before { animation: none; }
+}
+/* Botón de registro desactivado: sin el relleno de hover */
+.cip-rsvp button[disabled]:hover {
+  background-image: linear-gradient(var(--black), var(--black)), var(--cip-gradient);
+  box-shadow: none;
+  transform: none;
+}
+
+/* Registro responsivo: margen lateral para que el formulario no toque las orillas */
+.cip-register {
+  box-sizing: border-box;
+  max-width: calc(640px + 48px);
+  padding-left: 24px;
+  padding-right: 24px;
+}
+.cip-rsvp input[type="text"],
+.cip-rsvp input[type="email"],
+.cip-rsvp input[type="tel"] { min-width: 0; text-overflow: ellipsis; }
+@media (max-width: 640px) {
+  .cip-register { padding-left: 20px; padding-right: 20px; }
+  .cip-rsvp__grid { gap: 12px; }
+  .cip-rsvp input[type="text"],
+  .cip-rsvp input[type="email"],
+  .cip-rsvp input[type="tel"] { padding: 13px 14px; }
+}
+
+/* Hipervínculos de texto (fuera del footer) en verde CiiSA */
+.cip-page section a:not(.cip-btn):not(.cip-logo) {
+  color: var(--ciisa-green);
+  text-decoration-color: currentColor;
+}
+.cip-page section a:not(.cip-btn):not(.cip-logo):hover { color: var(--psw-mint); }
+.cip-location-header .cip-location-link .cip-section__desc {
+  color: var(--ciisa-green);
+  text-decoration-color: rgba(188, 242, 0, 0.5);
+}
+.cip-location-header .cip-location-link:hover .cip-section__desc,
+.cip-location-header .cip-location-link:focus-visible .cip-section__desc {
+  color: var(--psw-mint);
+  text-decoration-color: var(--psw-mint);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cip-exp-sep { animation: none; }
+}
+
+/* Numerales tipo slot (exp-slots.js): cada dígito es un rodillo vertical que gira hasta su valor */
+/* Todo el numeral en la misma rejilla de 1.1em: el "+" y los rodillos quedan alineados */
+.cip-slot-num { display: inline-flex; align-items: flex-start; line-height: 1.1em; }
+.cip-slot-num > span:not(.cip-slot) { display: block; height: 1.1em; }
+.cip-slot {
+  display: inline-block;
+  height: 1.1em;
+  line-height: 1.1em;
+  /* Recorta solo arriba y abajo; a los lados los dígitos anchos pueden sobresalir al girar */
+  clip-path: inset(0 -0.5em);
+}
+.cip-slot__strip { align-items: center; }
+.cip-slot__strip {
+  display: flex;
+  flex-direction: column;
+  transform: translateY(0);
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1); /* frena suave al final */
+  will-change: transform;
+}
+.cip-slot__strip > span { display: block; height: 1.1em; }
+.is-slot-done .cip-slot__strip {
+  transform: translateY(calc(var(--slot-steps) * -1.1em));
+}
+.is-slot-instant .cip-slot__strip { transition: none; }
+
+/* Barrido: desenfoque mientras gira, nítido al llegar al número final */
+.is-slot-done:not(.is-slot-instant) .cip-slot__strip,
+.is-slot-done:not(.is-slot-instant) .cip-slot__sym {
+  animation:
+    cip-headline-gradient-flow 18s ease-in-out infinite,
+    cip-slot-blur var(--slot-dur, 1400ms) cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes cip-slot-blur {
+  0%   { filter: blur(0); }
+  12%  { filter: blur(0.07em); }
+  55%  { filter: blur(0.05em); }
+  85%  { filter: blur(0.015em); }
+  100% { filter: blur(0); }
+}
+.cip-slot__strip > span { text-align: center; }
+.cip-slot__probe {
+  position: absolute;
+  visibility: hidden;
+  white-space: nowrap;
 }
