@@ -3426,3 +3426,20 @@ html { scroll-behavior:smooth; }
   opacity: 1;
   transform: translateY(0) scale(1);
 }
+
+/* Detalles del evento: "Participa a tu ritmo" y el horario como subtítulos; lugar y dirección abajo */
+.cip-location-subs { margin: 18px 0 26px; }
+.cip-location-sub {
+  margin: 0;
+  font-family: var(--font-head);
+  font-size: clamp(24px, 2.4vw, 34px);
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--white);
+}
+.cip-location-sub--light {
+  margin-top: 6px;
+  font-size: clamp(19px, 1.7vw, 24px);
+  font-weight: 300;
+}
+.cip-location-header .cip-location-venue { margin-bottom: 2px; }
