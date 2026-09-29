@@ -12,6 +12,9 @@
   })(window,document,'script','dataLayer','GTM-TFCPQDS8');</script>
   <!-- End Google Tag Manager -->
 
+  <!-- Píxeles de campañas (Meta, LinkedIn, TikTok) y captura de UTM: configurar IDs en tracking.js -->
+  <script src="tracking.js" defer></script>
+
   <link rel="stylesheet" href="styles.css">
 
   <!-- Favicons -->
@@ -62,19 +65,21 @@
           <img src="assets/img/logo-family.svg" alt="CiiSA | PSW Logo Family" class="cip-hero__logo">
         </a>
       </div>
-      <a href="#registro" class="cip-btn cip-btn--outline" style="padding:10px 22px;font-size:13px;">
+<!--       <a href="#registro" class="cip-btn cip-btn--outline" style="padding:10px 22px;font-size:13px;">
         Confirma tu asistencia →
-      </a>
+      </a> -->
     </nav>
     <div class="cip-hero__date-container">
       <p class="cip-hero__sub cip-hero__sub--center cip-hero__sub--traking">
-          21 OCT 2026 | 10:00 AM - 7:00 PM | Monterrey, N.L.
+          21 OCT 2026 | Monterrey, N.L.
       </p>
     </div>
     <div class="cip-hero__body">
       <h1 class="cip-visually-hidden">CiiSA Beyond</h1>
       <div class="cip-hero__image cip-hero__image--featured">
         <div class="cip-hero__image-glow"></div>
+        <!-- Copia de la fecha anclada al logo (solo tablet y móvil) -->
+        <p class="cip-hero__sub cip-hero__sub--center cip-hero__sub--traking cip-hero__date--anchored" aria-hidden="true">21 OCT 2026 | Monterrey, N.L.</p>
         <div class="cip-hero__logo-stack">
           <div class="cip-hero__lottie cip-hero__lottie--beyond" data-lottie="assets/lottie/beyond-logo.json?v=2" aria-label="Beyond"></div>
           <div class="cip-hero__by-ciisa">
@@ -106,10 +111,10 @@
       <div class="cip-form-left">
         <h2 class="cip-section__title cip-section__title--display">Más allá de la <span class="cip-hero__headline-span--pulse">tecnología</span></h2>
         <div class="cip-section__label cip-section__label--subtitle">Un encuentro donde la <span class="cip-hero__headline-span--pulse">innovación cobra vida.</span></div>
-        <p class="cip-pulse-claim__desc"><strong>Beyond</strong> reúne a los principales fabricantes, expertos y líderes de la industria para explorar tendencias, generar conexiones y descubrir nuevas oportunidades de negocio.</p>
-        <p class="cip-pulse-claim__desc"><strong>Recorre</strong> espacios especializados de fabricantes y socios estratégicos.</p>
-        <p class="cip-pulse-claim__desc"><strong>Conecta</strong> con expertos y marcas que están impulsando la transformación digital.</p>
-        <p class="cip-pulse-claim__desc"><strong>Descubre</strong> soluciones, tendencias y casos de éxito que generan impacto real.</p>
+        <p class="cip-pulse-claim__desc"><strong class="cip-hero__headline-span--pulse">Beyond</strong> reúne a los principales fabricantes, expertos y líderes de la industria para explorar tendencias, generar conexiones y descubrir nuevas oportunidades de negocio.</p>
+        <p class="cip-pulse-claim__desc"><strong class="cip-hero__headline-span--pulse">Recorre</strong> espacios especializados de fabricantes y socios estratégicos.</p>
+        <p class="cip-pulse-claim__desc"><strong class="cip-hero__headline-span--pulse">Conecta</strong> con expertos y marcas que están impulsando la transformación digital.</p>
+        <p class="cip-pulse-claim__desc"><strong class="cip-hero__headline-span--pulse">Descubre</strong> soluciones, tendencias y casos de éxito que generan impacto real.</p>
       </div>
 
       <!-- Columna derecha: grilla de logos (se genera con logos-grid.js) -->
@@ -376,38 +381,80 @@
 
       </div>
 
-      <!-- Grilla 3x2 de tarjetas (reemplaza la ola animada y las cartas móviles, que quedan ocultas) -->
-      <!-- Fila 1: cifras + subtítulo (sin caja). Fila 2: descripciones en tarjetas. -->
-      <div class="cip-exp-grid">
-        <div class="cip-exp-head">
-          <div class="cip-exp-head__num cip-exp-fade"><span class="cip-exp-fade__base"><span class="cip-hero__headline-span--pulse">+18</span></span><span class="cip-exp-fade__bold" aria-hidden="true"><span class="cip-hero__headline-span--pulse">+18</span></span></div>
-          <div class="cip-exp-head__label cip-exp-fade"><span class="cip-exp-fade__base">Stands tecnológicos</span><span class="cip-exp-fade__bold" aria-hidden="true">Stands tecnológicos</span></div>
-        </div>
-        <div class="cip-exp-head">
-          <div class="cip-exp-head__num cip-exp-fade"><span class="cip-exp-fade__base"><span class="cip-hero__headline-span--pulse">+10</span></span><span class="cip-exp-fade__bold" aria-hidden="true"><span class="cip-hero__headline-span--pulse">+10</span></span></div>
-          <div class="cip-exp-head__label cip-exp-fade"><span class="cip-exp-fade__base">Conferencias de casos de éxito</span><span class="cip-exp-fade__bold" aria-hidden="true">Conferencias de casos de éxito</span></div>
-        </div>
-        <div class="cip-exp-head">
-          <div class="cip-exp-head__num cip-exp-fade"><span class="cip-exp-fade__base"><span class="cip-hero__headline-span--pulse">+400</span></span><span class="cip-exp-fade__bold" aria-hidden="true"><span class="cip-hero__headline-span--pulse">+400</span></span></div>
-          <div class="cip-exp-head__label cip-exp-fade"><span class="cip-exp-fade__base">Asistentes</span><span class="cip-exp-fade__bold" aria-hidden="true">Asistentes</span></div>
-        </div>
-        <div class="cip-exp-card">
-          <p class="cip-exp-card__desc">Descubre <strong>innovación</strong>, <strong>demostración de producto</strong> y <strong>expertos en soluciones</strong> de las <strong>marcas líderes</strong>.</p>
-        </div>
-        <div class="cip-exp-card">
-          <p class="cip-exp-card__desc">Escucha directamente a <strong>nuestros clientes</strong> compartir cómo están resolviendo desafíos, optimizando su negocio y generando <strong>resultados tangibles</strong> con el apoyo de la tecnología y CiiSA. La mejor inspiración viene de <strong>experiencias reales</strong>.</p>
-        </div>
-        <div class="cip-exp-card">
-          <p class="cip-exp-card__desc cip-exp-card__title">Beneficios Exclusivos</p>
-          <ul class="cip-exp-card__desc cip-exp-card__list">
-            <li><strong>Promociones especiales</strong> del evento</li>
-            <li><strong>Sorteos de productos</strong> de marcas participantes</li>
-            <li>Accesos a <strong>eventos preferenciales</strong></li>
+      <!-- ¿Para quién es BEYOND? (fusionado con las cifras de Experiencia Beyond) -->
+      <div class="cip-offer cip-offer--merged">
+        <div class="cip-offer__inner">
+          <h2 class="cip-offer__title" id="cip-offer-title">¿Para quién es <span class="cip-hero__headline-span--pulse">BEYOND?</span></h2>
+          <ul class="cip-offer__list">
+            <li class="cip-offer__item">Directivos</li>
+            <li class="cip-offer__item">Tomadores de decisión</li>
+            <li class="cip-offer__item">Áreas de TI</li>
+            <li class="cip-offer__item">Operaciones</li>
+            <li class="cip-offer__item">Innovación</li>
+            <li class="cip-offer__item">Compras</li>
+            <li class="cip-offer__item">Recursos Humanos</li>
           </ul>
         </div>
-        <!-- Separadores entre filas (solo tablet y móvil) -->
-        <div class="cip-exp-sep" aria-hidden="true"></div>
-        <div class="cip-exp-sep" aria-hidden="true"></div>
+      </div>
+
+      <!-- Numerales de Experiencia Beyond: grilla de 3 cifras y beneficios -->
+      <div class="cip-exp-stats" data-exp-stats>
+
+        <!-- Fila 1: cifras + subtítulo (sin caja). Fila 2: descripciones en tarjetas. -->
+        <div class="cip-exp-grid">
+          <div class="cip-exp-head">
+            <div class="cip-exp-head__num cip-exp-fade"><span class="cip-exp-fade__base"><span class="cip-hero__headline-span--pulse">+18</span></span><span class="cip-exp-fade__bold" aria-hidden="true"><span class="cip-hero__headline-span--pulse">+18</span></span></div>
+            <div class="cip-exp-head__label cip-exp-fade"><span class="cip-exp-fade__base">Stands tecnológicos</span><span class="cip-exp-fade__bold" aria-hidden="true">Stands tecnológicos</span></div>
+          </div>
+          <div class="cip-exp-head">
+            <div class="cip-exp-head__num cip-exp-fade"><span class="cip-exp-fade__base"><span class="cip-hero__headline-span--pulse">+10</span></span><span class="cip-exp-fade__bold" aria-hidden="true"><span class="cip-hero__headline-span--pulse">+10</span></span></div>
+            <div class="cip-exp-head__label cip-exp-fade"><span class="cip-exp-fade__base">Conferencias<br> de casos de éxito</span><span class="cip-exp-fade__bold" aria-hidden="true">Conferencias<br> de casos de éxito</span></div>
+          </div>
+          <div class="cip-exp-head">
+            <div class="cip-exp-head__num cip-exp-fade"><span class="cip-exp-fade__base"><span class="cip-hero__headline-span--pulse">+50</span></span><span class="cip-exp-fade__bold" aria-hidden="true"><span class="cip-hero__headline-span--pulse">+50</span></span></div>
+            <div class="cip-exp-head__label cip-exp-fade"><span class="cip-exp-fade__base">Expertos en tecnología</span><span class="cip-exp-fade__bold" aria-hidden="true">Expertos en tecnología</span></div>
+          </div>
+          <div class="cip-exp-card">
+            <p class="cip-exp-card__desc">Descubre <strong>innovación</strong>, <strong>demostración de producto</strong> y <strong>expertos en soluciones</strong> de las <strong>marcas líderes</strong>.</p>
+          </div>
+          <div class="cip-exp-card">
+            <p class="cip-exp-card__desc">Escucha directamente a <strong>nuestros clientes</strong> compartir cómo están resolviendo desafíos, optimizando su negocio y generando <strong>resultados tangibles</strong> con el apoyo de la tecnología y CiiSA. La mejor inspiración viene de <strong>experiencias reales</strong>.</p>
+          </div>
+          <div class="cip-exp-card">
+            <p class="cip-exp-card__desc">Recibe <strong>asesoría personalizada</strong> de expertos certificados en <strong>infraestructura, nube, ciberseguridad e IA</strong>, listos para resolver tus dudas y diseñar la <strong>solución a la medida</strong> de tu empresa.</p>
+          </div>
+          <!-- Separadores entre filas (solo tablet y móvil) -->
+          <div class="cip-exp-sep" aria-hidden="true"></div>
+          <div class="cip-exp-sep" aria-hidden="true"></div>
+        </div>
+
+        <!-- Tu registro incluye -->
+        <div class="cip-exp-benefits">
+          <h3 class="cip-exp-benefits__title">Tu registro <span class="cip-hero__headline-span--pulse">incluye</span></h3>
+          <ul class="cip-exp-benefits__grid" data-benefits-reveal>
+            <li class="cip-exp-benefit">
+              <svg class="cip-exp-benefit__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>
+              <h4 class="cip-exp-benefit__title"><span class="cip-hero__headline-span--pulse">Promociones</span></h4>
+              <p class="cip-exp-benefit__text">Precios y descuentos especiales, exclusivos para quienes asistan al evento.</p>
+            </li>
+            <li class="cip-exp-benefit">
+              <svg class="cip-exp-benefit__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg>
+              <h4 class="cip-exp-benefit__title"><span class="cip-hero__headline-span--pulse">Sorteos</span></h4>
+              <p class="cip-exp-benefit__text">Participa en la rifa de productos de las marcas participantes.</p>
+            </li>
+            <li class="cip-exp-benefit">
+              <svg class="cip-exp-benefit__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9a3 3 0 0 0 0 6v3a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-3a3 3 0 0 0 0-6V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1z"/><path d="M13 5v2M13 11v2M13 17v2"/></svg>
+              <h4 class="cip-exp-benefit__title"><span class="cip-hero__headline-span--pulse">Acceso</span></h4>
+              <p class="cip-exp-benefit__text">Entrada preferencial a experiencias y eventos exclusivos.</p>
+            </li>
+            <li class="cip-exp-benefit">
+              <svg class="cip-exp-benefit__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/><path d="m9 15 2 2 4-4"/></svg>
+              <h4 class="cip-exp-benefit__title"><span class="cip-hero__headline-span--pulse">Workshop</span></h4>
+              <p class="cip-exp-benefit__text">Agenda una sesión de trabajo a la medida de tu empresa.</p>
+            </li>
+          </ul>
+        </div>
+
       </div>
 
       <div class="cip-agenda-tagline">

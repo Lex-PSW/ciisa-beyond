@@ -167,6 +167,12 @@
         origen: 'landing-beyond'
       };
 
+      // Campaña de origen (UTM) capturada por tracking.js; campos vacíos si no hubo campaña
+      var utm = (window.BeyondTracking && window.BeyondTracking.getUtm()) || {};
+      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (k) {
+        data[k] = utm[k] || '';
+      });
+
       setBusy(true);
       fetch(ENDPOINT, {
         method: 'POST',
@@ -177,6 +183,8 @@
           if (!res.ok) throw new Error('HTTP ' + res.status);
           resetForm();
           showThanks(data.nombre);
+          // Aviso para los píxeles de campañas (tracking.js); no lleva datos personales
+          document.dispatchEvent(new CustomEvent('beyond:lead'));
         })
         .catch(function () {
           setStatus('No pudimos enviar tu registro. Inténtalo de nuevo o usa el ', true);

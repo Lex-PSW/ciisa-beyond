@@ -60,7 +60,8 @@
   }
 
   document.addEventListener('DOMContentLoaded', function () {
-    var grid = document.querySelector('.cip-exp-grid');
+    // Contenedor de todos los numerales de Experiencia Beyond (total +400 y grilla de cifras)
+    var grid = document.querySelector('[data-exp-stats]') || document.querySelector('.cip-exp-grid');
     if (!grid) return;
     var spans = grid.querySelectorAll('.cip-exp-head__num .cip-hero__headline-span--pulse');
     if (!spans.length) return;
@@ -87,5 +88,37 @@
       }
     }, stacked ? { threshold: 0.2, rootMargin: '0px 0px -20% 0px' } : { threshold: 0.35 });
     io.observe(grid.querySelector('.cip-exp-head') || grid);
+  });
+})();
+
+
+// "Tu registro incluye": misma entrada que los badges de "¿Quién es CiiSA?" (badges-grid.js):
+// suben 28px, crecen de 0.9 a 1 y aparecen en 0.6s, escalonados POR FILA (0.25s por fila).
+// La fila se calcula con la posición real, así respeta 4 columnas (desktop), 2 (tablet) o 1 (móvil).
+(function () {
+  document.addEventListener('DOMContentLoaded', function () {
+    var list = document.querySelector('[data-benefits-reveal]');
+    if (!list) return;
+    var items = Array.prototype.slice.call(list.children);
+    var show = function () {
+      var tops = [];
+      items.forEach(function (it) { var t = Math.round(it.offsetTop); if (tops.indexOf(t) < 0) tops.push(t); });
+      tops.sort(function (a, b) { return a - b; });
+      items.forEach(function (it) {
+        it.style.transitionDelay = (tops.indexOf(Math.round(it.offsetTop)) * 0.25) + 's';
+        it.classList.add('is-visible');
+      });
+    };
+    if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      items.forEach(function (it) { it.classList.add('is-visible'); });
+      return;
+    }
+    list.classList.add('is-reveal-ready');
+    // Mismo criterio de disparo que los badges
+    var stacked = window.matchMedia('(max-width: 900px)').matches;
+    var io = new IntersectionObserver(function (entries) {
+      if (entries.some(function (e) { return e.isIntersecting; })) { show(); io.disconnect(); }
+    }, stacked ? { threshold: 0.7, rootMargin: '0px 0px -20% 0px' } : { threshold: 0.3 });
+    io.observe(list);
   });
 })();
