@@ -3443,3 +3443,14 @@ html { scroll-behavior:smooth; }
   font-weight: 300;
 }
 .cip-location-header .cip-location-venue { margin-bottom: 2px; }
+
+/* Tu registro incluye: 5 beneficios (se sumó Demos). Escritorio en 5 columnas; tablet 3 + 2 centrados; móvil sigue en 1 columna */
+.cip-exp-benefits__grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+@media (min-width: 641px) and (max-width: 1024px) {
+  .cip-exp-benefits__grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .cip-exp-benefit { grid-column: span 2; }
+  .cip-exp-benefit:nth-child(4) { grid-column: 2 / span 2; }
+}
+@media (max-width: 640px) {
+  .cip-exp-benefits__grid { grid-template-columns: 1fr; }
+}
