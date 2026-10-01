@@ -9,7 +9,7 @@
   var CONFIG = {
     META_PIXEL_ID: '',                // Administrador de eventos de Meta → ID del píxel (solo números)
     LINKEDIN_PARTNER_ID: '',          // Campaign Manager → Insight Tag → Partner ID
-    LINKEDIN_LEAD_CONVERSION_ID: '',  // Campaign Manager → Conversiones → ID de la conversión "Registro"
+    LINKEDIN_LEAD_CONVERSION_ID: '29229772',  // Campaign Manager → Conversiones → ID de la conversión "Registro"
     TIKTOK_PIXEL_ID: ''               // TikTok Ads Manager → Eventos → ID del píxel (opcional)
   };
 
