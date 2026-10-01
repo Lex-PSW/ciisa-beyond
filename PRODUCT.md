@@ -17,7 +17,7 @@ This is a single-event landing page for **CiiSA Beyond Expo 2026**, a one-day in
 - Date/time: Miércoles 21 de Octubre 2026, 10:00 AM – 7:00 PM
 - Venue: El Ejecutivo Eventos, Río Danubio 395-B-Oriente, Del Valle, 66220 San Pedro Garza García, N.L.
 
-The page exists to drive event registrations through an embedded Microsoft Forms RSVP. **Success is measured by registration count (RSVP maximization)** — that is the single top metric this page optimizes for, above lead-gen or brand-awareness framing.
+The page exists to drive event registrations through its own RSVP form. **Success is measured by registration count (RSVP maximization)** — that is the single top metric this page optimizes for, above lead-gen or brand-awareness framing.
 
 ## Positioning
 
@@ -26,8 +26,11 @@ The page exists to drive event registrations through an embedded Microsoft Forms
 ## Operating Context
 
 - Single scrolling landing page, no multi-page navigation.
-- Sections in order: hero (Beyond + CiiSA animated logos, date/time, CTA) → sponsor logo carousel → event agenda ("Conoce Beyond": Registro 10:00 AM, Networking, descuentos exclusivos, casos de éxito, rifas/sorpresas, Clausura 7:00 PM) → expo highlight/description → venue details + embedded map → countdown timer + embedded Microsoft Forms registration → footer.
-- Registration is handled entirely through an embedded Microsoft Forms `<iframe>`; there is no custom backend.
+- Sections in order: hero (Beyond + CiiSA animated logos, date/time, CTA) → sponsor logo carousel → event agenda ("Conoce Beyond": Registro 10:00 AM, Networking, descuentos exclusivos, casos de éxito, rifas/sorpresas, Clausura 7:00 PM) → expo highlight/description → venue details + embedded map → countdown timer + RSVP form → footer.
+- Registration uses a custom form (`rsvp-form.js`, `[data-rsvp-form]`) with the same five fields as the original Microsoft Forms (nombre, empresa, puesto, correo, teléfono) plus a required privacy-notice checkbox and a honeypot field (`website`). Each field is validated client-side and the submit button stays disabled until all are valid.
+- On submit, the form POSTs JSON (the fields plus `privacidad`, `fecha`, `origen: "landing-beyond"` and UTM params from `tracking.js`) to a Power Automate flow (**Flow B**, "Cuando se recibe una solicitud HTTP", a Premium connector). The flow writes a row with a unique `BYD-…` ID to the master Excel "Registro de invitados - Beyond 2026.xlsx" (SharePoint MarketingCiiSAPSW), sends the confirmation email and answers 200; on success the page opens the thank-you `<dialog>` and fires `beyond:lead` for the pixels. Requests that don't come from the landing get a 403.
+- If the endpoint is empty or the request fails, the form falls back to the original Microsoft Forms "Confirmación de asistencia" (`data-fallback`), so no registration is lost. That Forms has its own flow (**Flow A**) into the same Excel, and Pyxoom 5 in-person registrations from HubSpot arrive through **Flow E**. The full flow map (A–E, Honeywell QR, attendance) lives in `docs/FLUJOS.md`, which is git-ignored.
+- There is no custom backend: the page is static and Power Automate is the only server-side piece.
 - A live countdown (`countdown.js`) counts down to the event's start (2026-10-21T10:00:00-06:00).
 - Deploy target: GitHub Pages under `Lex-PSW/ciisa-beyond` (public URL `https://lex-psw.github.io/ciisa-beyond/`).
 
@@ -58,7 +61,7 @@ The page exists to drive event registrations through an embedded Microsoft Forms
 ## Product Principles
 
 1. The flyer/`meta-placeholder.png` is the single source of truth for date, time, venue, and sponsor lineup — never assume or invent a change to these facts without new evidence from the user.
-2. Every above-the-fold and CTA decision should optimize for one metric: RSVP count via the embedded registration form.
+2. Every above-the-fold and CTA decision should optimize for one metric: RSVP count via the registration form.
 3. The green → mint → cyan gradient order and the Beyond/CiiSA Lottie marks are the fixed visual identity; new decorative gradients or animated brand elements must follow the same order and style rather than introducing new palettes.
 4. Copy can assume the reader already has some relationship to CiiSA | PSW (client or referral) — no need to re-introduce the company from first principles.
 5. The sponsor carousel always opens with Pyxoom before the external hardware/software partners.
