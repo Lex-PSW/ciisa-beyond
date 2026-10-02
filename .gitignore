@@ -1,2 +1,15 @@
+# Documentación interna y contexto de Claude (solo local)
 docs/FLUJOS.md
 PRODUCT.md
+CLAUDE.local.md
+.claude/CLAUDE.md
+.claude/settings.local.json
+
+# Herramientas locales
+.abacusai/
+.impeccable/hook.cache.json
+
+# Archivos del sistema
+Thumbs.db
+desktop.ini
+.DS_Store

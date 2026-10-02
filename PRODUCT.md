@@ -32,7 +32,7 @@ The page exists to drive event registrations through its own RSVP form. **Succes
 - If the endpoint is empty or the request fails, the form falls back to the original Microsoft Forms "Confirmación de asistencia" (`data-fallback`), so no registration is lost. That Forms has its own flow (**Flow A**) into the same Excel, and Pyxoom 5 in-person registrations from HubSpot arrive through **Flow E**. The full flow map (A–E, Honeywell QR, attendance) lives in `docs/FLUJOS.md`, which is git-ignored.
 - There is no custom backend: the page is static and Power Automate is the only server-side piece.
 - A live countdown (`countdown.js`) counts down to the event's start (2026-10-21T10:00:00-06:00).
-- Deploy target: GitHub Pages under `Lex-PSW/ciisa-beyond` (public URL `https://lex-psw.github.io/ciisa-beyond/`).
+- Deploy target: GitHub Pages under `Lex-PSW/ciisa-beyond` (public URL `https://beyond.ciisa.com/` via `CNAME`; the old `lex-psw.github.io/ciisa-beyond/` redirects there).
 
 ## Capabilities and Constraints
 
