@@ -86,6 +86,7 @@
       case 'registro_completado':
         if (fbq) fbq('track', 'Lead', { content_name: 'CiiSA Beyond 2026' });
         if (lintrk && CONFIG.LINKEDIN_LEAD_CONVERSION_ID) lintrk('track', { conversion_id: Number(CONFIG.LINKEDIN_LEAD_CONVERSION_ID) });
+        if (window.gtag) window.gtag('event', 'conversion', { send_to: 'AW-17545418070/GHW8CMnCko0dENaqp65B' });
         if (ttq && CONFIG.TIKTOK_PIXEL_ID) ttq.track('SubmitForm');
         break;
       case 'registro_iniciado':
