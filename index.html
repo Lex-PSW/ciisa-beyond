@@ -481,6 +481,36 @@
 
       </div>
 
+      <!-- Recorre la expo: modelo 3D del montaje (assets/3d/beyond-expo.glb, optimizado desde BEYOND_VISUAL.glb) -->
+      <div class="cip-expo3d" id="expo-3d">
+        <h3 class="cip-exp-benefits__title">Recorre la <span class="cip-hero__headline-span--pulse">expo</span></h3>
+        <p class="cip-expo3d__lead">Explora en 3D cómo se vivirá BEYOND: los stands de las marcas, el escenario y las zonas de networking.</p>
+        <div class="cip-expo3d__stage">
+          <model-viewer class="cip-expo3d__viewer" data-expo3d
+            src="assets/3d/beyond-expo.glb"
+            poster="assets/3d/beyond-expo-poster.webp"
+            alt="Modelo 3D del montaje de CiiSA Beyond 2026 con stands, escenario y zona de networking"
+            loading="lazy"
+            camera-controls
+            disable-zoom
+            touch-action="pan-y"
+            interaction-prompt="none"
+            camera-orbit="-28deg 52deg 68%"
+            min-camera-orbit="auto 20deg 40%"
+            max-camera-orbit="auto 80deg 110%"
+            field-of-view="28deg"
+            environment-image="neutral"
+            exposure="0.9"
+            tone-mapping="neutral">
+          </model-viewer>
+          <div class="cip-expo3d__zoom" role="group" aria-label="Acercar o alejar el modelo">
+            <button type="button" data-expo3d-zoom="-1" aria-label="Acercar">+</button>
+            <button type="button" data-expo3d-zoom="1" aria-label="Alejar">−</button>
+          </div>
+        </div>
+        <p class="cip-expo3d__hint">Arrastra para girar · Distribución sujeta a cambios</p>
+      </div>
+
       <div class="cip-agenda-tagline">
         <span class="cip-agenda-tagline__line"></span>
         <span>Conectamos tecnología. Impulsamos decisiones.</span>
@@ -687,6 +717,8 @@
 <script src="brands-carousel.js" defer></script>
 <script src="rsvp-form.js" defer></script>
 <script src="exp-slots.js" defer></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@4.1.0/dist/model-viewer.min.js"></script>
+<script src="expo3d.js" defer></script>
 <script defer>
   document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('[data-lottie]').forEach((el) => {

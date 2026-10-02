@@ -14,3 +14,6 @@ CLAUDE.local.md
 Thumbs.db
 desktop.ini
 .DS_Store
+
+# Modelo 3D original (43 MB): se publica la versión optimizada beyond-expo.glb
+assets/3d/BEYOND_VISUAL.glb
