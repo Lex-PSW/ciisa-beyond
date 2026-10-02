@@ -8,6 +8,7 @@ CLAUDE.local.md
 # Herramientas locales
 .abacusai/
 .impeccable/hook.cache.json
+.impeccable/critique/
 
 # Archivos del sistema
 Thumbs.db
