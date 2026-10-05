@@ -44,20 +44,20 @@
 
   <!-- Básico SEO -->
   <title>CiiSA Beyond 2026</title>
-  <meta name="description" content="Más allá de la tecnología: decisiones que impulsan el futuro. Miércoles 21 de octubre, 10:00 AM - 7:00 PM en Monterrey, Nuevo León.">
+  <meta name="description" content="Más allá de la tecnología: decisiones que impulsan el futuro. Miércoles 21 de octubre, 10:00 AM - 9:00 PM en Monterrey, Nuevo León.">
 
   <!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://beyond.ciisa.com/">
   <meta property="og:title" content="CiiSA Beyond 2026">
-  <meta property="og:description" content="Más allá de la tecnología: decisiones que impulsan el futuro. Miércoles 21 de octubre, 10:00 AM - 7:00 PM en Monterrey, Nuevo León.">
+  <meta property="og:description" content="Más allá de la tecnología: decisiones que impulsan el futuro. Miércoles 21 de octubre, 10:00 AM - 9:00 PM en Monterrey, Nuevo León.">
   <meta property="og:image" content="https://beyond.ciisa.com/assets/img/meta-placeholder.png">
 
   <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://beyond.ciisa.com/">
   <meta name="twitter:title" content="CiiSA Beyond 2026">
-  <meta name="twitter:description" content="Más allá de la tecnología: decisiones que impulsan el futuro. Miércoles 21 de octubre, 10:00 AM - 7:00 PM en Monterrey, Nuevo León.">
+  <meta name="twitter:description" content="Más allá de la tecnología: decisiones que impulsan el futuro. Miércoles 21 de octubre, 10:00 AM - 9:00 PM en Monterrey, Nuevo León.">
   <meta name="twitter:image" content="https://beyond.ciisa.com/assets/img/meta-placeholder.png">
   
 </head>
@@ -174,7 +174,7 @@
           <div class="cip-agenda-marker__label"></div>
         </div>
         <div class="cip-agenda-label cip-agenda-marker--blue">
-          <div class="cip-agenda-marker__time">7:00 PM</div>
+          <div class="cip-agenda-marker__time">9:00 PM</div>
           <div class="cip-agenda-marker__label">Clausura</div>
         </div>
       </div>
@@ -393,7 +393,7 @@
             </svg>
           </div>
           <div class="cip-agenda-card__content">
-            <div class="cip-agenda-card__time">7:00 PM</div>
+            <div class="cip-agenda-card__time">9:00 PM</div>
             <div class="cip-agenda-card__label">Clausura</div>
           </div>
         </div>
@@ -498,7 +498,7 @@
         <h2 class="cip-section__title">Miércoles <span class="cip-hero__headline-span--pulse"> 21 de Octubre</span> del 2026.</h2>
         <div class="cip-location-subs">
           <p class="cip-location-sub">Participa a <span class="cip-hero__headline-span--pulse">tu ritmo.</span></p>
-          <p class="cip-location-sub cip-location-sub--light">Horario abierto de 10:00 a.m. a 7:00 p.m.</p>
+          <p class="cip-location-sub cip-location-sub--light">Horario abierto de 10:00 a.m. a 9:00 p.m.</p>
         </div>
         <p class="cip-section__desc cip-location-venue"><strong>El Ejecutivo Eventos</strong></p>
         <a class="cip-location-link" href="https://www.google.com/maps/search/?api=1&query=El+Ejecutivo+Eventos+R%C3%ADo+Danubio+395-B+Del+Valle+San+Pedro+Garza+Garc%C3%ADa+N.L." target="_blank" rel="noopener" aria-label="Ver El Ejecutivo Eventos en Google Maps (se abre en una pestaña nueva)">
@@ -572,6 +572,16 @@
             <label class="cip-rsvp__label" for="rsvp-telefono">Teléfono</label>
             <input id="rsvp-telefono" name="telefono" type="tel" autocomplete="tel" inputmode="tel" maxlength="20" placeholder="81 1234 5678" required aria-describedby="rsvp-telefono-error">
             <span class="cip-rsvp__error" id="rsvp-telefono-error"></span>
+          </div>
+          <!-- ¿Quién te invitó?: autocompletado restringido a la lista de invito-data.js (invito-field.js) -->
+          <div class="cip-rsvp__field cip-rsvp__field--full cip-combo">
+            <label class="cip-rsvp__label" id="rsvp-invito-label" for="rsvp-invito">¿Quién te invitó?</label>
+            <input id="rsvp-invito" name="invito" type="text" autocomplete="off" autocapitalize="words" spellcheck="false" maxlength="60"
+              placeholder="Escribe el nombre de tu asesor o elige una opción"
+              role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="rsvp-invito-list"
+              required aria-describedby="rsvp-invito-error">
+            <ul class="cip-combo__list" id="rsvp-invito-list" role="listbox" aria-labelledby="rsvp-invito-label" hidden></ul>
+            <span class="cip-rsvp__error" id="rsvp-invito-error"></span>
           </div>
         </div>
 
@@ -662,7 +672,7 @@
     <div class="cip-thanks__box">
       <p class="cip-thanks__eyebrow">Registro confirmado</p>
       <h2 class="cip-thanks__title" id="cip-thanks-title">¡Gracias, <span data-rsvp-name></span>!</h2>
-      <p class="cip-thanks__text">Tu lugar en <strong>CiiSA Beyond 2026</strong> está apartado. Te esperamos el <strong>miércoles 21 de octubre, de 10:00 AM a 7:00 PM</strong>, en El Ejecutivo Eventos, San Pedro Garza García.</p>
+      <p class="cip-thanks__text">Tu lugar en <strong>CiiSA Beyond 2026</strong> está apartado. Te esperamos el <strong>miércoles 21 de octubre, de 10:00 AM a 9:00 PM</strong>, en El Ejecutivo Eventos, San Pedro Garza García.</p>
       <button type="button" class="cip-btn cip-btn--primary cip-thanks__close" data-rsvp-close>Entendido</button>
     </div>
   </dialog>
@@ -685,6 +695,8 @@
 <script src="badges-grid.js" defer></script>
 <script src="logos-grid.js" defer></script>
 <script src="brands-carousel.js" defer></script>
+<script src="invito-data.js" defer></script>
+<script src="invito-field.js" defer></script>
 <script src="rsvp-form.js" defer></script>
 <script src="exp-slots.js" defer></script>
 <script defer>

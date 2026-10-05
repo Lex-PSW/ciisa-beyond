@@ -36,6 +36,48 @@
   }
   var utm = captureUtm();
 
+  /* ---------- Procedencia y fuente del registro ---------- */
+  // Página de la que venía la persona al entrar (solo el dominio, sin la ruta). Se guarda la
+  // primera de la sesión: al navegar por anclas o recargar ya no es externa.
+  var REF_KEY = 'beyond_ref';
+  function captureReferrer() {
+    var host = '';
+    try { host = document.referrer ? new URL(document.referrer).hostname.replace(/^www\./, '') : ''; } catch (e) {}
+    var stored = '';
+    try { stored = sessionStorage.getItem(REF_KEY) || ''; } catch (e) {}
+    if (host && host !== location.hostname.replace(/^www\./, '') && !stored) {
+      try { sessionStorage.setItem(REF_KEY, host); } catch (e) {}
+      return host;
+    }
+    return stored;
+  }
+  var referrer = captureReferrer();
+
+  // Fuente legible para el Excel: primero los identificadores de anuncio, luego los UTM,
+  // luego la página de procedencia; sin nada de eso, "Directo".
+  function computeFuente() {
+    var src = (utm.utm_source || '').toLowerCase();
+    var med = (utm.utm_medium || '').toLowerCase();
+    var paid = /cpc|ppc|paid|ads?$|display|sponsored/.test(med);
+    if (utm.gclid || (src.indexOf('google') > -1 && paid)) return 'Google Ads';
+    if (utm.li_fat_id || (src.indexOf('linkedin') > -1 && paid)) return 'LinkedIn Ads';
+    if (utm.fbclid || /facebook|instagram|meta/.test(src)) return paid ? 'Meta Ads' : 'Meta';
+    if (/e-?mail|correo|newsletter/.test(med)) return 'Correo';
+    if (src.indexOf('linkedin') > -1) return 'LinkedIn';
+    if (src.indexOf('google') > -1) return 'Google';
+    if (src) return utm.utm_source;
+    var r = referrer;
+    if (!r) return 'Directo';
+    // Webmail antes que Google: mail.google.com es Gmail, no la búsqueda
+    if (/(^|\.)mail\.|outlook\.|office\.com$|office365\.com$/.test(r)) return 'Correo';
+    if (/(^|\.)google\./.test(r)) return 'Google (búsqueda)';
+    if (/(^|\.)linkedin\.com$|^lnkd\.in$/.test(r)) return 'LinkedIn';
+    if (/(^|\.)(facebook\.com|instagram\.com|fb\.me)$/.test(r)) return 'Meta';
+    if (/^(t\.co|x\.com|twitter\.com)$/.test(r)) return 'X';
+    if (/(^|\.)(bing\.com|duckduckgo\.com)$|(^|\.)yahoo\./.test(r)) return 'Otro buscador';
+    return r;
+  }
+
   /* ---------- Meta Pixel ---------- */
   if (CONFIG.META_PIXEL_ID) {
     /* eslint-disable */
@@ -106,7 +148,9 @@
   // API mínima para otros scripts (rsvp-form.js)
   window.BeyondTracking = {
     track: track,
-    getUtm: function () { return utm; }
+    getUtm: function () { return utm; },
+    getReferrer: function () { return referrer; },
+    getFuente: computeFuente
   };
 
   document.addEventListener('DOMContentLoaded', function () {

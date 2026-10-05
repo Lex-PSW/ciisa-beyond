@@ -6,6 +6,10 @@
 // "Cuando se recibe una solicitud HTTP" del flujo. Mientras esté vacío, el botón abre el
 // Microsoft Forms original en otra pestaña (data-fallback), así el registro nunca se pierde.
 (function () {
+  // Flujo G (Excel "Invitaciones Beyond 2026"): recibe la misma copia del registro con "invito".
+  // Vacío = no se envía. Si falla, no afecta el registro ni el correo, que siguen en el Flujo B.
+  var ENDPOINT_INVITO = 'https://default4699fbe477a74846ad709ce4e38413.35.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/28/workflows/5df6ddabea0d474fb4bc0678dc671bfa/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=FSiHczELRu6jFnK6u5Phz1-WJQaur_8wVeqNJ0mTlmk';
+
   var ENDPOINT = 'https://default4699fbe477a74846ad709ce4e38413.35.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/13/workflows/c273ece400074563b98a09cce05979ed/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=jBbBlFeq3DQ3Solhc3MT-9YvP5SM60Tie6oRyMpTJtQ';
 
   // Reglas por campo: devuelven '' si es válido o el mensaje de error.
@@ -37,6 +41,12 @@
       var digits = v.replace(/\D/g, '');
       if (digits.length < 10) return 'Debe tener al menos 10 dígitos.';
       if (digits.length > 13) return 'Tiene demasiados dígitos.';
+      return '';
+    },
+    invito: function (v) {
+      if (!v) return 'Dinos quién te invitó o cómo te enteraste.';
+      var lista = window.CIISA_INVITO;
+      if (lista && lista.match && !lista.match(v)) return 'Elige un nombre de la lista.';
       return '';
     },
     privacidad: function (v, el) {
@@ -162,6 +172,7 @@
         puesto: form.puesto.value.trim(),
         correo: form.correo.value.trim().toLowerCase(),
         telefono: form.telefono.value.trim(),
+        invito: (window.CIISA_INVITO && window.CIISA_INVITO.match(form.invito.value)) || form.invito.value.trim(),
         privacidad: 'Aceptado',
         fecha: new Date().toISOString(),
         origen: 'landing-beyond'
@@ -172,6 +183,18 @@
       ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (k) {
         data[k] = utm[k] || '';
       });
+      // Fuente calculada (Google Ads, LinkedIn, Directo…) y dominio de procedencia, para la columna "Fuente"
+      data.fuente = (window.BeyondTracking && window.BeyondTracking.getFuente()) || 'Directo';
+      data.procedencia = (window.BeyondTracking && window.BeyondTracking.getReferrer()) || '';
+
+      if (ENDPOINT_INVITO) {
+        fetch(ENDPOINT_INVITO, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+          keepalive: true
+        }).catch(function () {});
+      }
 
       setBusy(true);
       fetch(ENDPOINT, {
