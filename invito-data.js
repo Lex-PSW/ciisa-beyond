@@ -13,6 +13,7 @@ window.CIISA_INVITO = {
     'Ana Colis',
     'Angela Osorio',
     'Antonio González',
+    'Augusto Sanoja',
     'Bruno Peña',
     'Cynthia Garza',
     'David Rojas',
@@ -25,14 +26,14 @@ window.CIISA_INVITO = {
     'Estrella del Angel',
     'Fátima Galaviz',
     'Fernando Ortiz',
-    'Gerardo Martínez',
+    'Gabriela Treviño',
+    'Gerardo Salgado',
     'Guillermo Medina',
     'Ileana Ibarra',
     'Ilse Sanchez',
     'Ivonne Rodríguez',
     'Jesus Cuellar',
     'Jose Alonso',
-    'José Salgado',
     'José Luis Mesta',
     'Jose Villarreal',
     'Julio César Cruz',
@@ -50,6 +51,7 @@ window.CIISA_INVITO = {
     'Ricardo Torres',
     'Silvia Cavanzo',
     'Tanya Serrato',
-    'Vanessa Serna'
+    'Vanessa Serna',
+    'Viviana Garay'
   ]
 };
