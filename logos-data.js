@@ -10,7 +10,6 @@ window.CIISA_LOGOS = [
     { file: 'lenovo.svg', name: 'Lenovo', size: 'sm' },
     { file: 'poly.svg', name: 'Poly', size: 'xl' },
     { file: 'autodesk.svg', name: 'Autodesk', size: 'wide' },
-    { file: 'cyberpower.svg', name: 'CyberPower', size: 'sm' },
     { file: 'fortinet.svg', name: 'Fortinet', size: 'wide' },
     { file: 'honeywell.svg', name: 'Honeywell', size: 'sm' },
     { file: 'ibm.svg', name: 'IBM', size: 'ibm' },
