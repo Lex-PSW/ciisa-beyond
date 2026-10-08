@@ -9,6 +9,7 @@ window.CIISA_INVITO = {
     'Nadie, me enteré por mi cuenta'
   ],
   asesores: [
+    'Aily Gallardo',
     'Albino Alvarado',
     'Ana Colis',
     'Angela Osorio',
