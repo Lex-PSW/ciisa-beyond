@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-TFCPQDS8');</script>
+  <!-- End Google Tag Manager -->
+  <script src="tracking.js" defer></script>
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="mi-experiencia.css">
+
+  <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+
+  <title>Diseña tu experiencia · CiiSA Beyond 2026</title>
+  <meta name="description" content="Cuéntanos qué te interesa y armamos tu ruta personalizada para CiiSA Beyond 2026.">
+</head>
+<body class="mx-body">
+  <!-- Video de fondo fijo, el mismo del hero (hero-video.js elige versión de escritorio o móvil) -->
+  <video class="cip-hero__video" data-hero-video autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
+
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TFCPQDS8" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <main class="mx" data-mx>
+    <header class="mx__top">
+      <h1 class="cip-visually-hidden">CiiSA Beyond 2026 · Diseña tu experiencia</h1>
+      <div class="mx__logo">
+        <div class="cip-hero__logo-stack">
+          <div class="cip-hero__lottie cip-hero__lottie--beyond" data-lottie="assets/lottie/beyond-logo.json?v=2" aria-label="Beyond"></div>
+          <div class="cip-hero__by-ciisa">
+            <span class="cip-hero__by" aria-hidden="true">by</span>
+            <div class="cip-hero__lottie cip-hero__lottie--ciisa" data-lottie="assets/lottie/ciisa-logo.json?v=1" aria-label="by CiiSA"></div>
+          </div>
+        </div>
+      </div>
+      <p class="cip-hero__sub cip-hero__sub--center cip-hero__sub--traking">21 OCT 2026 | Monterrey, N.L.</p>
+    </header>
+
+    <!-- Encuesta -->
+    <form class="mx__card" data-mx-form novalidate aria-labelledby="mx-title">
+      <div class="mx__intro">
+        <h2 class="mx__title" id="mx-title">Diseña tu <span class="cip-hero__headline-span--pulse">experiencia</span></h2>
+        <p class="mx__lead">Responde 5 preguntas rápidas y armamos tu ruta de marcas para el evento. Te mandamos el detalle con ligas por correo.</p>
+      </div>
+
+      <div class="mx__progress" aria-hidden="true">
+        <div class="mx__progress-bar" data-mx-bar></div>
+      </div>
+      <p class="mx__step-count" data-mx-count aria-live="polite">Paso 1 de 5</p>
+
+      <!-- 1 · Industria -->
+      <fieldset class="mx__step" data-mx-step="industria">
+        <legend class="mx__q">¿En qué industria trabajas?</legend>
+        <p class="mx__hint"><span class="mx__pill mx__pill--one">Solo una opción</span> Toca la que mejor te describa.</p>
+        <div class="mx__options" data-mx-options="industria" data-mx-type="radio"></div>
+      </fieldset>
+
+      <!-- 2 · Tecnologías -->
+      <fieldset class="mx__step" data-mx-step="tecnologias" hidden>
+        <legend class="mx__q">¿Qué tecnologías te interesan?</legend>
+        <p class="mx__hint"><span class="mx__pill mx__pill--many">Puedes elegir varias</span> Marca todas las que quieras.</p>
+        <div class="mx__options" data-mx-options="tecnologias" data-mx-type="checkbox"></div>
+      </fieldset>
+
+      <!-- 3 · Soluciones -->
+      <fieldset class="mx__step" data-mx-step="soluciones" hidden>
+        <legend class="mx__q">¿Qué quieres resolver?</legend>
+        <p class="mx__hint"><span class="mx__pill mx__pill--many">Puedes elegir varias</span> Hasta 3 <span class="mx__counter" data-mx-sol-count>(0 de 3)</span></p>
+        <div class="mx__options" data-mx-options="soluciones" data-mx-type="checkbox" data-mx-max="3"></div>
+      </fieldset>
+
+      <!-- 4 · Marcas -->
+      <fieldset class="mx__step" data-mx-step="marcas" hidden>
+        <legend class="mx__q">¿Hay marcas que quieras ver sí o sí?</legend>
+        <p class="mx__hint"><span class="mx__pill mx__pill--many">Puedes elegir varias</span> Es opcional: si no eliges ninguna, te recomendamos según tus respuestas.</p>
+        <div class="mx__brands" data-mx-brands></div>
+      </fieldset>
+
+      <!-- 5 · Objetivo y contacto -->
+      <fieldset class="mx__step" data-mx-step="objetivos" hidden>
+        <legend class="mx__q">¿Qué te gustaría llevarte del evento?</legend>
+        <p class="mx__hint"><span class="mx__pill mx__pill--many">Puedes elegir varias</span> Marca todas las que quieras.</p>
+        <div class="mx__options" data-mx-options="objetivos" data-mx-type="checkbox"></div>
+
+        <label class="mx__check">
+          <input type="checkbox" name="quiere_contacto" value="Sí">
+          <span>Quiero que un asesor de CiiSA me contacte para dar seguimiento.</span>
+        </label>
+
+        <div class="mx__email" data-mx-email-wrap hidden>
+          <label for="mx-correo" class="mx__label">Correo con el que te registraste</label>
+          <input type="email" id="mx-correo" name="correo" autocomplete="email" inputmode="email" placeholder="nombre@empresa.com">
+          <p class="mx__error" id="mx-correo-error" role="alert"></p>
+        </div>
+        <input type="text" name="website" class="mx__trap" tabindex="-1" autocomplete="off" aria-hidden="true">
+      </fieldset>
+
+      <p class="mx__status" data-mx-status role="status" aria-live="polite"></p>
+
+      <div class="mx__nav">
+        <button type="button" class="cip-btn cip-btn--outline mx__btn" data-mx-back hidden>Atrás</button>
+        <button type="button" class="cip-btn cip-btn--primary mx__btn" data-mx-next disabled>Siguiente</button>
+        <button type="submit" class="cip-btn cip-btn--primary mx__btn" data-mx-submit hidden disabled><span data-mx-label>Ver mi ruta</span></button>
+      </div>
+    </form>
+
+    <!-- Resultado -->
+    <section class="mx__card mx__result" data-mx-result hidden aria-labelledby="mx-result-title">
+      <h2 class="mx__title" id="mx-result-title" tabindex="-1">Tu ruta <span class="cip-hero__headline-span--pulse">Beyond</span></h2>
+      <p class="mx__lead" data-mx-result-lead></p>
+      <ol class="mx__route" data-mx-route></ol>
+      <p class="mx__note" data-mx-note></p>
+      <a href="/" class="cip-btn cip-btn--outline mx__btn">Volver al sitio</a>
+    </section>
+
+    <!-- Sin JavaScript -->
+    <noscript><p class="mx__card">Necesitas activar JavaScript para armar tu experiencia. También puedes escribirnos a hola@ciisa.com.</p></noscript>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js" defer></script>
+  <script src="hero-video.js" defer></script>
+  <script src="hero-lottie.js" defer></script>
+  <script src="catalogo-data.js"></script>
+  <script src="mi-experiencia.js"></script>
+</body>
+</html>

@@ -1,0 +1,189 @@
+/* Estilos de mi-experiencia.html (encuesta "Diseña tu experiencia"). Va aparte de styles.css para no tocar el CSS de la landing en producción; esta página carga primero styles.css (variables, botones, tipografía, video y logo del hero) y después este archivo. */
+
+/* =============================================
+   Diseña tu experiencia (mi-experiencia.html / mi-experiencia.js)
+   Página aparte con encuesta de 5 pasos; prefijo .mx-
+   ============================================= */
+.mx-body { background: var(--black); color: var(--white); font-family: var(--font-body); min-height: 100vh; }
+.mx { max-width: 760px; margin: 0 auto; padding: 24px 16px 64px; }
+.mx__top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 8px 0 28px; }
+.mx__brand img { display: block; height: 44px; width: auto; }
+.mx__date { font-size: 13px; color: var(--muted); text-align: right; }
+
+.mx__card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+}
+.mx__card[hidden], .mx__step[hidden], .mx [hidden] { display: none; }
+.mx__title { font-size: clamp(28px, 6vw, 40px); font-weight: 700; line-height: 1.15; }
+.mx__lead { margin-top: 12px; font-size: 16px; line-height: 1.5; color: rgba(255, 255, 255, 0.78); }
+.mx__intro { margin-bottom: 24px; }
+
+.mx__progress { height: 6px; border-radius: 999px; background: rgba(255, 255, 255, 0.12); overflow: hidden; }
+.mx__progress-bar {
+  height: 100%; width: 20%;
+  background: linear-gradient(90deg, var(--ciisa-green), var(--psw-mint), var(--electric-pyx));
+  transition: width 0.35s ease;
+}
+.mx__step-count { margin: 10px 0 20px; font-size: 13px; color: var(--muted); }
+
+.mx__step { border: 0; min-width: 0; }
+.mx__q { font-size: 22px; font-weight: 600; line-height: 1.25; }
+.mx__q:focus { outline: none; }
+.mx__hint { margin: 6px 0 18px; font-size: 14px; color: var(--muted); }
+
+.mx__options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.mx__option { position: relative; display: block; cursor: pointer; }
+.mx__option input, .mx__brand-tile input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+.mx__option span {
+  display: flex; align-items: center; min-height: 56px; padding: 12px 16px;
+  font-size: 15px; line-height: 1.3;
+  border: 1.5px solid var(--border); border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.03);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+.mx__option:hover span { border-color: rgba(1, 251, 206, 0.5); }
+.mx__option input:checked + span { border-color: var(--psw-mint); background: rgba(1, 251, 206, 0.12); color: var(--psw-mint); }
+.mx__option.is-disabled { opacity: 0.4; cursor: not-allowed; }
+.mx__option.is-disabled input { cursor: not-allowed; }
+
+.mx__brands { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.mx__brand-tile {
+  position: relative; display: flex; align-items: center; justify-content: center;
+  aspect-ratio: 1.6; padding: 14px;
+  border: 1.5px solid var(--border); border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.03); cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+.mx__brand-tile img { max-width: 78%; max-height: 52%; object-fit: contain; pointer-events: none; }
+.mx__brand-tile:hover { border-color: rgba(1, 251, 206, 0.5); }
+.mx__brand-tile:has(input:checked) { border-color: var(--psw-mint); background: rgba(1, 251, 206, 0.12); }
+.mx__option:has(input:focus-visible) span,
+.mx__brand-tile:has(input:focus-visible) { outline: 2px solid var(--electric-pyx); outline-offset: 2px; }
+
+.mx__check { display: flex; gap: 12px; align-items: flex-start; margin-top: 24px; font-size: 15px; line-height: 1.4; cursor: pointer; }
+.mx__check input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--psw-mint); flex: none; }
+
+.mx__email { margin-top: 20px; display: flex; flex-direction: column; gap: 8px; }
+.mx__label { font-size: 14px; color: rgba(255, 255, 255, 0.78); }
+.mx__email input {
+  width: 100%; padding: 14px 16px; font: inherit; font-size: 16px; color: var(--white);
+  background: rgba(255, 255, 255, 0.05); border: 1.5px solid var(--border); border-radius: var(--radius);
+}
+.mx__email input:focus { outline: none; border-color: var(--psw-mint); }
+.mx__error { min-height: 1.2em; font-size: 13px; color: #ff6b6b; }
+.mx__trap { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.mx__sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.mx__status { margin-top: 18px; min-height: 1.4em; font-size: 14px; color: rgba(255, 255, 255, 0.78); }
+.mx__status.is-error { color: #ff6b6b; }
+.mx__status a { color: var(--psw-mint); }
+
+.mx__nav { display: flex; gap: 12px; justify-content: flex-end; margin-top: 12px; }
+.mx__btn { min-height: 48px; padding: 0 28px; }
+.mx__btn[disabled] { opacity: 0.4; cursor: not-allowed; animation: none; transform: none; box-shadow: none; }
+.mx__card.is-busy { opacity: 0.85; }
+
+.mx__route { list-style: none; margin: 24px 0 8px; display: grid; gap: 12px; }
+.mx__route-item {
+  display: grid; grid-template-columns: 36px 110px 1fr; align-items: center; gap: 16px;
+  padding: 16px; border: 1px solid var(--border); border-radius: var(--radius); background: rgba(255, 255, 255, 0.03);
+}
+.mx__route-num {
+  display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%;
+  font-weight: 700; color: var(--navy-deep); background: linear-gradient(115deg, var(--ciisa-green), var(--psw-mint));
+}
+.mx__route-item img { width: 110px; height: 36px; object-fit: contain; }
+.mx__route-why { font-size: 14px; line-height: 1.4; color: rgba(255, 255, 255, 0.72); }
+.mx__note { margin: 16px 0 24px; font-size: 14px; line-height: 1.5; color: var(--muted); }
+
+@media (max-width: 640px) {
+  .mx__card { padding: 24px 18px; }
+  .mx__options { grid-template-columns: 1fr; }
+  .mx__brands { grid-template-columns: repeat(2, 1fr); }
+  .mx__date { display: none; }
+  .mx__nav .mx__btn { flex: 1; padding: 0 16px; }
+  .mx__route-item { grid-template-columns: 32px 1fr; }
+  .mx__route-item img { width: 100px; }
+  .mx__route-why { grid-column: 1 / -1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mx__progress-bar, .mx__option span, .mx__brand-tile { transition: none; }
+}
+
+/* Diseña tu experiencia: video de fondo, logo animado y cajas translúcidas como el hero.
+   Las cajas usan el mismo negro translúcido de los campos del registro (rgba(0,0,0,.55)). */
+.mx__top { flex-direction: column; justify-content: center; gap: 14px; padding: 8px 0 32px; }
+.mx__logo { width: min(340px, 82%); }
+.mx__top .cip-hero__sub { margin: 0; }
+.mx__card {
+  background: rgba(0, 0, 0, 0.55);
+  border-color: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.mx__option span,
+.mx__brand-tile { background: rgba(0, 0, 0, 0.55); border-color: rgba(255, 255, 255, 0.22); }
+.mx__route-item { background: rgba(0, 0, 0, 0.55); border-color: rgba(255, 255, 255, 0.22); }
+.mx__email input { background: rgba(0, 0, 0, 0.55); border-color: rgba(255, 255, 255, 0.22); }
+
+/* Movimiento: entrada de cada paso, aparición escalonada de opciones y rebote al elegir */
+@keyframes mx-rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+@keyframes mx-pop { 0% { transform: scale(1); } 45% { transform: scale(1.04); } 100% { transform: scale(1); } }
+.mx__card { animation: mx-rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.mx__step:not([hidden]) .mx__q,
+.mx__step:not([hidden]) .mx__hint { animation: mx-rise 0.45s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.mx__step:not([hidden]) .mx__option,
+.mx__step:not([hidden]) .mx__brand-tile,
+.mx__route-item { animation: mx-rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; animation-delay: calc(var(--i, 0) * 45ms + 80ms); }
+.mx__option input:checked + span,
+.mx__brand-tile:has(input:checked) { animation: mx-pop 0.3s ease; box-shadow: 0 0 22px rgba(1, 251, 206, 0.28); }
+@media (prefers-reduced-motion: reduce) {
+  .mx__card, .mx__q, .mx__hint, .mx__option, .mx__brand-tile, .mx__route-item,
+  .mx__option input:checked + span, .mx__brand-tile:has(input:checked) { animation: none !important; }
+}
+
+/* Diseña tu experiencia: señales de selección única (círculo) y múltiple (cuadro con palomita) */
+.mx__pill {
+  display: inline-flex; align-items: center; gap: 8px; margin-right: 6px;
+  padding: 4px 12px 4px 10px; border-radius: 999px; font-size: 12.5px; font-weight: 600; letter-spacing: 0.02em;
+  border: 1px solid rgba(255, 255, 255, 0.22); color: var(--white); background: rgba(0, 0, 0, 0.55);
+}
+.mx__pill::before { content: ""; width: 12px; height: 12px; border: 2px solid var(--psw-mint); flex: none; }
+.mx__pill--one::before { border-radius: 50%; }
+.mx__pill--many::before { border-radius: 3px; box-shadow: 4px -4px 0 -1px rgba(1, 251, 206, 0.45); margin-right: 4px; }
+.mx__counter { color: var(--psw-mint); font-weight: 600; }
+
+.mx__option span { padding-left: 50px; }
+.mx__option span::before {
+  content: ""; position: absolute; left: 16px; top: 50%; width: 20px; height: 20px; transform: translateY(-50%);
+  border: 2px solid rgba(255, 255, 255, 0.5); background: transparent;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+.mx__option input[type="radio"] + span::before { border-radius: 50%; }
+.mx__option input[type="checkbox"] + span::before { border-radius: 5px; }
+.mx__option span::after { content: ""; position: absolute; opacity: 0; transition: opacity 0.15s ease; }
+.mx__option input[type="radio"] + span::after {
+  left: 22px; top: 50%; width: 8px; height: 8px; margin-top: -4px; border-radius: 50%; background: var(--navy-deep);
+}
+.mx__option input[type="checkbox"] + span::after {
+  left: 22px; top: 50%; width: 6px; height: 11px; margin-top: -7px;
+  border: solid var(--navy-deep); border-width: 0 2.5px 2.5px 0; transform: rotate(45deg);
+}
+.mx__option input:checked + span::before { border-color: var(--psw-mint); background: var(--psw-mint); }
+.mx__option input:checked + span::after { opacity: 1; }
+.mx__option.is-disabled span::before { border-style: dashed; }
+
+/* Logos de marcas (selección múltiple): cuadro de verificación en la esquina */
+.mx__brand-tile::before {
+  content: ""; position: absolute; top: 8px; right: 8px; width: 18px; height: 18px; border-radius: 5px;
+  border: 2px solid rgba(255, 255, 255, 0.5); transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+.mx__brand-tile::after {
+  content: ""; position: absolute; top: 11px; right: 14px; width: 5px; height: 9px; opacity: 0;
+  border: solid var(--navy-deep); border-width: 0 2.5px 2.5px 0; transform: rotate(45deg); transition: opacity 0.15s ease;
+}
+.mx__brand-tile:has(input:checked)::before { border-color: var(--psw-mint); background: var(--psw-mint); }
+.mx__brand-tile:has(input:checked)::after { opacity: 1; }
