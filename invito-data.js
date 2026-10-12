@@ -2,7 +2,7 @@
 // (los usa invito-field.js y la validación de rsvp-form.js). "asesores" es la lista de
 // ejecutivos CiiSA | PSW; se muestran nombre y primer apellido porque es una página pública
 // (los correos no van aquí: viven en la carpeta privada). Para agregar o quitar un ejecutivo,
-// edita esta lista; mantén la misma lista en la propiedad de HubSpot para que ambas fuentes coincidan.
+// edita esta lista. HubSpot es otra fuente y no tiene que coincidir: quien recibe una solicitud de contacto la canaliza al ejecutivo que corresponda.
 window.CIISA_INVITO = {
   canales: [
     'LinkedIn',

@@ -1,8 +1,8 @@
-# Documentación interna y contexto de Claude (solo local)
-docs/FLUJOS.md
-PRODUCT.md
+# Material privado que se comparte por zip (flujos, correos, diagramas, traspaso). Nunca a git.
+privada/
+
+# Contexto y permisos locales de Claude Code (privados de cada máquina)
 CLAUDE.local.md
-.claude/CLAUDE.md
 .claude/settings.local.json
 
 # Herramientas locales
