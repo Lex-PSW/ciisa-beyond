@@ -16,5 +16,6 @@ window.CIISA_LOGOS = [
     { file: 'sophos.svg', name: 'Sophos', size: 'wide' },
     { file: 'ciisa-fs.svg', name: 'CiiSA FS', size: 'xl', grid: false },
     { file: 'adobe.svg', name: 'Adobe', size: 'sm' },
-    { file: 'asus.svg', name: 'ASUS', size: 'sm' }
+    { file: 'asus.svg', name: 'ASUS', size: 'sm' },
+    { file: 'cyberpower.svg', name: 'CyberPower', size: 'wide' }
 ];

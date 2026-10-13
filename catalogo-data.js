@@ -18,5 +18,6 @@ window.CIISA_CATALOGO = [
     { slug: 'ibm',            file: 'ibm.svg',            name: 'IBM',            industrias: ['financiero', 'gobierno', 'salud'], tecnologias: ['ia-datos', 'infraestructura'], soluciones: ['modernizar', 'automatizar'] },
     { slug: 'sophos',         file: 'sophos.svg',         name: 'Sophos',         industrias: ['todas'], tecnologias: ['ciberseguridad'],                               soluciones: ['proteger'] },
     { slug: 'adobe',          file: 'adobe.svg',          name: 'Adobe',          industrias: ['todas'], tecnologias: ['diseno', 'ia-datos'],                           soluciones: ['productividad'] },
-    { slug: 'asus',           file: 'asus.svg',           name: 'ASUS',           industrias: ['todas'], tecnologias: ['computo'],                                      soluciones: ['productividad'] }
+    { slug: 'asus',           file: 'asus.svg',           name: 'ASUS',           industrias: ['todas'], tecnologias: ['computo'],                                      soluciones: ['productividad'] },
+    { slug: 'cyberpower',     file: 'cyberpower.svg',     name: 'CyberPower',     industrias: ['todas'], tecnologias: ['infraestructura'],                              soluciones: ['proteger', 'modernizar'] }
 ];
