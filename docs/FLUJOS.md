@@ -15,7 +15,7 @@ Mapa de alto nivel. Es un documento público: el detalle (acciones, nombres de a
 | **I** | Encuesta `mi-experiencia` → perfil y correo "Tu ruta Beyond" | HTTP desde `mi-experiencia.js` | ✅ |
 | **I2** | Aviso a gerentes cuando alguien pide que lo contacte un asesor | HTTP desde el flujo I | ✅ |
 | **J1** | Invitación a diseñar la experiencia, 30 minutos después del registro, una sola vez por correo | Programado | 🔧 rediseñado y probado; desactivado hasta su revisión |
-| **J** | Recordatorios a registrados (tope de frecuencia, bajas) | Programado | 📝 |
+| **J** | Recordatorios a registrados del 15 al 21 de octubre (tope de frecuencia para marketing, bajas y rebotes) | Programado, una copia por correo | 🔧 J15, J17 y J19 armados y con prueba real aprobada (desactivados, falta revisión de Oscar); J20 y J21 por copiar |
 | **K** | Correo post-evento según módulos visitados | Programado | 📝 |
 | **L** | Invitación de calendario del evento a quien confirmó, desde la cuenta de Beyond | Programado | ✅ |
 | **L2** | Marca los correos que rebotan para no insistirles | Correo nuevo en la bandeja de Beyond | ✅ |

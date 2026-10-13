@@ -25,6 +25,7 @@ Reglas de trabajo con los flujos:
 - En *Configurar ejecutar después* las casillas se suman: para una rama solo de error, **desmarca *Es correcto*** y marca *Ha fallado* y *Ha expirado*. Si no, corre también tras el éxito.
 - Los nombres de acciones se escriben **sin corchetes** (los corchetes de las guías solo señalan el nombre); con corchetes Power Automate los convierte en guiones bajos y rompe las referencias. Borrar una condición borra lo que tiene dentro.
 - `destinoPrueba` vacío es un envío real. No lo dejes vacío sin un filtro temporal que limite la lista a tus filas de prueba.
+- Copilot de Power Automate edita variables, `Compose` y frecuencia/intervalo del disparador; no condiciones, filtros (`Pendientes`), zona horaria ni horario, y a veces dice haber hecho cambios que no hizo. Antes de activar una prueba real, revisa la versión **guardada** del flujo (filtro temporal, `destinoPrueba` vacío, límite y fecha de la guardia).
 
 ## Stack y estructura
 
