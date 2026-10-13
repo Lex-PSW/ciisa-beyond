@@ -14,11 +14,11 @@ Mapa de alto nivel. Es un documento público: el detalle (acciones, nombres de a
 | **H** | Segmento de presenciales de HubSpot → Excel de invitaciones | Programado | ✅ |
 | **I** | Encuesta `mi-experiencia` → perfil y correo "Tu ruta Beyond" | HTTP desde `mi-experiencia.js` | ✅ |
 | **I2** | Aviso a gerentes cuando alguien pide que lo contacte un asesor | HTTP desde el flujo I | ✅ |
-| **J1** | Invitación a diseñar la experiencia, 30 minutos después del registro | Programado cada 10 min | ✅ |
+| **J1** | Invitación a diseñar la experiencia, 30 minutos después del registro, una sola vez por correo | Programado | 🔧 rediseñado y probado; desactivado hasta su revisión |
 | **J** | Recordatorios a registrados (tope de frecuencia, bajas) | Programado | 📝 |
 | **K** | Correo post-evento según módulos visitados | Programado | 📝 |
 | **L** | Invitación de calendario del evento a quien confirmó, desde la cuenta de Beyond | Programado | ✅ |
-| **L2** | Marca los correos que rebotan para no insistirles | Correo nuevo en la bandeja de Beyond | 📝 |
+| **L2** | Marca los correos que rebotan para no insistirles | Correo nuevo en la bandeja de Beyond | ✅ |
 
 **Quién los edita:** los flujos nuevos (I, I2, J, J1, K, L, L2) los modifica Automatización; el QR (C) y la etiqueta, Diseño; los existentes, con aviso previo.
 
