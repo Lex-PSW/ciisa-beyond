@@ -7,6 +7,8 @@ window.CIISA_INVITO = {
   canales: [
     'LinkedIn',
     'Google',
+    'Amitai',
+    'HumanSite',
     'Nadie, me enteré por mi cuenta'
   ],
   asesores: [
