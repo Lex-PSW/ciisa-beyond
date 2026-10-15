@@ -26,6 +26,7 @@ Campos que viajan en el POST (JSON):
 | `nombre`, `empresa`, `puesto`, `correo`, `telefono` | Formulario |
 | `invito` | "¿Quién te invitó?" (autocompletado restringido a `invito-data.js`) |
 | `privacidad` | `"Aceptado"` (casilla obligatoria) |
+| `marketing` | `"Sí"` o `"No"`: casilla opcional "Quiero recibir información de marketing de CiiSA \| PSW" (sin marcar por defecto, fuera de la validación). Siempre viaja; los flujos que no la conocen la ignoran |
 | `fecha` | ISO 8601 del navegador |
 | `origen` | Siempre `"landing-beyond"` |
 | `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `utm_term` | `tracking.js`; vacíos si no hubo campaña |

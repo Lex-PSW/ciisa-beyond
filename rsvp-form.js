@@ -174,6 +174,8 @@
         telefono: form.telefono.value.trim(),
         invito: (window.CIISA_INVITO && window.CIISA_INVITO.match(form.invito.value)) || form.invito.value.trim(),
         privacidad: 'Aceptado',
+        // Casilla opcional de marketing: siempre viaja, "Sí" solo si la marcó
+        marketing: form.marketing && form.marketing.checked ? 'Sí' : 'No',
         fecha: new Date().toISOString(),
         origen: 'landing-beyond'
       };

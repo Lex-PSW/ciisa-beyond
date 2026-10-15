@@ -596,6 +596,14 @@
           <span class="cip-rsvp__error" id="rsvp-privacidad-error"></span>
         </div>
 
+        <!-- Consentimiento de marketing: opcional, sin marcar por defecto y fuera de la validación (rsvp-form.js lo envía como "marketing": Sí/No) -->
+        <div class="cip-rsvp__check-wrap cip-rsvp__check-wrap--optional">
+          <label class="cip-rsvp__check">
+            <input type="checkbox" name="marketing" value="Sí">
+            <span>Quiero recibir información de marketing de CiiSA | PSW. <span class="cip-rsvp__optional">(Opcional)</span></span>
+          </label>
+        </div>
+
         <p class="cip-rsvp__status" data-rsvp-status role="status" aria-live="polite"></p>
 
         <button type="submit" class="cip-btn cip-btn--outline cip-register__btn">
