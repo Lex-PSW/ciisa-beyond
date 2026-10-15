@@ -1,3 +1,18 @@
 {
-  "buildPath": "code"
+  "buildPath": "code",
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "pulsing-dot",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-10-15T22:53:59.642Z",
+        "reason": "Claude: el punto de la agenda solo aparece en el evento en curso, calculado con la hora real de Monterrey (beyond-clock.js); es un indicador de datos vivos, no decorativo"
+      }
+    ]
+  }
 }
