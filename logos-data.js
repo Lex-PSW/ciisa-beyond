@@ -11,7 +11,7 @@ window.CIISA_LOGOS = [
     { file: 'poly.svg', name: 'Poly', size: 'xl' },
     { file: 'autodesk.svg', name: 'Autodesk', size: 'wide' },
     { file: 'fortinet.svg', name: 'Fortinet', size: 'wide' },
-    { file: 'honeywell.svg', name: 'Honeywell', size: 'sm' },
+    { file: 'brady.svg', name: 'Brady', size: 'sm' },
     { file: 'ibm.svg', name: 'IBM', size: 'ibm' },
     { file: 'sophos.svg', name: 'Sophos', size: 'wide' },
     { file: 'ciisa-fs.svg', name: 'CiiSA FS', size: 'xl', grid: false },

@@ -14,7 +14,7 @@ window.CIISA_CATALOGO = [
     { slug: 'poly',           file: 'poly.svg',           name: 'Poly',           industrias: ['todas'], tecnologias: ['colaboracion'],                                 soluciones: ['productividad', 'conectar'] },
     { slug: 'autodesk',       file: 'autodesk.svg',       name: 'Autodesk',       industrias: ['manufactura', 'construccion', 'servicios'], tecnologias: ['diseno'],            soluciones: ['productividad', 'automatizar'] },
     { slug: 'fortinet',       file: 'fortinet.svg',       name: 'Fortinet',       industrias: ['todas'], tecnologias: ['ciberseguridad', 'redes'],                      soluciones: ['proteger'] },
-    { slug: 'honeywell',      file: 'honeywell.svg',      name: 'Honeywell',      industrias: ['manufactura', 'retail', 'salud'], tecnologias: ['identificacion'], soluciones: ['automatizar', 'productividad'] },
+    { slug: 'brady',          file: 'brady.svg',          name: 'Brady',          industrias: ['manufactura', 'retail', 'salud'], tecnologias: ['identificacion'], soluciones: ['automatizar', 'productividad'] },
     { slug: 'ibm',            file: 'ibm.svg',            name: 'IBM',            industrias: ['financiero', 'gobierno', 'salud'], tecnologias: ['ia-datos', 'infraestructura'], soluciones: ['modernizar', 'automatizar'] },
     { slug: 'sophos',         file: 'sophos.svg',         name: 'Sophos',         industrias: ['todas'], tecnologias: ['ciberseguridad'],                               soluciones: ['proteger'] },
     { slug: 'adobe',          file: 'adobe.svg',          name: 'Adobe',          industrias: ['todas'], tecnologias: ['diseno', 'ia-datos'],                           soluciones: ['productividad'] },
