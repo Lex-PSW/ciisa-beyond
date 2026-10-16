@@ -4122,3 +4122,9 @@ html { scroll-behavior:smooth; }
 .cip-hero .cip-state--now { display: none; }
 html.is-now .cip-hero .cip-state--before { display: none; }
 html.is-now .cip-hero .cip-state--now { display: inline; }
+
+/* Modal de gracias: antes de las 10:00 del 21 de octubre confirma el lugar; después avisa que en unos momentos se entrega el QR
+   (countdown.js pone .is-now en <html>). Sin JS se ve el texto de antes. */
+.cip-thanks .cip-state--now { display: none; }
+html.is-now .cip-thanks .cip-state--before { display: none; }
+html.is-now .cip-thanks .cip-state--now { display: inline; }

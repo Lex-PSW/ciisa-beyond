@@ -705,7 +705,11 @@
     <div class="cip-thanks__box">
       <p class="cip-thanks__eyebrow">Registro confirmado</p>
       <h2 class="cip-thanks__title" id="cip-thanks-title">¡Gracias, <span data-rsvp-name></span>!</h2>
-      <p class="cip-thanks__text">Tu lugar en <strong>CiiSA Beyond 2026</strong> está apartado. Te esperamos el <strong>miércoles 21 de octubre, de 10:00 AM a 9:00 PM</strong>, en El Ejecutivo Eventos, San Pedro Garza García.</p>
+      <!-- Dos textos: antes de las 10:00 del 21 de octubre (countdown.js pone .is-now en <html>) y después -->
+      <p class="cip-thanks__text">
+        <span class="cip-state--before">Tu lugar en <strong>CiiSA Beyond 2026</strong> está apartado. Te esperamos el <strong>miércoles 21 de octubre, de 10:00 AM a 9:00 PM</strong>, en El Ejecutivo Eventos, San Pedro Garza García.</span>
+        <span class="cip-state--now">Tu registro en <strong>CiiSA Beyond 2026</strong> quedó confirmado. <strong>En unos momentos te darán tu QR de acceso.</strong></span>
+      </p>
       <button type="button" class="cip-btn cip-btn--primary cip-thanks__close" data-rsvp-close>Entendido</button>
     </div>
   </dialog>
