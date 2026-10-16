@@ -3527,7 +3527,7 @@ html { scroll-behavior:smooth; }
 .cip-program__board {
   --u: 18px;                                     /* alto de cada 5 minutos: 3.6 px por minuto */
   display: grid;
-  grid-template-columns: 64px 26px repeat(3, minmax(0, 1fr));
+  grid-template-columns: 64px 46px minmax(0, 1fr) 46px minmax(0, 1fr);
   grid-template-rows: auto repeat(var(--rows, 126), var(--u));
   column-gap: 10px;
 }
@@ -3570,20 +3570,31 @@ html { scroll-behavior:smooth; }
   white-space: nowrap;
   color: rgba(255, 255, 255, 0.6);
 }
+/* Etiqueta vertical de un tema o espacio (Ciberseguridad, Manufactura | Productividad, PC Experiencias): ocupa el carril
+   junto a su columna, con la línea del lado de las tarjetas (el giro de 180° la deja a la derecha). */
 .cip-program__rail {
-  justify-self: center;
-  padding: 6px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 4px;
   writing-mode: vertical-rl;
   transform: rotate(180deg);
   text-align: center;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  line-height: 1.25;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--ciisa-green);
-  border-right: 2px solid var(--ciisa-green);
-  padding-right: 8px;
+  background: linear-gradient(270deg, rgba(188, 242, 0, 0.14), rgba(188, 242, 0, 0.03));
+  border-left: 3px solid var(--ciisa-green);
+  border-radius: 0 8px 8px 0;
   overflow: hidden;
+}
+.cip-program__rail--pc {
+  color: var(--electric-pyx);
+  background: linear-gradient(270deg, rgba(0, 204, 255, 0.16), rgba(0, 204, 255, 0.03));
+  border-left-color: var(--electric-pyx);
 }
 
 .cip-program__item {
@@ -4058,3 +4069,56 @@ html { scroll-behavior:smooth; }
   .cip-celebra__text,
   .cip-celebra.is-in .cip-celebra__text { animation: none; transform: none; }
 }
+
+/* Agenda de escritorio en dos columnas (16 oct): las sesiones de PC Experiencias comparten la segunda columna con los
+   laboratorios y la primera se solapa un poco con la tarjeta de Autodesk, así que va por encima y con sombra. */
+.cip-program__item[data-stage="pc"] {
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.55);
+}
+@media (max-width: 1024px) {
+  .cip-program__item[data-stage="pc"] { box-shadow: none; }
+}
+
+/* Lista (tablet y celular): el espacio de cada tarjeta lleva también su lugar en palabras, por ejemplo
+   "Laboratorios · Salón Terraza"; el color solo ya no alcanza para distinguirlos. En escritorio no se ve. */
+.cip-program__place { display: none; }
+@media (max-width: 1024px) {
+  .cip-program__place {
+    display: inline;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.78);
+  }
+}
+
+/* "Beyond is Now" (16 oct): a partir de las 10:00 del 21 de octubre la sección de registro cambia la cuenta regresiva por este
+   título y "Confirma tu asistencia" por "Regístrate para ingresar" (countdown.js pone .is-now). Sin JS se ve el estado de antes. */
+.cip-now { display: none; }
+#registro.is-now .cip-now {
+  display: block;
+  margin: 0 0 clamp(28px, 6vw, 48px);
+  font-family: var(--font-head);
+  font-weight: 900; /* Poppins Black y en mayúsculas, como "¿Para quién es BEYOND?" y "Tu registro incluye" */
+  text-transform: uppercase;
+  font-size: clamp(1.8rem, 10vw, 4.8rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: var(--white);
+}
+#registro.is-now .cip-now .cip-hero__headline-span--pulse { animation-duration: 7s; }
+#registro.is-now .cip-state--before { display: none; }
+#registro:not(.is-now) .cip-state--now { display: none; }
+/* "Regístrate para ingresar" tiene dos letras más que "Confirma tu asistencia": un poco menos de tamaño y de espaciado para que quepa en una línea */
+#registro.is-now .cip-register__heading .cip-section__label--subtitle {
+  max-width: none;
+  letter-spacing: 3pt;
+  font-size: clamp(20px, 3.4vw, 34px);
+}
+
+/* Botón del hero: "Confirma tu asistencia" antes de las 10:00 del 21 de octubre y "Regístrate para ingresar" después
+   (countdown.js pone .is-now en <html>). Sin JS se ve el texto de antes. */
+.cip-hero .cip-state--now { display: none; }
+html.is-now .cip-hero .cip-state--before { display: none; }
+html.is-now .cip-hero .cip-state--now { display: inline; }

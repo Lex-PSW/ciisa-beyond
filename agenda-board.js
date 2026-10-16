@@ -13,11 +13,16 @@
   if (!data || !board) return;
 
   var STEP = 5;                                  // minutos por fila del tablero
-  var FIRST_STAGE_COL = 3;                       // columnas: 1 hora, 2 rótulo de tema, 3 a 5 espacios
+  var FIRST_STAGE_COL = 3;                       // columnas: 1 hora, 2 rótulo, 3 primera columna, 4 rótulo, 5 segunda columna
   var start = toMin(data.inicio);
   var end = toMin(data.fin);
   var stageIndex = {};
   data.escenarios.forEach(function (s, i) { stageIndex[s.id] = i; });
+  // Columna de escritorio de cada espacio (varios espacios pueden compartir una); entre columnas va un carril para los rótulos
+  var colOf = {};
+  data.escenarios.forEach(function (s, i) { colOf[s.id] = s.col != null ? s.col : i; });
+  function gridCol(c) { return FIRST_STAGE_COL + c * 2; }
+  function railCol(c) { return gridCol(c) - 1; }
 
   function toMin(t) { var p = t.split(':'); return (+p[0]) * 60 + (+p[1]); }
   function pad(n) { return (n < 10 ? '0' : '') + n; }
@@ -44,12 +49,13 @@
   board.style.setProperty('--rows', (end - start) / STEP);
 
   /* ---- Encabezados de cada espacio ---- */
-  data.escenarios.forEach(function (s, i) {
+  data.escenarios.forEach(function (s) {
+    if (s.cabecera === false) return;
     var head = el('div', 'cip-program__head');
     head.setAttribute('data-stage', s.id);
     head.appendChild(el('span', 'cip-program__head-name', s.nombre));
     if (s.lugar) head.appendChild(el('span', 'cip-program__head-place', s.lugar));
-    board.appendChild(place(head, FIRST_STAGE_COL + i, 1, 2));
+    board.appendChild(place(head, gridCol(colOf[s.id]), 1, 2));
   });
 
   /* ---- Líneas de cada hora y rótulos de tema (solo escritorio) ---- */
@@ -74,24 +80,43 @@
   Object.keys(temas).forEach(function (name) {
     var rail = el('div', 'cip-program__rail', name);
     rail.setAttribute('aria-hidden', 'true');
-    board.appendChild(place(rail, 2, rowOf(temas[name].a), rowOf(temas[name].b)));
+    board.appendChild(place(rail, railCol(0), rowOf(temas[name].a), rowOf(temas[name].b)));
+  });
+  // Los espacios sin cabecera propia (PC Experiencias) se rotulan con una etiqueta vertical sobre su tramo de horas
+  data.escenarios.forEach(function (s) {
+    if (s.cabecera !== false) return;
+    var a = Infinity, b = 0;
+    data.sesiones.forEach(function (x) { if (x.e === s.id) { a = Math.min(a, toMin(x.ini)); b = Math.max(b, toMin(x.fin)); } });
+    if (a >= b) return;
+    var rail = el('div', 'cip-program__rail cip-program__rail--' + s.id, s.nombre);
+    rail.setAttribute('aria-hidden', 'true');
+    board.appendChild(place(rail, railCol(colOf[s.id]), rowOf(a), rowOf(b)));
   });
 
   /* ---- Sesiones ---- */
   var items = [];                                // { node, a, b } para el estado en vivo
   data.sesiones.forEach(function (s) {
     var a = toMin(s.ini), b = toMin(s.fin), dur = b - a;
-    var all = s.e === 'todos';
+    var all = s.e === 'todos';                    // ocupa todas las columnas en escritorio
+    // Networking y clausura son de todos: sin nombre de espacio, sin su color y visibles con cualquier filtro.
+    // Un networking de una sola columna (e: 'exito') conserva su lugar en escritorio.
+    var neutral = all || s.tipo === 'networking';
     var card = el('article', 'cip-program__item' + (dur <= 20 ? ' is-short' : '') + (dur <= 10 ? ' is-tiny' : '') + (s.tipo ? ' is-' + s.tipo : ''));
-    card.setAttribute('data-stage', s.e);
+    card.setAttribute('data-stage', neutral ? 'todos' : s.e);
 
     var meta = el('div', 'cip-program__meta');
     var time = el('time', 'cip-program__time', range(a, b));
     time.setAttribute('datetime', iso(a));
     meta.appendChild(time);
-    meta.appendChild(el('span', 'cip-program__live', 'En vivo'));
+    meta.appendChild(el('span', 'cip-program__live', 'Ahora'));
     meta.appendChild(el('span', 'cip-program__dur', dur + ' min'));
-    if (!all) meta.appendChild(el('span', 'cip-program__stage', data.escenarios[stageIndex[s.e]].nombre));
+    if (!neutral) {
+      // Espacio y lugar, en palabras (solo se ve en lista): "Casos de éxito · Escenario principal"
+      var esc = data.escenarios[stageIndex[s.e]];
+      var stage = el('span', 'cip-program__stage', esc.nombre);
+      if (esc.lugar) stage.appendChild(el('span', 'cip-program__place', ' · ' + esc.lugar));
+      meta.appendChild(stage);
+    }
     if (s.marca) meta.appendChild(el('span', 'cip-program__brand', s.marca));
     card.appendChild(meta);
 
@@ -104,7 +129,7 @@
     bar.appendChild(document.createElement('span'));
     card.appendChild(bar);
 
-    var col = all ? FIRST_STAGE_COL + ' / -1' : FIRST_STAGE_COL + stageIndex[s.e];
+    var col = all ? FIRST_STAGE_COL + ' / -1' : gridCol(colOf[s.e]);
     seq.push({ t: a, o: 1, s: all ? -1 : stageIndex[s.e], n: place(card, col, rowOf(a), rowOf(b)), stage: s.e });
     items.push({ node: card, a: a, b: b });
   });

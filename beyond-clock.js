@@ -18,6 +18,8 @@
 
   window.BeyondClock = {
     simulated: base !== null,
+    // Instante actual en milisegundos (el real, o el simulado con ?ahora=)
+    now: function () { return base === null ? Date.now() : base + (Date.now() - t0); },
     // { date: 'AAAA-MM-DD', min: minutos desde la medianoche, con fracción }
     mx: function () {
       var d = new Date((base === null ? Date.now() : base + (Date.now() - t0)) + OFFSET);

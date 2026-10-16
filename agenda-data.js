@@ -1,6 +1,9 @@
 // Agenda del evento por hora y por espacio. La dibuja agenda-board.js en la sección #programa.
 // Para cambiar un horario, un título o una marca, edita solo este archivo.
-//   e     espacio: 'exito', 'labs', 'pc' o 'todos' (ocupa las tres columnas)
+//   e     espacio: 'exito', 'labs', 'pc' o 'todos' (ocupa las dos columnas en escritorio)
+//   Escritorio: dos columnas. 'pc' comparte la segunda con los laboratorios (col: 1) y no lleva cabecera propia (cabecera: false):
+//   su título va como etiqueta vertical, igual que los temas de 'exito'. Sus primeras sesiones se solapan un poco con el laboratorio
+//   de Autodesk. En tablet y celular siguen siendo tres espacios, con sus filtros.
 //   ini   hora de inicio en 24 h ('13:00'); fin = hora de término
 //   marca quién presenta (opcional); tema = bloque temático dentro de "exito" (opcional)
 // Las horas van en múltiplos de 5 minutos. Las marcadas "por confirmar" se dedujeron del arte de la agenda,
@@ -11,9 +14,9 @@ window.CIISA_AGENDA = {
   inicio: '10:30',
   fin: '21:00',
   escenarios: [
-    { id: 'exito', nombre: 'Casos de éxito', lugar: 'Escenario principal' },
-    { id: 'labs', nombre: 'Laboratorios', lugar: 'Salón Terraza' },
-    { id: 'pc', nombre: 'PC Experiencias Usuario | Data Center', lugar: '' }
+    { id: 'exito', nombre: 'Casos de éxito', lugar: 'Escenario principal', col: 0 },
+    { id: 'labs', nombre: 'Laboratorios', lugar: 'Salón Terraza', col: 1 },
+    { id: 'pc', nombre: 'PC Experiencias Usuario | Data Center', lugar: '', col: 1, cabecera: false }
   ],
   sesiones: [
     // Escenario principal
@@ -23,6 +26,7 @@ window.CIISA_AGENDA = {
     { e: 'exito', ini: '12:00', fin: '12:40', titulo: 'Descubre lo nuevo y único de Pyxoom ONE', marca: 'Pyxoom · amitai' },
     { e: 'exito', ini: '12:40', fin: '12:55', titulo: 'Caso de éxito Garza Ponce', marca: 'Pyxoom' },
     { e: 'exito', ini: '13:00', fin: '14:30', titulo: 'Networking', tipo: 'networking' },
+    { e: 'todos', ini: '14:30', fin: '15:00', titulo: 'Networking', tipo: 'networking' },
     { e: 'exito', ini: '15:00', fin: '15:20', titulo: 'Sophos', tema: 'Ciberseguridad' },
     { e: 'exito', ini: '15:25', fin: '15:45', titulo: 'Fortinet', tema: 'Ciberseguridad' },
     { e: 'todos', ini: '15:45', fin: '16:15', titulo: 'Networking', tipo: 'networking' },        // por confirmar

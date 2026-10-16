@@ -3,6 +3,10 @@
   if (!el) return;
 
   var targetDate = new Date(el.getAttribute('data-target'));
+  var section = document.getElementById('registro');
+
+  // beyond-clock.js permite simular la hora con ?ahora=; sin él se usa la hora real
+  function nowMs() { return window.BeyondClock ? window.BeyondClock.now() : Date.now(); }
 
   var daysEl = document.getElementById('cip-countdown-days');
   var hoursEl = document.getElementById('cip-countdown-hours');
@@ -14,8 +18,13 @@
   }
 
   function update() {
-    var now = new Date();
+    var now = new Date(nowMs());
     var target = targetDate;
+
+    // A partir de la hora del evento la sección cambia de estado: sin cuenta regresiva y con el texto de entrada
+    if (section) section.classList.toggle('is-now', target <= now);
+    // También en <html>, para lo que queda fuera de #registro (el botón del hero)
+    document.documentElement.classList.toggle('is-now', target <= now);
 
     if (target <= now) {
       daysEl.textContent = '00';
