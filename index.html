@@ -33,7 +33,7 @@
   <!-- Píxeles de campañas (Meta, LinkedIn, TikTok) y captura de UTM: configurar IDs en tracking.js -->
   <script src="tracking.js" defer></script>
 
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=6">
 
   <!-- Favicons -->
   <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
@@ -508,6 +508,99 @@
     </div>
   </section>
 
+  <!-- ③b LABORATORIO PRÁCTICO DEVKIT AI. Solo informa y lleva al registro: el horario se elige después, en el modal de gracias
+       o desde la liga del correo (devkit-lab.js). Los horarios están en la agenda (#programa). -->
+  <section class="cip-devkit" id="laboratorio" aria-labelledby="devkit-title">
+    <div class="cip-devkit__inner">
+
+      <div class="cip-agenda-header cip-devkit__header">
+        <span class="cip-agenda-header__line"></span>
+        <p class="cip-agenda-header__title cip-devkit__kicker">Laboratorio<br class="cip-br-mobile"> práctico</p>
+        <span class="cip-agenda-header__line"></span>
+      </div>
+
+      <div class="cip-devkit__grid">
+        <div class="cip-devkit__copy">
+          <p class="cip-devkit__label">DevKit AI</p>
+          <h2 class="cip-devkit__title" id="devkit-title">Más allá del código. <span class="cip-hero__headline-span--pulse">Construye con agentes de IA.</span></h2>
+          <p class="cip-pulse-claim__desc cip-devkit__desc">Vive una <strong>práctica guiada de desarrollo agéntico</strong> y descubre cómo aplicar agentes de IA en tus proyectos de software.</p>
+
+          <ol class="cip-devkit__steps" data-devkit-steps>
+            <li class="cip-devkit__step">
+              <span class="cip-devkit__num" aria-hidden="true">01</span>
+              <h3 class="cip-devkit__step-title">Define</h3>
+              <p class="cip-devkit__step-text">Plantea tu caso de uso y objetivos.</p>
+            </li>
+            <li class="cip-devkit__step">
+              <span class="cip-devkit__num" aria-hidden="true">02</span>
+              <h3 class="cip-devkit__step-title">Construye</h3>
+              <p class="cip-devkit__step-text">Desarrolla con agentes de IA guiados.</p>
+            </li>
+            <li class="cip-devkit__step">
+              <span class="cip-devkit__num" aria-hidden="true">03</span>
+              <h3 class="cip-devkit__step-title">Valida</h3>
+              <p class="cip-devkit__step-text">Revisa, prueba y mejora tu solución.</p>
+            </li>
+          </ol>
+
+          <a href="#registro" class="cip-btn cip-btn--primary cip-devkit__cta">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            Registra tu asistencia
+          </a>
+          <p class="cip-devkit__note"><strong>Inscríbete después de registrar tu asistencia.</strong> Cupo limitado: 4 horarios de 10 lugares, consulta sus horas en la <a href="#programa">agenda</a>.</p>
+          <p class="cip-devkit__audience"><strong>Dirigido a:</strong> desarrolladores, líderes técnicos, arquitectos y profesionales de TI interesados en aplicar IA al desarrollo de software.</p>
+        </div>
+
+        <!-- Ilustración: DevKit AI conecta análisis, desarrollo y validación (adaptada de la propuesta visual) -->
+        <svg class="cip-devkit__art" viewBox="0 0 540 550" role="img" aria-labelledby="devkit-art-title" data-parallax="0.05">
+          <title id="devkit-art-title">DevKit AI conecta análisis, desarrollo y validación.</title>
+          <defs>
+            <linearGradient id="devkit-line"><stop stop-color="#bcf200"/><stop offset=".5" stop-color="#01fbce"/><stop offset="1" stop-color="#00ccff"/></linearGradient>
+            <linearGradient id="devkit-glass" x2="1" y2="1"><stop stop-color="#11424b" stop-opacity=".8"/><stop offset="1" stop-color="#061018"/></linearGradient>
+            <pattern id="devkit-grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#2a7585" stroke-opacity=".17"/></pattern>
+            <filter id="devkit-glow"><feGaussianBlur stdDeviation="6"/></filter>
+          </defs>
+          <rect width="540" height="550" fill="url(#devkit-grid)"/>
+          <g fill="none" stroke="url(#devkit-line)" stroke-width="3">
+            <path class="cip-devkit__wire" d="M155 150C155 230 265 155 265 245M410 175C410 245 350 190 350 270M280 350V407"/>
+            <path d="M155 150C155 230 265 155 265 245M410 175C410 245 350 190 350 270M280 350V407" filter="url(#devkit-glow)" stroke-width="10" opacity=".6"/>
+          </g>
+          <g fill="url(#devkit-glass)" stroke="#75dce7" stroke-width="1.3">
+            <rect x="61" y="56" width="170" height="124" rx="20"/>
+            <rect x="336" y="79" width="173" height="124" rx="20"/>
+            <rect x="173" y="228" width="214" height="139" rx="24" stroke="#01fbce" stroke-width="2"/>
+            <rect x="195" y="408" width="170" height="114" rx="20"/>
+          </g>
+          <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+            <g stroke="#bcf200"><circle cx="143" cy="98" r="12"/><path d="m152 107 12 12"/></g>
+            <path stroke="#00ccff" d="m405 115-13 12 13 12m30-24 13 12-13 12m-8-27-7 30"/>
+            <g stroke="#01fbce"><path d="m280 256 26 15-26 15-26-15zM254 282l26 15 26-15M254 293l26 15 26-15"/><circle cx="280" cy="442" r="14"/><path d="m273 442 5 5 9-10"/></g>
+          </g>
+          <g fill="#fff" text-anchor="middle" font-family="Poppins, sans-serif">
+            <text x="146" y="151" font-size="18">Análisis</text>
+            <text x="422" y="174" font-size="18">Desarrollo</text>
+            <text x="280" y="340" font-size="27" font-weight="700">DevKit AI</text>
+            <text x="280" y="490" font-size="18">Validación</text>
+          </g>
+          <path d="M0 505C115 405 185 560 310 535S455 419 540 457" fill="none" stroke="url(#devkit-line)" opacity=".35"/>
+        </svg>
+      </div>
+
+      <!-- Tarjeta de cierre: quien ya se registró elige horario con la liga de su correo (?id=BYD-…) -->
+      <div class="cip-devkit__register">
+        <div class="cip-devkit__register-copy">
+          <h3 class="cip-devkit__register-title">Tu experiencia <span class="cip-hero__headline-span--pulse">Beyond</span> comienza aquí</h3>
+          <p class="cip-devkit__register-text">¿Ya te registraste? Usa la liga de tu correo para elegir tu horario.</p>
+        </div>
+        <a href="#registro" class="cip-btn cip-btn--outline cip-devkit__go">
+          Ir al registro
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
   <!-- ④ CÓMO LLEGAR -->
   <section class="cip-form-section" id="como-llegar">
     <div class="cip-form-inner">
@@ -710,7 +803,22 @@
         <span class="cip-state--before">Tu lugar en <strong>CiiSA Beyond 2026</strong> está apartado. Te esperamos el <strong>miércoles 21 de octubre, de 10:00 AM a 9:00 PM</strong>, en El Ejecutivo Eventos, San Pedro Garza García.</span>
         <span class="cip-state--now">Tu registro en <strong>CiiSA Beyond 2026</strong> quedó confirmado. <strong>En unos momentos te darán tu QR de acceso.</strong></span>
       </p>
+      <!-- Laboratorio DevKit AI: lo llena devkit-lab.js tras el 200 del flujo B (evento beyond:lead) si hay horarios abiertos.
+           Es un envío aparte al flujo M; el registro ya quedó guardado. Oculto si ENDPOINT_LAB está vacío. -->
+      <div class="cip-thanks__lab" data-lab-thanks hidden></div>
       <button type="button" class="cip-btn cip-btn--primary cip-thanks__close" data-rsvp-close>Entendido</button>
+    </div>
+  </dialog>
+
+  <!-- Laboratorio DevKit AI desde la liga del correo (?id=BYD-…): devkit-lab.js lo abre al cargar y monta el selector en
+       [data-lab-liga]. No se abre si ENDPOINT_LAB está vacío, si el ID no es válido o si ya no hay horarios abiertos. -->
+  <dialog class="cip-thanks cip-lab-dialog" data-lab-dialog aria-labelledby="lab-dialog-title">
+    <div class="cip-thanks__box">
+      <p class="cip-thanks__eyebrow">Laboratorio DevKit AI</p>
+      <h2 class="cip-thanks__title" id="lab-dialog-title">Ya estás registrado en <span class="cip-hero__headline-span--pulse">Beyond</span></h2>
+      <p class="cip-thanks__text">Elige tu horario para el laboratorio DevKit AI.</p>
+      <div class="cip-thanks__lab cip-lab-dialog__body" data-lab-liga></div>
+      <button type="button" class="cip-btn cip-btn--outline cip-thanks__close" data-lab-close>Cerrar</button>
     </div>
   </dialog>
 
@@ -746,7 +854,7 @@
 <script src="badges-grid.js" defer></script>
 <script src="logos-grid.js" defer></script>
 <script src="brands-carousel.js" defer></script>
-<script src="agenda-data.js" defer></script>
+<script src="agenda-data.js?v=2" defer></script>
 <script src="agenda-board.js" defer></script>
 <script src="site-nav.js" defer></script>
 <script src="ya-empezamos.js" defer></script>
@@ -754,6 +862,7 @@
 <script src="invito-field.js" defer></script>
 <script src="rsvp-form.js" defer></script>
 <script src="exp-slots.js" defer></script>
+<script src="devkit-lab.js?v=8" defer></script>
 <script defer>
   document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('[data-lottie]').forEach((el) => {

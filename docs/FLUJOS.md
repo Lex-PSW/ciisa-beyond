@@ -6,7 +6,7 @@ Mapa de alto nivel. Es un documento público: el detalle (acciones, nombres de a
 |---|---|---|---|
 | **A** | Respuesta de Microsoft Forms → Excel maestro + confirmación | Nueva respuesta | ✅ |
 | **B** | Registro de la landing → Excel maestro + confirmación | HTTP desde `rsvp-form.js` | ✅ |
-| **C** | QR para impresión física: lote de etiquetas y escaneo → asistencia y módulos (absorbe al antiguo D) | Programado y por escaneo | 📝 por rediseñar |
+| **C** | QR para impresión física: lote de etiquetas y escaneo → asistencia y módulos (absorbe al antiguo D). En el stand del laboratorio DevKit AI, el escaneo consulta las reservas del flujo M | Programado y por escaneo | 📝 por rediseñar |
 | **E** | Presenciales de HubSpot (Pyxoom 5) → Excel maestro | Programado | ✅ |
 | **E.2** | Igual que E leyendo el segmento completo; red de seguridad | Programado | ✅ |
 | **F** | Invitación de calendario a registrados online de Pyxoom 5 | Programado | ✅ |
@@ -19,7 +19,9 @@ Mapa de alto nivel. Es un documento público: el detalle (acciones, nombres de a
 | **K** | Correo post-evento según módulos visitados | Programado | 📝 |
 | **L** | Invitación de calendario del evento a quien confirmó, desde la cuenta de Beyond | Programado | ✅ |
 | **L2** | Marca los correos que rebotan para no insistirles | Correo nuevo en la bandeja de Beyond | ✅ |
+| **M** | Laboratorio DevKit AI: estado de los 4 horarios y apartar lugar (10 por horario, por orden de llegada) | HTTP desde `devkit-lab.js` | 📝 por armar (el front está listo y apagado) |
+| **M1** | Invitación al laboratorio DevKit AI con liga personal `?id=` a registrados con perfil TI, una sola vez por correo | Programado, diario hasta el 20 oct | 📝 por armar |
 
-**Quién los edita:** los flujos nuevos (I, I2, J, J1, K, L, L2) los modifica Automatización; el QR (C) y la etiqueta, Diseño; los existentes, con aviso previo.
+**Quién los edita:** los flujos nuevos (I, I2, J, J1, K, L, L2, M, M1) los modifica Automatización; el QR (C) y la etiqueta, Diseño; los existentes, con aviso previo.
 
-**El contrato que este repo le promete a los flujos B, G e I** (campos, respuestas, encabezados) está en [ARQUITECTURA.md](ARQUITECTURA.md). Si cambia, hay que avisar a quien mantiene el flujo.
+**El contrato que este repo le promete a los flujos B, G, I y M** (campos, respuestas, encabezados) está en [ARQUITECTURA.md](ARQUITECTURA.md). Si cambia, hay que avisar a quien mantiene el flujo.

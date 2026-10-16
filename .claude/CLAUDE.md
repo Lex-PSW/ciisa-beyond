@@ -1,3 +1,7 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
 # CiiSA Beyond Expo 2026 · landing
 
 Landing de registro de **CiiSA Beyond Expo 2026**: miércoles 21 de octubre de 2026, 10:00 a 21:00 (horario abierto), El Ejecutivo Eventos, Río Danubio 395-B Ote., Del Valle, San Pedro Garza García, N.L. La métrica que manda es el número de registros. Contexto de producto, audiencia y tono: `PRODUCT.md` (lo usa Impeccable). Para incorporarse al proyecto: `README.md` y `docs/ARQUITECTURA.md` (contrato con los flujos). El traspaso (quién hace qué, accesos, estado, riesgos) está en `privada/handoff-beyond.md`.
@@ -8,7 +12,7 @@ Landing de registro de **CiiSA Beyond Expo 2026**: miércoles 21 de octubre de 2
 
 ## Fuente de verdad de los flujos (no se replica aquí)
 
-Los flujos de Power Automate (A, B, C, E, E.2, F, G, H, I, I2, J, J1, K, L, L2), el Excel maestro, la parte de HubSpot de Pyxoom 5 y las plantillas de correo **se documentan en la carpeta `privada/`** (fuera de git), no en este repo (aquí `docs/FLUJOS.md` solo trae el mapa de alto nivel):
+Los flujos de Power Automate (A, B, C, E, E.2, F, G, H, I, I2, J, J1, K, L, L2, M, M1), el Excel maestro, la parte de HubSpot de Pyxoom 5 y las plantillas de correo **se documentan en la carpeta `privada/`** (fuera de git), no en este repo (aquí `docs/FLUJOS.md` solo trae el mapa de alto nivel):
 
 - `privada/docs/FLUJOS.md` · mapa completo y estado de los flujos. La sección 3 es la de Beyond.
 - `privada/docs/correos-beyond/` · plantillas HTML de los correos de Beyond, con su `README.md` (expresión del nombre por flujo) y `preview.html`.
@@ -17,7 +21,7 @@ Los flujos de Power Automate (A, B, C, E, E.2, F, G, H, I, I2, J, J1, K, L, L2),
 `privada/` es una copia de entrega; la fuente de los flujos vive en el repo privado de Diseño y su ruta está en `CLAUDE.local.md`. Si no tienes `privada/`, pídela por zip. **Antes de responder o cambiar algo de flujos, Excel, HubSpot o correos, lee esos archivos**; no confíes en lo que recuerdes. Si ves que algo de este repo cambia un flujo (por ejemplo, el payload de `rsvp-form.js` o una URL del sitio), avisa para actualizar `FLUJOS.md` allá. No copies su contenido a este repo.
 
 Reglas de trabajo con los flujos:
-- Los flujos nuevos (I, I2, J, J1, K, L, L2) los modifica Automatización; el QR (C, que absorbe al antiguo D) y la etiqueta, Diseño. Claude no tiene acceso por API a Power Automate: da pasos y expresiones para que la persona los arme a mano.
+- Los flujos nuevos (I, I2, J, J1, K, L, L2, M, M1) los modifica Automatización; el QR (C, que absorbe al antiguo D) y la etiqueta, Diseño. Claude no tiene acceso por API a Power Automate: da pasos y expresiones para que la persona los arme a mano.
 - Power Automate evalúa cualquier `@` seguido de `{` en un cuerpo HTML, incluso dentro de comentarios.
 - *Enumerar filas* de Excel Online devuelve respuestas **en caché** si la consulta se repite idéntica (`x-ms-apihub-cached-response: true`) y solo admite un filtro simple (un `eq`, `ne`, `contains`, `startswith` o `endswith`; `and` da `BadRequest`). Cambiar `$top` o usar `rand(…)` **no** la evita. Para decidir si algo ya se hizo, no te apoyes en una lectura de lista: escribe una marca con *Actualizar una fila* (no usa caché), vuelve a leer esa fila con *Obtener una fila* antes de actuar, y para dos criterios filtra por uno y usa *Filtrar matriz* con el otro.
 - En el diseñador de Power Automate, si no aparece "modo avanzado" en una condición, se usa una expresión (pestaña *Expresión*) a la izquierda, `es igual a` y `true` a la derecha.
@@ -33,18 +37,20 @@ HTML, CSS y JS vanilla. Sin framework ni paso de build: no agregues ninguno sin 
 
 | Archivo | Qué hace |
 |---|---|
-| `index.html` | Página única. Secciones en orden: hero (`.cip-hero`) → `#ilusionista` "Más allá de la tecnología" + grilla de logos → `#programa` agenda por hora (3 espacios) → `#agenda` (¿Para quién es BEYOND?, cifras +18/+10/+50, "Tu registro incluye" con 5 beneficios, tagline) → `#como-llegar` (fecha, subtítulos, lugar) → `#registro` (contador + formulario) → `#ilusionista-2` "¿Quién es CiiSA?" + badges → `#marcas` (carrusel) → footer |
+| `index.html` | Página única. Secciones en orden: hero (`.cip-hero`) → `#ilusionista` "Más allá de la tecnología" + grilla de logos → `#programa` agenda por hora (3 espacios) → `#agenda` (¿Para quién es BEYOND?, cifras +18/+10/+50, "Tu registro incluye" con 5 beneficios, tagline) → `#laboratorio` (laboratorio práctico DevKit AI) → `#como-llegar` (fecha, subtítulos, lugar) → `#registro` (contador + formulario) → `#ilusionista-2` "¿Quién es CiiSA?" + badges → `#marcas` (carrusel) → footer |
 | `styles.css` | Todo el CSS de la landing. Los ajustes nuevos se agregan **al final**, en bloques con un comentario que explica el cambio |
 | `mi-experiencia.html`, `.js`, `.css` | Encuesta "Diseña tu experiencia" (5 pasos, ruta de marcas por invitado, `?id=BYD-…`). El CSS va aparte para no tocar `styles.css`, que es el de producción. Envía al Flujo I (`ENDPOINT_PERFIL`; si se vacía, vuelve a vista previa). Contrato en `docs/ARQUITECTURA.md` |
 | `catalogo-data.js` | Etiquetas de cada marca para la encuesta; espejo del catálogo de marcas en Excel. El vocabulario de `OPCIONES` en `mi-experiencia.js`, estas etiquetas y el Excel deben coincidir |
 | `hero-lottie.js` | Logo animado Beyond + CiiSA para la encuesta (el index lo tiene en línea) |
 | `rsvp-form.js` | Formulario propio: validación, botón deshabilitado hasta que todo es válido, POST JSON al Flujo B (`origen: 'landing-beyond'` + UTM), modal `<dialog data-rsvp-thanks>`, evento `beyond:lead`. Si falla, enlaza al Microsoft Forms de respaldo (`data-fallback`) |
+| `invito-data.js`, `invito-field.js` | Campo "¿Quién te invitó?" del registro: combobox ARIA con autocompletado restringido a `window.CIISA_INVITO` (canales y asesores, solo nombre y primer apellido porque el repo es público). La validación vive en `rsvp-form.js`; el valor viaja como `invito` (también al Flujo G). Para sumar o quitar un ejecutivo se edita la lista |
 | `tracking.js` | UTM a `sessionStorage` y eventos al `dataLayer`. Píxeles de Meta, LinkedIn y TikTok solo cargan si su ID está en `CONFIG`. Google va por GTM (`GTM-TFCPQDS8`) y la etiqueta de Google Ads está en `index.html` |
 | `logos-data.js` | Lista única de marcas (`window.CIISA_LOGOS`); la usan `logos-grid.js` (grilla) y `brands-carousel.js` (carrusel). `grid: false` saca una marca de la grilla |
 | `agenda-data.js`, `agenda-board.js` | Agenda por hora de `#programa`: los datos (espacios, horarios, títulos, marcas) viven en `agenda-data.js` y `agenda-board.js` dibuja el tablero. Escritorio: dos columnas (PC Experiencias comparte la segunda con los laboratorios, sin cabecera propia y rotulada con una etiqueta vertical, y se solapa un poco con el laboratorio de Autodesk) y una fila por cada 5 minutos; tablet y celular (≤1024 px): lista por hora con filtros por espacio. Los horarios marcados "por confirmar" en el archivo se dedujeron del arte de la agenda. El día del evento el tablero se pone en vivo: línea de "ahora" en escritorio, eventos terminados en gris, y en tablet y celular los terminados se ocultan y el botón de la pastilla (`[data-nav-past]`) los muestra |
 | `beyond-clock.js` | Reloj compartido en hora de Monterrey (UTC-6) para la agenda en vivo y la celebración. Para probar sin esperar al evento, agrega `?ahora=2026-10-21T14:10` a la dirección (hora de Monterrey): el reloj arranca ahí y sigue avanzando |
 | `ya-empezamos.js` | Celebración "¡Ya empezamos!" (confeti en Lottie, `assets/lottie/confeti-horizontal.json` o `-vertical.json` según la orientación, y la frase) por 5 s, por encima de todo. Sale una sola vez por dispositivo (marca en `localStorage`) la primera vez que alguien entra el día del evento entre 10:00 y 11:00; con `?ahora=` no guarda la marca. Los Lottie los genera un script de una sola corrida, no hay fuente editable en el repo |
 | `site-nav.js` | Navegación fija con Inicio (`#inicio`), Agenda (`#programa`) y Registro (`#registro`): marca la sección activa y mueve la pastilla; en escritorio va arriba a la derecha y en tablet y celular abajo a la izquierda, junto al botón de WhatsApp. También hace el parallax de scroll (contenido del hero, video de fondo y elementos con `data-parallax`), en un solo `requestAnimationFrame` y apagado con `prefers-reduced-motion`. Los enlaces a `#registro` dentro del `<nav>` ya los cuenta `tracking.js` como `ubicacion: nav` |
+| `devkit-lab.js` | Laboratorio DevKit AI (4 horarios TI de `agenda-data.js`, 10 lugares cada uno). La sección `#laboratorio` solo informa ("Inscríbete después de registrar tu asistencia") y anima los pasos 01-02-03. El selector de horario sale en el modal de gracias tras `beyond:lead` (envía el correo, que toma al enviar el formulario **sin tocar `rsvp-form.js`**) y en `<dialog data-lab-dialog>` al abrir la landing con `?id=BYD-…` (envía el ID). Va al flujo M (`ENDPOINT_LAB`): vacío = apagado; `?lab=preview` simula. Cada horario se cierra a su hora de inicio (se prueba con `?ahora=`). Contrato en `docs/ARQUITECTURA.md`; diseño en `docs/superpowers/specs/` |
 | `exp-slots.js` | Animación tipo slot de las cifras y aparición escalonada de los beneficios (igual que los badges) |
 | `badges-grid.js`, `countdown.js`, `hero-*.js` | Badges, contador al 2026-10-21T10:00-06:00 y animaciones del hero (Lottie en `assets/lottie/`). A esa hora (con el reloj de `beyond-clock.js`, que se puede simular con `?ahora=`) `countdown.js` pone `.is-now` en `#registro`: el contador se cambia por "Beyond is Now" y "Confirma tu asistencia" por "Regístrate para ingresar", en el título del registro y en el botón del hero, y el modal de gracias deja de confirmar el lugar para decir que en unos momentos entregan el QR de acceso (los dos estados viven en el HTML, con las clases `cip-state--before` y `cip-state--now`; la marca `.is-now` va en `#registro` y en `<html>`) |
 
@@ -55,6 +61,7 @@ Convenciones visuales:
 
 ## Probar en local
 
+- No hay pruebas automatizadas, linter ni build: se verifica en el navegador.
 - Servir con `py -m http.server 8766` desde la raíz (`python` no está en el PATH; `py` sí).
 - El navegador integrado cachea CSS y JS: agrega `?bust=<n>` o recarga la hoja por JS antes de medir.
 - Con el panel oculto, las capturas salen en blanco y se congelan transiciones, rAF e IntersectionObserver: mide con JS (`getBoundingClientRect`) y revisa 1280, 800 y 375 px.

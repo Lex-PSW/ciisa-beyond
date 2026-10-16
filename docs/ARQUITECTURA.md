@@ -9,6 +9,9 @@ Visitante ──► index.html ──(JSON)──► Flujo B  ──► Excel ma
                           └─(JSON)──► Flujo G  ──► Excel de invitaciones (quién invitó, fuente)
 
 Invitado  ──► mi-experiencia.html?id=BYD-… ──(JSON)──► Flujo I ──► Excel de perfiles + correo "Tu ruta Beyond"
+
+Visitante (modal de gracias) ─┐
+Invitado  ──► index.html?id=BYD-… ─┴(JSON)──► Flujo M ──► Excel del laboratorio (horarios y reservas)
 ```
 
 - El sitio es estático (GitHub Pages). **Power Automate es la única parte con servidor.**
@@ -66,9 +69,26 @@ Respuestas esperadas del flujo: `200` con `{"ok":true}`; `404` si el ID o el cor
 
 Seguridad del flujo: el correo destino se toma del Excel maestro a partir del ID, nunca del formulario. Los datos que llegan del navegador se tratan como no confiables (recortar, validar contra el vocabulario).
 
+## Laboratorio DevKit AI (`devkit-lab.js`)
+
+Estado: **front listo, apagado** hasta que exista el flujo M (16 oct 2026). Diseño completo: [superpowers/specs/2026-10-16-laboratorio-devkit-design.md](superpowers/specs/2026-10-16-laboratorio-devkit-design.md).
+
+- **Horarios:** los cuatro "Laboratorio IA - TI" de `agenda-data.js` (10:40, 13:00, 15:00 y 17:20; la clave es la hora de inicio), 10 lugares cada uno, por orden de llegada. Cada horario se cierra a su hora de inicio con el reloj de `beyond-clock.js`.
+- **Entradas:** el modal de gracias del registro, tras el `200` del flujo B (evento `beyond:lead`), con el **correo** que se acaba de escribir (`devkit-lab.js` lo toma al enviar; **`rsvp-form.js` no cambia**); y la liga `index.html?id=BYD-…` del correo M1, con el **ID**.
+- **Modos:** `ENDPOINT_LAB` vacío = apagado (no se ofrece nada); `?lab=preview` = simulación sin envío; con URL = activo.
+
+Payloads hacia el flujo M (`origen` siempre `"laboratorio-devkit"`):
+
+| `accion` | Campos | Respuesta esperada |
+|---|---|---|
+| `estado` | — | `200 {"horarios":{"10:40":"disponible","13:00":"lleno",…}}`. Si falla o tarda más de 8 s, el front muestra todos como disponibles y `apartar` decide |
+| `apartar` | `id` (en mayúsculas) **o** `correo` (en minúsculas), el otro vacío, `horario` (`"10:40"`…), `fecha`, `utm_*` | `200 {"resultado":"apartado","horario":"…"}`, `409 {"resultado":"lleno"}` (también si el horario ya empezó), `404 {"resultado":"no_encontrado"}`, `403` si `origen` no coincide, `400` si el horario no es uno de los cuatro |
+
+Reglas del flujo: el correo que se guarda es **el del maestro**; por `correo` solo se acepta un registro de **los últimos 30 minutos** (si no, `404`, igual que si no existiera); un lugar por persona (elegir otro horario lo cambia); disponibilidad leída con *Obtener una fila* y simultaneidad 1. **Todas las respuestas llevan los mismos encabezados CORS.**
+
 ## Medición
 
-`tracking.js` empuja al `dataLayer` (GTM `GTM-TFCPQDS8`): `beyond_cta_registro`, `beyond_registro_iniciado`, `beyond_registro_completado`, `beyond_whatsapp`, `beyond_perfil_iniciado` y `beyond_perfil_completado`. Ningún evento lleva datos personales. Los píxeles de Meta, LinkedIn y TikTok solo se cargan si su ID está en `CONFIG`.
+`tracking.js` empuja al `dataLayer` (GTM `GTM-TFCPQDS8`): `beyond_cta_registro`, `beyond_registro_iniciado`, `beyond_registro_completado`, `beyond_whatsapp`, `beyond_perfil_iniciado` y `beyond_perfil_completado`. `devkit-lab.js` empuja `devkit_lab_selector` (`via: modal|liga`) y `devkit_lab_apartado` (`horario`). Ningún evento lleva datos personales. Los píxeles de Meta, LinkedIn y TikTok solo se cargan si su ID está en `CONFIG`.
 
 ## Convenciones
 
