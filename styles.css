@@ -4128,3 +4128,238 @@ html.is-now .cip-hero .cip-state--now { display: inline; }
 .cip-thanks .cip-state--now { display: none; }
 html.is-now .cip-thanks .cip-state--before { display: none; }
 html.is-now .cip-thanks .cip-state--now { display: inline; }
+
+/* Laboratorio práctico DevKit AI (16 oct, #laboratorio): sección nueva entre "Experiencia Beyond" y "Cómo llegar", con la
+   propuesta visual de reff/. Reutiliza la cabecera con líneas, el texto en degradado, los botones y la casilla del registro;
+   lo propio es la rejilla texto + ilustración, los pasos 01-02-03 (verde, menta y cian) y la tarjeta de cierre. */
+.cip-devkit {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--black);
+  padding: 90px 0 110px;
+}
+.cip-devkit::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse at 80% 40%, rgba(0, 204, 255, 0.10), transparent 60%),
+    radial-gradient(ellipse at 10% 100%, rgba(188, 242, 0, 0.07), transparent 60%);
+  pointer-events: none;
+}
+.cip-devkit__inner { max-width: 1280px; margin: 0 auto; padding: 0 60px; }
+.cip-devkit__header { margin-bottom: 64px; }
+.cip-devkit__kicker { margin: 0; }
+
+.cip-devkit__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 48px;
+  align-items: center;
+}
+.cip-devkit__label {
+  margin: 0 0 18px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+}
+.cip-devkit__title {
+  margin: 0 0 8px;
+  font-family: var(--font-head);
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: clamp(34px, 4.4vw, 62px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--white);
+}
+.cip-devkit__title .cip-hero__headline-span--pulse { display: block; margin-top: 0.1em; }
+.cip-devkit__desc { margin: 24px 0 36px; max-width: 34em; }
+
+.cip-devkit__steps {
+  list-style: none;
+  margin: 0 0 40px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+.cip-devkit__num {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-head);
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--ciisa-green);
+}
+.cip-devkit__num::after { content: ""; flex: 1; height: 1px; background: rgba(255, 255, 255, 0.22); }
+.cip-devkit__step:nth-child(2) .cip-devkit__num { color: var(--psw-mint); }
+.cip-devkit__step:nth-child(3) .cip-devkit__num { color: var(--electric-pyx); }
+.cip-devkit__step-title { margin: 14px 0 6px; font-size: 20px; font-weight: 700; color: var(--white); }
+.cip-devkit__step-text { margin: 0; font-size: 15px; font-weight: 300; line-height: 1.55; color: rgba(255, 255, 255, 0.72); }
+
+/* Pasos: misma entrada que los beneficios (sube, crece y aparece); solo se ocultan con el script activo */
+.cip-devkit__steps.is-reveal-ready .cip-devkit__step {
+  opacity: 0;
+  transform: translateY(28px) scale(0.9);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.cip-devkit__steps.is-reveal-ready .cip-devkit__step.is-visible { opacity: 1; transform: none; }
+
+.cip-devkit__note { margin: 16px 0 0; font-size: 13px; color: rgba(255, 255, 255, 0.6); }
+.cip-devkit__audience { margin: 22px 0 0; max-width: 36em; font-size: 14px; font-weight: 300; line-height: 1.65; color: rgba(255, 255, 255, 0.72); }
+.cip-devkit__audience strong { font-weight: 600; color: var(--white); }
+
+.cip-devkit__art {
+  display: block;
+  width: 100%;
+  max-width: 540px;
+  height: auto;
+  margin-left: auto;
+  filter: drop-shadow(0 8px 30px rgba(0, 204, 255, 0.08));
+}
+/* Las líneas de conexión recorren su trazo poco a poco, como un flujo de datos */
+.cip-devkit__wire { stroke-dasharray: 10 14; animation: cip-devkit-flow 2.4s linear infinite; }
+@keyframes cip-devkit-flow { to { stroke-dashoffset: -48; } }
+
+/* Tarjeta de cierre: texto y botón en una fila; en celular, uno sobre otro */
+.cip-devkit__register {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 32px;
+  padding: 30px 36px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.03);
+}
+.cip-devkit__register-copy { padding-right: 32px; border-right: 1px solid rgba(255, 255, 255, 0.14); }
+.cip-devkit__register-title {
+  margin: 0 0 6px;
+  font-family: var(--font-head);
+  font-size: clamp(22px, 2vw, 28px);
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--white);
+}
+.cip-devkit__register-text { margin: 0; font-size: 15px; font-weight: 300; color: rgba(255, 255, 255, 0.72); }
+.cip-devkit__note a { color: var(--psw-mint); }
+/* La instrucción para inscribirse al laboratorio, un poco más visible que la nota original */
+.cip-devkit__note { max-width: 34em; font-size: 15px; line-height: 1.6; color: rgba(255, 255, 255, 0.75); }
+.cip-devkit__note strong { color: var(--white); font-weight: 600; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cip-devkit__wire { animation: none; }
+}
+
+@media (max-width: 1024px) {
+  .cip-devkit { padding: 72px 0 88px; }
+  .cip-devkit__inner { padding: 0 40px; }
+  .cip-devkit__header { margin-bottom: 48px; }
+  .cip-devkit__grid { grid-template-columns: 1fr; gap: 24px; }
+  .cip-devkit__title { font-size: clamp(30px, 6.2vw, 56px); }
+  .cip-devkit__art { max-width: 460px; margin: 0 auto; }
+  .cip-devkit__register-copy { padding-right: 24px; }
+}
+@media (max-width: 640px) {
+  .cip-devkit { padding: 56px 0 72px; }
+  .cip-devkit__inner { padding: 0 16px; }
+  .cip-devkit__header { margin-bottom: 36px; }
+  .cip-devkit__label { font-size: 11px; letter-spacing: 0.2em; }
+  .cip-devkit__steps { gap: 14px; }
+  .cip-devkit__num { font-size: 24px; }
+  .cip-devkit__step-title { font-size: 17px; }
+  .cip-devkit__step-text { font-size: 13px; }
+  .cip-devkit__cta { width: 100%; justify-content: center; white-space: normal; text-align: center; }
+  .cip-devkit__register { grid-template-columns: 1fr; gap: 20px; padding: 24px 20px; margin-top: 40px; }
+  .cip-devkit__register-copy { padding: 0 0 20px; border-right: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.14); }
+  .cip-devkit__go { justify-content: center; }
+}
+
+/* Selector de horario del laboratorio DevKit AI (16 oct, devkit-lab.js): se monta dentro del modal de gracias y en el modal
+   que abre la liga ?id=BYD-…. Radios nativos en tarjetas; los horarios llenos o cerrados quedan apagados. Los colores siguen
+   el orden de los pasos 01-02-03 (verde, menta, cian). */
+.cip-lab { margin: 0; text-align: left; }
+.cip-lab__fieldset { margin: 0; padding: 0; border: 0; min-width: 0; }
+.cip-lab__legend {
+  padding: 0;
+  margin: 0 0 12px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+}
+.cip-lab__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.cip-lab__slot {
+  --slot: var(--ciisa-green);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  column-gap: 10px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.03);
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.cip-lab__slot:nth-child(2), .cip-lab__slot:nth-child(3) { --slot: var(--psw-mint); }
+.cip-lab__slot:nth-child(4) { --slot: var(--electric-pyx); }
+.cip-lab__slot input { grid-row: span 2; width: 20px; height: 20px; margin: 0; accent-color: var(--slot); cursor: pointer; }
+.cip-lab__time { font-size: 16px; font-weight: 700; color: var(--white); }
+.cip-lab__state { font-size: 13px; font-weight: 500; color: var(--slot); min-height: 1.2em; }
+.cip-lab__slot:hover, .cip-lab__slot:has(input:checked) { border-color: var(--slot); background: rgba(255, 255, 255, 0.06); }
+.cip-lab__slot:has(input:focus-visible) { outline: 2px solid var(--white); outline-offset: 2px; }
+.cip-lab__slot.is-off { opacity: 0.5; cursor: not-allowed; }
+.cip-lab__slot.is-off input { cursor: not-allowed; }
+.cip-lab__slot.is-off .cip-lab__state { color: rgba(255, 255, 255, 0.7); }
+.cip-lab__status { min-height: 1.4em; margin: 12px 0; font-size: 14px; line-height: 1.5; color: rgba(255, 255, 255, 0.8); }
+.cip-lab__status.is-error { color: #ff8a8a; }
+.cip-lab__status a { color: var(--psw-mint); }
+.cip-lab__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.cip-lab__submit:disabled { opacity: 0.55; cursor: default; transform: none; }
+.cip-lab__done { margin: 0; font-size: 16px; line-height: 1.6; color: var(--psw-mint); text-align: left; }
+@media (max-width: 640px) {
+  .cip-lab__grid { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cip-lab__slot { transition: none; }
+}
+/* Selector dentro del modal de gracias: separado del mensaje por una línea; "Ahora no" como enlace discreto */
+.cip-thanks__lab { margin: 24px 0 8px; padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, 0.14); text-align: left; }
+.cip-thanks__lab-title { margin: 0 0 14px; font-family: var(--font-head); font-size: 20px; font-weight: 800; line-height: 1.25; color: var(--white); }
+.cip-lab__skip {
+  padding: 8px 4px;
+  border: 0;
+  background: none;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.cip-lab__skip:hover { color: var(--white); }
+/* Modal de la liga (?id=BYD-…): mismo diseño que el de gracias; el selector no lleva la línea superior porque abre el modal */
+.cip-lab-dialog .cip-lab-dialog__body { margin-top: 8px; padding-top: 0; border-top: 0; }
+/* Celular: el modal de gracias con el selector puede pasar del alto de la pantalla; más compacto y con scroll propio */
+@media (max-width: 640px) {
+  .cip-thanks { max-height: calc(100dvh - 32px); overflow-y: auto; }
+  .cip-thanks__lab { margin-top: 18px; padding-top: 18px; }
+  .cip-lab__slot { padding: 10px 12px; }
+}
+/* Botones del selector centrados dentro de los modales, alineados con "Cerrar" / "Entendido" */
+.cip-thanks .cip-lab__actions { justify-content: center; }
+.cip-thanks .cip-lab__status { text-align: center; }
+/* Textos del selector y de la confirmación centrados en los modales, como el título y el mensaje (16 oct) */
+.cip-thanks .cip-thanks__lab,
+.cip-thanks .cip-lab__done { text-align: center; }
+.cip-thanks .cip-lab__legend { width: 100%; text-align: center; }

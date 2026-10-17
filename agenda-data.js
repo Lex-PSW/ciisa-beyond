@@ -7,7 +7,8 @@
 //   ini   hora de inicio en 24 h ('13:00'); fin = hora de término
 //   marca quién presenta (opcional); tema = bloque temático dentro de "exito" (opcional)
 // Las horas van en múltiplos de 5 minutos. Las marcadas "por confirmar" se dedujeron del arte de la agenda,
-// que no trae el horario de esos laboratorios ni del segundo networking.
+// que no trae el horario de esos laboratorios ni del segundo networking. Los cuatro "Laboratorio IA - TI" son definitivos
+// (16 oct): devkit-lab.js los usa como horarios del selector del laboratorio DevKit AI; si cambias uno, avisa para el flujo M.
 window.CIISA_AGENDA = {
   fecha: '2026-10-21',
   zona: '-06:00',
@@ -37,12 +38,12 @@ window.CIISA_AGENDA = {
     { e: 'exito', ini: '18:00', fin: '18:40', titulo: 'Networking', tipo: 'networking' },
 
     // Laboratorios · Salón Terraza
-    { e: 'labs', ini: '10:40', fin: '12:00', titulo: 'Laboratorio IA - TI' },                  // por confirmar
+    { e: 'labs', ini: '10:40', fin: '12:00', titulo: 'Laboratorio IA - TI' },
     { e: 'labs', ini: '13:00', fin: '13:45', titulo: 'Laboratorio IA - TI' },
     { e: 'labs', ini: '13:45', fin: '14:30', titulo: 'Laboratorio IA - RH' },
-    { e: 'labs', ini: '15:00', fin: '15:45', titulo: 'Laboratorio IA - TI' },                  // por confirmar
+    { e: 'labs', ini: '15:00', fin: '15:45', titulo: 'Laboratorio IA - TI' },
     { e: 'labs', ini: '16:15', fin: '17:00', titulo: 'Laboratorio IA - RH' },                  // por confirmar
-    { e: 'labs', ini: '17:20', fin: '18:00', titulo: 'Laboratorio IA - TI' },                  // por confirmar
+    { e: 'labs', ini: '17:20', fin: '18:00', titulo: 'Laboratorio IA - TI' },
     { e: 'labs', ini: '18:00', fin: '18:40', titulo: 'Laboratorio Autodesk', marca: 'Autodesk' },
 
     // PC Experiencias Usuario | Data Center
