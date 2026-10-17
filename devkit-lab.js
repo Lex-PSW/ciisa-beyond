@@ -7,7 +7,7 @@
 (function () {
   // CONFIGURACIÓN: pega en ENDPOINT_LAB la "URL HTTP POST" del flujo M. Vacío = apagado (el modal de gracias se ve como
   // siempre y la liga no abre nada). Para revisarlo sin flujo: ?lab=preview en la dirección (simula, no envía nada).
-  var ENDPOINT_LAB = '';
+  var ENDPOINT_LAB = 'https://default4699fbe477a74846ad709ce4e38413.35.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/29/workflows/5bc2242f8f5f468c8381a4f2cee4574a/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=wTGEg4QszELL2S8PZE93HBwEcbn6d1SGmbe2ezV1LAY';
 
   var EVENTO = '2026-10-21';
   var TITULO = 'Laboratorio IA - TI';
@@ -91,8 +91,9 @@
     var payload = {
       accion: 'apartar',
       origen: 'laboratorio-devkit',
-      // Misma forma que guardan los flujos: correo en minúsculas (rsvp-form.js) e ID en mayúsculas (mi-experiencia.js)
-      id: identidad.id ? identidad.id.trim().toUpperCase() : '',
+      // Misma forma que guardan los flujos: correo en minúsculas (rsvp-form.js) e ID como BYD-yyMMddHHmmss-xxxx,
+      // con el sufijo hexadecimal en minúsculas (el flujo M lo busca en Excel, que distingue mayúsculas)
+      id: identidad.id ? 'BYD-' + identidad.id.trim().slice(4).toLowerCase() : '',
       correo: identidad.id ? '' : (identidad.correo || '').trim().toLowerCase(),
       horario: horario,
       fecha: new Date().toISOString()

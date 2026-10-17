@@ -82,7 +82,7 @@ Payloads hacia el flujo M (`origen` siempre `"laboratorio-devkit"`):
 | `accion` | Campos | Respuesta esperada |
 |---|---|---|
 | `estado` | — | `200 {"horarios":{"10:40":"disponible","13:00":"lleno",…}}`. Si falla o tarda más de 8 s, el front muestra todos como disponibles y `apartar` decide |
-| `apartar` | `id` (en mayúsculas) **o** `correo` (en minúsculas), el otro vacío, `horario` (`"10:40"`…), `fecha`, `utm_*` | `200 {"resultado":"apartado","horario":"…"}`, `409 {"resultado":"lleno"}` (también si el horario ya empezó), `404 {"resultado":"no_encontrado"}`, `403` si `origen` no coincide, `400` si el horario no es uno de los cuatro |
+| `apartar` | `id` (`BYD-` + el resto en minúsculas, como lo guardan los flujos) **o** `correo` (en minúsculas), el otro vacío, `horario` (`"10:40"`…), `fecha`, `utm_*` | `200 {"resultado":"apartado","horario":"…"}`, `409 {"resultado":"lleno"}` (también si el horario ya empezó), `404 {"resultado":"no_encontrado"}`, `403` si `origen` no coincide, `400` si el horario no es uno de los cuatro |
 
 Reglas del flujo: el correo que se guarda es **el del maestro**; por `correo` solo se acepta un registro de **los últimos 30 minutos** (si no, `404`, igual que si no existiera); un lugar por persona (elegir otro horario lo cambia); disponibilidad leída con *Obtener una fila* y simultaneidad 1. **Todas las respuestas llevan los mismos encabezados CORS.**
 
