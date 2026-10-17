@@ -1,0 +1,20 @@
+/* "Tu recorrido de hoy" en mi-experiencia.html (mis-visitas.js) */
+.mv { margin-bottom: 24px; }
+.mv__titulo { font-size: clamp(24px, 5vw, 32px); }
+.mv__bloque { margin-top: 20px; }
+.mv__subtitulo { font-size: 13px; letter-spacing: .12em; text-transform: uppercase; font-weight: 700; color: var(--ciisa-green); margin-bottom: 10px; }
+.mv__bloque--faltan .mv__subtitulo { color: var(--psw-mint); }
+.mv__logos { list-style: none; display: flex; flex-wrap: wrap; gap: 10px; }
+.mv__logos li { display: flex; align-items: center; justify-content: center; min-width: 110px; min-height: 52px; padding: 8px 14px; border-radius: 12px; background: rgba(255, 255, 255, 0.06); border: 1px solid var(--border); }
+.mv__bloque--hechas .mv__logos li { border-color: rgba(188, 242, 0, 0.45); }
+.mv__bloque--faltan .mv__logos li { opacity: .8; border-style: dashed; }
+.mv__logos img { width: 96px; height: 32px; object-fit: contain; }
+.mv__texto { font-weight: 600; font-size: 15px; }
+/* Celular (16 oct): dos columnas iguales que llenan la tarjeta, en lugar de cajas de ancho mínimo que dejaban hueco
+   a la derecha y renglones disparejos cuando hay nombres en texto (CiiSA, laboratorios) */
+@media (max-width: 640px) {
+  .mv__logos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .mv__logos li { min-width: 0; padding: 8px 10px; }
+  .mv__logos img { width: 100%; max-width: 96px; }
+  .mv__texto { font-size: 14px; line-height: 1.3; text-align: center; }
+}
