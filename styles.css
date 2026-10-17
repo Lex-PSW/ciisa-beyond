@@ -4359,3 +4359,7 @@ html.is-now .cip-thanks .cip-state--now { display: inline; }
 /* Botones del selector centrados dentro de los modales, alineados con "Cerrar" / "Entendido" */
 .cip-thanks .cip-lab__actions { justify-content: center; }
 .cip-thanks .cip-lab__status { text-align: center; }
+/* Textos del selector y de la confirmación centrados en los modales, como el título y el mensaje (16 oct) */
+.cip-thanks .cip-thanks__lab,
+.cip-thanks .cip-lab__done { text-align: center; }
+.cip-thanks .cip-lab__legend { width: 100%; text-align: center; }
