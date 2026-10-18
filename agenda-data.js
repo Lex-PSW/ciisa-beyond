@@ -24,7 +24,7 @@ window.CIISA_AGENDA = {
     { e: 'exito', ini: '10:30', fin: '10:40', titulo: 'Apertura | Dirección General', marca: 'CiiSA' },
     { e: 'exito', ini: '10:40', fin: '11:25', titulo: 'Beyond AI: el nuevo rol del líder', marca: 'PSW' },
     { e: 'exito', ini: '11:30', fin: '12:00', titulo: 'Reforma laboral 40 horas', marca: 'HumanSite' },
-    { e: 'exito', ini: '12:00', fin: '12:40', titulo: 'Descubre lo nuevo y único de Pyxoom ONE', marca: 'Pyxoom · amitai' },
+    { e: 'exito', ini: '12:00', fin: '12:40', titulo: 'Descubre lo nuevo y único de Pyxoom', marca: 'Pyxoom · amitai' },
     { e: 'exito', ini: '12:40', fin: '12:55', titulo: 'Caso de éxito Garza Ponce', marca: 'Pyxoom' },
     { e: 'exito', ini: '13:00', fin: '14:30', titulo: 'Networking', tipo: 'networking' },
     { e: 'todos', ini: '14:30', fin: '15:00', titulo: 'Networking', tipo: 'networking' },
