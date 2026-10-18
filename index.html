@@ -543,12 +543,15 @@
             </li>
           </ol>
 
+          <!-- Primero el texto completo y al final el único CTA de la sección -->
+          <p class="cip-devkit__note"><strong>Inscríbete después de registrar tu asistencia.</strong> Cupo limitado: 4 horarios de 10 lugares, consulta sus horas en la <a href="#programa">agenda</a>.</p>
+          <p class="cip-devkit__note cip-devkit__note--liga">¿Ya te registraste? Usa la liga de tu correo para elegir tu horario.</p>
+          <p class="cip-devkit__audience"><strong>Dirigido a:</strong> desarrolladores, líderes técnicos, arquitectos y profesionales de TI interesados en aplicar IA al desarrollo de software.</p>
+
           <a href="#registro" class="cip-btn cip-btn--primary cip-devkit__cta">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             Registra tu asistencia
           </a>
-          <p class="cip-devkit__note"><strong>Inscríbete después de registrar tu asistencia.</strong> Cupo limitado: 4 horarios de 10 lugares, consulta sus horas en la <a href="#programa">agenda</a>.</p>
-          <p class="cip-devkit__audience"><strong>Dirigido a:</strong> desarrolladores, líderes técnicos, arquitectos y profesionales de TI interesados en aplicar IA al desarrollo de software.</p>
         </div>
 
         <!-- Ilustración: DevKit AI conecta análisis, desarrollo y validación (adaptada de la propuesta visual) -->
@@ -566,15 +569,23 @@
             <path d="M155 150C155 230 265 155 265 245M410 175C410 245 350 190 350 270M280 350V407" filter="url(#devkit-glow)" stroke-width="10" opacity=".6"/>
           </g>
           <g fill="url(#devkit-glass)" stroke="#75dce7" stroke-width="1.3">
-            <rect x="61" y="56" width="170" height="124" rx="20"/>
-            <rect x="336" y="79" width="173" height="124" rx="20"/>
-            <rect x="173" y="228" width="214" height="139" rx="24" stroke="#01fbce" stroke-width="2"/>
-            <rect x="195" y="408" width="170" height="114" rx="20"/>
+            <rect x="61" y="56" width="170" height="124"/>
+            <rect x="336" y="79" width="173" height="124"/>
+            <rect x="173" y="228" width="214" height="139" stroke="#01fbce" stroke-width="2"/>
+            <rect x="195" y="408" width="170" height="114"/>
           </g>
-          <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
-            <g stroke="#bcf200"><circle cx="143" cy="98" r="12"/><path d="m152 107 12 12"/></g>
-            <path stroke="#00ccff" d="m405 115-13 12 13 12m30-24 13 12-13 12m-8-27-7 30"/>
-            <g stroke="#01fbce"><path d="m280 256 26 15-26 15-26-15zM254 282l26 15 26-15M254 293l26 15 26-15"/><circle cx="280" cy="442" r="14"/><path d="m273 442 5 5 9-10"/></g>
+          <!-- Íconos de trazo recto (puntas y uniones rectas, como las cajas), con un relleno suave en la forma principal -->
+          <g fill="none" stroke-linecap="square" stroke-linejoin="miter" stroke-width="2.6">
+            <g stroke="#bcf200" transform="translate(143 104)">
+              <circle cx="-3" cy="-3" r="12" fill="#bcf200" fill-opacity=".14"/><path d="M6 6l11 11"/><path d="M-9 2v-5M-3 2v-9M3 2v-6" stroke-width="2.2"/>
+            </g>
+            <g stroke="#00ccff" transform="translate(422 134)">
+              <path d="M-9-11-20 0l11 11M9-11l11 11-11 11M3-15-3 15"/>
+            </g>
+            <g stroke="#01fbce">
+              <g transform="translate(280 281)"><path d="M0-17 22-6 0 5-22-6z" fill="#01fbce" fill-opacity=".16"/><path d="M-22 2 0 13 22 2M-22 10 0 21 22 10"/></g>
+              <g transform="translate(280 442)"><rect x="-15" y="-15" width="30" height="30" fill="#01fbce" fill-opacity=".14"/><path d="m-7 0 5 5 9-10"/></g>
+            </g>
           </g>
           <g fill="#fff" text-anchor="middle" font-family="Poppins, sans-serif">
             <text x="146" y="151" font-size="18">Análisis</text>
@@ -584,18 +595,6 @@
           </g>
           <path d="M0 505C115 405 185 560 310 535S455 419 540 457" fill="none" stroke="url(#devkit-line)" opacity=".35"/>
         </svg>
-      </div>
-
-      <!-- Tarjeta de cierre: quien ya se registró elige horario con la liga de su correo (?id=BYD-…) -->
-      <div class="cip-devkit__register">
-        <div class="cip-devkit__register-copy">
-          <h3 class="cip-devkit__register-title">Tu experiencia <span class="cip-hero__headline-span--pulse">Beyond</span> comienza aquí</h3>
-          <p class="cip-devkit__register-text">¿Ya te registraste? Usa la liga de tu correo para elegir tu horario.</p>
-        </div>
-        <a href="#registro" class="cip-btn cip-btn--outline cip-devkit__go">
-          Ir al registro
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
       </div>
 
     </div>
@@ -822,18 +821,38 @@
     </div>
   </dialog>
 
-  <!-- Navegación fija entre Inicio, Agenda y Registro; site-nav.js marca la sección activa y mueve la pastilla -->
+  <!-- Navegación fija entre Inicio, Agenda, Laboratorio y Registro; site-nav.js marca la sección activa y mueve la pastilla.
+       En celular (≤640 px) cada enlace se ve como un ícono; el texto queda para lectores de pantalla (.cip-sitenav__label) -->
   <nav class="cip-sitenav" data-sitenav aria-label="Secciones de la página">
     <span class="cip-sitenav__thumb" aria-hidden="true"></span>
-    <a class="cip-sitenav__link is-active" href="#inicio" data-nav="inicio" aria-current="true">Inicio</a>
-    <a class="cip-sitenav__link" href="#programa" data-nav="programa">Agenda</a>
-    <a class="cip-sitenav__link" href="#registro" data-nav="registro">Registro</a>
-    <!-- Solo tablet y celular, y solo el día del evento: muestra u oculta los eventos de la agenda que ya terminaron (lo controla agenda-board.js) -->
-    <button type="button" class="cip-sitenav__past" data-nav-past hidden aria-pressed="false" aria-label="Mostrar eventos pasados" title="Mostrar eventos pasados">
-      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
-      <span class="cip-sitenav__badge" data-nav-past-count aria-hidden="true"></span>
-    </button>
+    <a class="cip-sitenav__link is-active" href="#inicio" data-nav="inicio" aria-current="true" title="Inicio">
+      <svg class="cip-sitenav__icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V19a1 1 0 0 1-1 1h-4.5v-5.5h-5V20H5a1 1 0 0 1-1-1z" fill="currentColor" fill-opacity=".16"/></svg>
+      <span class="cip-sitenav__label">Inicio</span>
+    </a>
+    <a class="cip-sitenav__link" href="#programa" data-nav="programa" title="Agenda">
+      <svg class="cip-sitenav__icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="1" fill="currentColor" fill-opacity=".16"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/><path d="M8 13.5h2M14 13.5h2M8 17h2" stroke-width="2.2"/></svg>
+      <span class="cip-sitenav__label">Agenda</span>
+    </a>
+    <a class="cip-sitenav__link" href="#laboratorio" data-nav="laboratorio" title="Laboratorio">
+      <svg class="cip-sitenav__icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.5 3.5v5.8L5.2 18.4A1.6 1.6 0 0 0 6.6 20.8h10.8a1.6 1.6 0 0 0 1.4-2.4L13.5 9.3V3.5M9 3.5h6"/><path d="M7.4 15.2h9.2l1.9 3.2a1.6 1.6 0 0 1-1.4 2.4H6.6a1.6 1.6 0 0 1-1.4-2.4z" fill="currentColor" fill-opacity=".16" stroke="none"/><circle cx="11.2" cy="17.6" r=".9" fill="currentColor" stroke="none"/><circle cx="14.2" cy="12.6" r=".9" fill="currentColor" stroke="none"/></svg>
+      <span class="cip-sitenav__label">Laboratorio</span>
+    </a>
+    <a class="cip-sitenav__link" href="#registro" data-nav="registro" title="Registro">
+      <svg class="cip-sitenav__icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 7a1 1 0 0 1 1-1h15a1 1 0 0 1 1 1v3a2 2 0 0 0 0 4v3a1 1 0 0 1-1 1h-15a1 1 0 0 1-1-1v-3a2 2 0 0 0 0-4z" fill="currentColor" fill-opacity=".16"/><path d="M14.5 6.5v2M14.5 11v2M14.5 15.5v2" stroke-width="1.6"/></svg>
+      <span class="cip-sitenav__label">Registro</span>
+    </a>
   </nav>
+
+  <!-- Solo tablet y celular, solo el día del evento y solo mientras la agenda está en pantalla (site-nav.js pone .is-agenda;
+       agenda-board.js lo habilita y anima el tablero): muestra u oculta los eventos que ya terminaron. Va sobre el botón de WhatsApp -->
+  <button type="button" class="cip-pastfab" data-nav-past hidden aria-pressed="false" aria-label="Mostrar eventos pasados" title="Mostrar eventos pasados">
+    <!-- Ayudas cognitivas: ojo cerrado = pasados escondidos, ojo abierto = pasados a la vista; el globo cuenta los que aún no has visto
+         y un aviso de texto aparece una vez al llegar a la agenda (lo llena agenda-board.js) -->
+    <span class="cip-pastfab__tip" data-nav-past-tip aria-hidden="true"></span>
+    <svg class="cip-pastfab__eye" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+    <svg class="cip-pastfab__eye-off" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.9 4.2A9.8 9.8 0 0 1 12 4c6.5 0 10 8 10 8a17 17 0 0 1-2.2 3.2"/><path d="M6.6 6.6A16.6 16.6 0 0 0 2 12s3.5 8 10 8a9.7 9.7 0 0 0 5.4-1.6"/><path d="M14.1 14.1a3 3 0 1 1-4.2-4.2"/><path d="m2 2 20 20"/></svg>
+    <span class="cip-pastfab__badge" data-nav-past-count aria-hidden="true" hidden></span>
+  </button>
 
   <!-- Botón flotante de WhatsApp -->
   <a class="cip-whatsapp" href="https://wa.me/528126485089" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">

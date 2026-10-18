@@ -6,7 +6,7 @@ Mapa de alto nivel. Es un documento público: el detalle (acciones, nombres de a
 |---|---|---|---|
 | **A** | Respuesta de Microsoft Forms → Excel maestro + confirmación | Nueva respuesta | ✅ |
 | **B** | Registro de la landing → Excel maestro + confirmación | HTTP desde `rsvp-form.js` | ✅ |
-| **C** | QR para impresión física: lote de etiquetas y escaneo → asistencia y módulos (absorbe al antiguo D). En el stand del laboratorio DevKit AI, el escaneo consulta las reservas del flujo M | Programado y por escaneo | 📝 por rediseñar |
+| **C** | QR para impresión física: detecta registros nuevos, genera el QR y arma el gafete en PDF; además, lote de etiquetas y escaneo → asistencia y módulos (absorbe al antiguo D). En el stand del laboratorio DevKit AI, el escaneo consulta las reservas del flujo M | Programado y por escaneo | 📝 en diseño (16 oct), nada armado todavía |
 | **E** | Presenciales de HubSpot (Pyxoom 5) → Excel maestro | Programado | ✅ |
 | **E.2** | Igual que E leyendo el segmento completo; red de seguridad | Programado | ✅ |
 | **F** | Invitación de calendario a registrados online de Pyxoom 5 | Programado | ✅ |
