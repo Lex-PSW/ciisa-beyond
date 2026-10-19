@@ -12,6 +12,64 @@
 
   var ENDPOINT = 'https://default4699fbe477a74846ad709ce4e38413.35.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/13/workflows/c273ece400074563b98a09cce05979ed/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=jBbBlFeq3DQ3Solhc3MT-9YvP5SM60Tie6oRyMpTJtQ';
 
+  /* === Filtro de empresa y puesto (19 oct) ===
+     Frena lo que no aporta nada al negocio ("N/A", "nada", "ama de casa", solo números, teclazos como "asdf"), sin
+     bloquear nombres reales: las siglas (3M, HP, BMW, TI, CEO) y las palabras de oficio ("Pruebas", "Test Engineer") pasan.
+     Es un filtro estático del lado de la página; no cambia los campos ni lo que se envía. Quien manda el registro sin
+     pasar por la página no lo ve. La lista se ajusta aquí: BASURA (frases completas) y BASURA_EN (frases que la contienen). */
+  function normaliza(v) {
+    var s = String(v || '').toLowerCase();
+    if (s.normalize) s = s.normalize('NFD').replace(/[̀-ͯ]/g, '');
+    return s.replace(/[^a-z0-9]+/g, ' ').replace(/^\s+|\s+$/g, '');
+  }
+  // Frases que, escritas solas, no son una empresa ni un puesto
+  var BASURA = ['na', 'n a', 'nn', 'no', 'si', 'ok', 'x', 'xx', 'xxx', 'xxxx', 'xyz', 'abc', 'abcd', 'aaa', 'asdf', 'asdfg', 'qwer', 'qwerty', 'zxcv',
+    'nada', 'nadie', 'ninguno', 'ninguna', 'ninguno de los anteriores', 'no aplica', 'no tengo', 'no se', 'no trabajo', 'sin dato', 'sin datos',
+    'sin empresa', 'sin puesto', 'sin empleo', 'sin trabajo', 'desempleado', 'desempleada', 'dato', 'varios', 'otro', 'otros', 'algo', 'cualquiera',
+    'test', 'testing', 'prueba', 'pruebas', 'hola', 'hello', 'lol', 'jaja', 'jeje', 'jiji', 'casa', 'mi casa', 'en casa', 'hogar', 'yo', 'yo mismo', 'yo misma'];
+  // Frases que, aunque vengan acompañadas, delatan que no es un dato real
+  var BASURA_EN = [/\bamas? de casa\b/, /\blabores del hogar\b/, /\bno aplica\b/, /\bsin empleo\b/, /\bno tengo (empresa|trabajo|puesto)\b/, /\bno trabajo\b/];
+  // Groserías: se comparan palabra por palabra (por eso "Vergara", "Cabrera" o "Culiacán" pasan), con cifras de reemplazo
+  // (p0to, put4) y con letras repetidas colapsadas (puuuto). Se dejó fuera lo que también es palabra o siglas legítimas
+  // ("pinche" de cocina, CTM, HDP, mamón). Se ajusta aquí.
+  var GROSERIAS = ('puta puto putas putos putita putito putada puton verga vergas vergon vergudo pendejo pendeja pendejos pendejas pendejada ' +
+    'cabron cabrona cabrones chinga chingar chingada chingado chingas chingue chingues chingon chingona chingatumadre mierda mierdas culero culera ' +
+    'culo culos joder jodido jodida carajo imbecil idiota idiotas estupido estupida mamada mamadas hijueputa hijoputa malparido gonorrea ' +
+    'fuck fucking shit bitch asshole pussy bastard dumbass').split(' ');
+  function colapsa(s) { return s.replace(/(.)\1+/g, '$1'); }
+  function tieneGroseria(n) {
+    var base = n.replace(/1/g, 'i').replace(/3/g, 'e').replace(/4/g, 'a').replace(/5/g, 's');
+    var variantes = [n, base.replace(/0/g, 'o'), base.replace(/0/g, 'u')];   // el 0 puede ser "o" o "u" (p0to)
+    var v, tokens, i, k;
+    for (v = 0; v < variantes.length; v++) {
+      tokens = variantes[v].split(' ');
+      for (i = 0; i < tokens.length; i++) {
+        for (k = 0; k < GROSERIAS.length; k++) {
+          if (tokens[i] === GROSERIAS[k] || colapsa(tokens[i]) === colapsa(GROSERIAS[k])) return true;
+        }
+      }
+    }
+    return false;
+  }
+  var TECLADO = ['qwertyuiop', 'asdfghjkl', 'zxcvbnm', 'poiuytrewq', 'lkjhgfdsa', 'mnbvcxz'];
+
+  // Devuelve true si el texto parece basura. Las siglas y los nombres cortos reales no se tocan
+  function esBasura(v) {
+    var n = normaliza(v), i, solo = n.replace(/ /g, ''), letras = (n.match(/[a-z]/g) || []).length;
+    if (!n || letras < 1) return true;                                // solo números o símbolos
+    if (BASURA.indexOf(n) >= 0) return true;
+    if (tieneGroseria(n)) return true;
+    for (i = 0; i < BASURA_EN.length; i++) { if (BASURA_EN[i].test(n)) return true; }
+    if (/(.)\1{3,}/.test(solo)) return true;                          // "aaaa", "jjjjj", "0000"
+    if (/^(..?)\1{2,}$/.test(solo)) return true;                      // "jajaja", "lalala", "xdxdxd"
+    if (letras >= 5 && !/[aeiouy]/.test(n)) return true;            // "kjhgf" (sin vocales; las siglas de 3 o 4 letras sí pasan)
+    for (i = 0; i < TECLADO.length; i++) {                            // "qwerty", "asdfgh": 5 teclas seguidas de una fila
+      for (var j = 0; j + 5 <= TECLADO[i].length; j++) { if (solo.indexOf(TECLADO[i].substr(j, 5)) >= 0) return true; }
+    }
+    return false;
+  }
+  /* === Fin del filtro === */
+
   // Reglas por campo: devuelven '' si es válido o el mensaje de error.
   var RULES = {
     nombre: function (v) {
@@ -23,11 +81,13 @@
     empresa: function (v) {
       if (!v) return 'Escribe el nombre de tu empresa.';
       if (v.length < 2) return 'El nombre es muy corto.';
+      if (esBasura(v)) return 'Escribe el nombre real de tu empresa. Si trabajas por tu cuenta, escribe "Independiente".';
       return '';
     },
     puesto: function (v) {
       if (!v) return 'Escribe tu puesto.';
       if (v.length < 2) return 'El puesto es muy corto.';
+      if (esBasura(v)) return 'Escribe tu puesto de trabajo real, por ejemplo "Gerente de Ventas".';
       return '';
     },
     correo: function (v) {

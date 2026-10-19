@@ -4442,3 +4442,13 @@ html.is-now .cip-thanks .cip-state--now { display: inline; }
   .cip-pastfab__tip,
   .cip-pastfab.has-tip .cip-pastfab__tip { transform: translateY(-50%); transition: opacity 0.4s ease; }
 }
+
+/* Laboratorio DevKit AI: el fondo baja a negro 100 % al llegar al final de la sección, para que se mezcle con la siguiente
+   (#como-llegar empieza en negro). Se conservan los dos resplandores de siempre y se les suma, encima, un velo de 260 px
+   que va de transparente a negro puro. (19 oct) */
+.cip-devkit::before {
+  background:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0) calc(100% - 260px), #000 100%),
+    radial-gradient(ellipse at 80% 40%, rgba(0, 204, 255, 0.10), transparent 60%),
+    radial-gradient(ellipse at 10% 100%, rgba(188, 242, 0, 0.07), transparent 60%);
+}
