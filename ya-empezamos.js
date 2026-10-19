@@ -62,6 +62,11 @@
     }, DURACION);
   }
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', show);
-  else show();
+  // Si la pantalla de carga (index.html) sigue puesta, espera a que se quite para que la celebración no quede tapada
+  function arranca() {
+    if (window.__beyondLoaded === false) window.addEventListener('beyond:loader-done', show);
+    else show();
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', arranca);
+  else arranca();
 })();

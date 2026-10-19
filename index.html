@@ -33,6 +33,27 @@
   <!-- Píxeles de campañas (Meta, LinkedIn, TikTok) y captura de UTM: configurar IDs en tracking.js -->
   <script src="tracking.js" defer></script>
 
+  <!-- Pantalla de carga (la O de Beyond que se llena): CSS en línea para que aparezca antes que styles.css. Sin JS no se muestra. -->
+  <style>
+    #cip-loader { position: fixed; inset: 0; z-index: 2147483600; display: grid; place-items: center; background: #000; opacity: 1;
+      transition: opacity .6s ease, visibility 0s linear .6s; }
+    #cip-loader.is-done { opacity: 0; visibility: hidden; pointer-events: none; }
+    .cip-loader__ring { width: clamp(84px, 16vw, 132px); height: auto; overflow: visible; filter: drop-shadow(0 0 16px rgba(188, 242, 0, .35));
+      animation: cip-loader-pulse 1.8s ease-in-out infinite; }
+    .cip-loader__track { fill: none; stroke: rgba(255, 255, 255, .07); stroke-width: 22; }
+    .cip-loader__bar { fill: none; stroke: url(#cip-loader-grad); stroke-width: 22; stroke-linecap: round; stroke-dasharray: 245;
+      stroke-dashoffset: 245; transform: rotate(-90deg); transform-origin: 50% 50%; }
+    .cip-loader__sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    @keyframes cip-loader-pulse { 50% { transform: scale(1.04); } }
+    html.is-loading, html.is-loading body { overflow: hidden; }
+    @media (prefers-reduced-motion: reduce) {
+      .cip-loader__ring { animation: none; }
+      .cip-loader__bar { transition: none !important; }
+      #cip-loader { transition-duration: .2s; }
+    }
+  </style>
+  <noscript><style>#cip-loader { display: none !important; }</style></noscript>
+
   <link rel="stylesheet" href="styles.css?v=7">
 
   <!-- Favicons -->
@@ -63,6 +84,54 @@
 </head>
 <!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17545418070"></script> <script>   window.dataLayer = window.dataLayer || [];   function gtag(){dataLayer.push(arguments);}   gtag('js', new Date());   gtag('config', 'AW-17545418070'); </script>
 <body>
+  <!-- Pantalla de carga: fondo negro y la O de Beyond que se llena. Se quita sola al cargar la página (mínimo 0.7 s para que no
+       parpadee, máximo 4.5 s por si algo tarda: nunca atrapa a la persona). ya-empezamos.js espera el evento beyond:loader-done. -->
+  <div id="cip-loader" role="status" aria-live="polite">
+    <svg class="cip-loader__ring" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id="cip-loader-grad" x1="0" y1="1" x2="1" y2="0">
+          <stop offset="0" stop-color="#a8d200"/><stop offset=".5" stop-color="#dcf034"/><stop offset="1" stop-color="#edf664"/>
+        </linearGradient>
+      </defs>
+      <circle class="cip-loader__track" cx="50" cy="50" r="39"/>
+      <circle class="cip-loader__bar" cx="50" cy="50" r="39"/>
+    </svg>
+    <span class="cip-loader__sr">Cargando CiiSA Beyond 2026…</span>
+  </div>
+  <script>
+    (function () {
+      var el = document.getElementById('cip-loader');
+      if (!el) return;
+      var root = document.documentElement, bar = el.querySelector('.cip-loader__bar');
+      var MIN = 700, MAX = 4500, t0 = Date.now(), done = false;
+      root.classList.add('is-loading');
+      window.__beyondLoaded = false;
+      // La O se llena rápido al principio y se frena cerca del 83 %: la última parte llega cuando termina la carga
+      window.requestAnimationFrame(function () {
+        bar.style.transition = 'stroke-dashoffset 2.6s cubic-bezier(.22,1,.36,1)';
+        bar.style.strokeDashoffset = '42';
+      });
+      function finish() {
+        if (done) return;
+        done = true;
+        window.setTimeout(function () {
+          bar.style.transition = 'stroke-dashoffset .35s ease';
+          bar.style.strokeDashoffset = '0';
+          window.setTimeout(function () {
+            el.classList.add('is-done');
+            root.classList.remove('is-loading');
+            window.setTimeout(function () {
+              if (el.parentNode) el.parentNode.removeChild(el);
+              window.__beyondLoaded = true;
+              window.dispatchEvent(new Event('beyond:loader-done'));
+            }, 650);
+          }, 380);
+        }, Math.max(0, MIN - (Date.now() - t0)));
+      }
+      if (document.readyState === 'complete') finish(); else window.addEventListener('load', finish);
+      window.setTimeout(finish, MAX);
+    })();
+  </script>
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TFCPQDS8"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>

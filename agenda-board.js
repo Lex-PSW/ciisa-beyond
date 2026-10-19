@@ -111,9 +111,10 @@
     meta.appendChild(el('span', 'cip-program__live', 'Ahora'));
     meta.appendChild(el('span', 'cip-program__dur', dur + ' min'));
     if (!neutral) {
-      // Espacio y lugar, en palabras (solo se ve en lista): "Casos de éxito · Escenario principal"
+      // Espacio y lugar, en palabras (solo se ve en lista): "Casos de éxito · Escenario principal".
+      // Una sesión puede cambiar solo la palabra con "etiqueta" ("Workshop · Escenario principal"); el filtro sigue por espacio
       var esc = data.escenarios[stageIndex[s.e]];
-      var stage = el('span', 'cip-program__stage', esc.nombre);
+      var stage = el('span', 'cip-program__stage', s.etiqueta || esc.nombre);
       if (esc.lugar) stage.appendChild(el('span', 'cip-program__place', ' · ' + esc.lugar));
       meta.appendChild(stage);
     }

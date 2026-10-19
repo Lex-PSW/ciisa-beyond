@@ -6,6 +6,7 @@
 //   de Autodesk. En tablet y celular siguen siendo tres espacios, con sus filtros.
 //   ini   hora de inicio en 24 h ('13:00'); fin = hora de término
 //   marca quién presenta (opcional); tema = bloque temático dentro de "exito" (opcional)
+//   etiqueta (opcional) cambia solo la palabra que se ve en lista en lugar del nombre del espacio ("Workshop", "Plática de valor"); no afecta los filtros
 // Las horas van en múltiplos de 5 minutos. Las marcadas "por confirmar" se dedujeron del arte de la agenda,
 // que no trae el horario de esos laboratorios ni del segundo networking. Los cuatro "Laboratorio IA - TI" son definitivos
 // (16 oct): devkit-lab.js los usa como horarios del selector del laboratorio DevKit AI; si cambias uno, avisa para el flujo M.
@@ -22,10 +23,10 @@ window.CIISA_AGENDA = {
   sesiones: [
     // Escenario principal
     { e: 'exito', ini: '10:30', fin: '10:40', titulo: 'Apertura | Dirección General', marca: 'CiiSA' },
-    { e: 'exito', ini: '10:40', fin: '11:25', titulo: 'Beyond AI: el nuevo rol del líder', marca: 'PSW' },
-    { e: 'exito', ini: '11:30', fin: '12:00', titulo: 'Reforma laboral 40 horas', marca: 'HumanSite' },
-    { e: 'exito', ini: '12:00', fin: '12:40', titulo: 'Descubre lo nuevo y único de Pyxoom', marca: 'Pyxoom · amitai' },
-    { e: 'exito', ini: '12:40', fin: '12:55', titulo: 'Caso de éxito Garza Ponce', marca: 'Pyxoom' },
+    { e: 'exito', ini: '10:40', fin: '11:25', titulo: 'Beyond AI: el nuevo rol del líder', marca: 'PSW', etiqueta: 'Workshop' },
+    { e: 'exito', ini: '11:30', fin: '12:00', titulo: 'Impacto de la reforma laboral de 40 horas', marca: 'HumanSite', etiqueta: 'Plática de valor' },
+    { e: 'exito', ini: '12:00', fin: '12:40', titulo: 'Descubre lo nuevo y único de Pyxoom', marca: 'Pyxoom · amitai', etiqueta: 'Revelación' },
+    { e: 'exito', ini: '12:40', fin: '13:00', titulo: 'Construir con criterio: cómo Garza Ponce toma mejores decisiones de talento', marca: 'Pyxoom' },
     { e: 'exito', ini: '13:00', fin: '14:30', titulo: 'Networking', tipo: 'networking' },
     { e: 'todos', ini: '14:30', fin: '15:00', titulo: 'Networking', tipo: 'networking' },
     { e: 'exito', ini: '15:00', fin: '15:20', titulo: 'Sophos', tema: 'Ciberseguridad' },
