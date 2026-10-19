@@ -71,6 +71,31 @@
   /* === Fin del filtro === */
 
   // Reglas por campo: devuelven '' si es válido o el mensaje de error.
+  /* === Registro repetido en el mismo dispositivo (19 oct) ===
+     Al registrarse con éxito se guarda una marca del correo (un hash corto, no el correo) en localStorage. Si vuelven a
+     escribir ese correo en este navegador, el campo avisa y el botón se queda apagado: evita dobles envíos y que alguien
+     se registre otra vez sin saber que ya lo hizo. Solo ve este dispositivo: otro celular u otra computadora no lo detectan.
+     En un equipo compartido (una tableta del registro) la marca es por correo, así que no frena a otra persona.
+     Para probar sin que estorbe: agrega ?registro=libre a la dirección. */
+  var KEY_REG = 'beyond:registrados';
+  var REG_LIBRE = /[?&]registro=libre(&|$)/.test(window.location.search);
+  function marcaCorreo(c) {
+    var h = 2166136261, s = String(c || '').trim().toLowerCase();
+    for (var i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619) >>> 0; }
+    return h.toString(36);
+  }
+  function leeRegistrados() {
+    try { var a = JSON.parse(window.localStorage.getItem(KEY_REG) || '[]'); return Array.isArray(a) ? a : []; } catch (e) { return []; }
+  }
+  function yaRegistrado(correo) { return !REG_LIBRE && leeRegistrados().indexOf(marcaCorreo(correo)) !== -1; }
+  function guardaRegistrado(correo) {
+    try {
+      var a = leeRegistrados(), m = marcaCorreo(correo);
+      if (a.indexOf(m) === -1) a.push(m);
+      window.localStorage.setItem(KEY_REG, JSON.stringify(a.slice(-30)));
+    } catch (e) {}
+  }
+
   var RULES = {
     nombre: function (v) {
       if (!v) return 'Escribe tu nombre y apellido.';
@@ -93,6 +118,7 @@
     correo: function (v) {
       if (!v) return 'Escribe tu correo.';
       if (!/^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/.test(v)) return 'Revisa el formato: nombre@empresa.com';
+      if (yaRegistrado(v)) return 'Este correo ya quedó registrado desde este dispositivo. Revisa tu bandeja (y la carpeta de spam) para ver tu confirmación. Si necesitas corregir tus datos, avísanos por WhatsApp.';
       return '';
     },
     telefono: function (v) {
@@ -266,6 +292,7 @@
       })
         .then(function (res) {
           if (!res.ok) throw new Error('HTTP ' + res.status);
+          guardaRegistrado(data.correo);
           resetForm();
           showThanks(data.nombre);
           // Aviso para los píxeles de campañas (tracking.js); no lleva datos personales
