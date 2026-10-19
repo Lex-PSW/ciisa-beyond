@@ -9,6 +9,7 @@ Visitante ──► index.html ──(JSON)──► Flujo B  ──► Excel ma
                           └─(JSON)──► Flujo G  ──► Excel de invitaciones (quién invitó, fuente)
 
 Invitado  ──► mi-experiencia.html?id=BYD-… ──(JSON)──► Flujo I ──► Excel de perfiles + correo "Tu ruta Beyond"
+Invitado  ──► mi-experiencia.html?id=BYD-… ──(GET)──► API de asistencia (beyond.pyxoomsaas.com) ──► marcas visitadas
 
 Visitante (modal de gracias) ─┐
 Invitado  ──► index.html?id=BYD-… ─┴(JSON)──► Flujo M ──► Excel del laboratorio (horarios y reservas)
@@ -69,9 +70,17 @@ Respuestas esperadas del flujo: `200` con `{"ok":true}`; `404` si el ID o el cor
 
 Seguridad del flujo: el correo destino se toma del Excel maestro a partir del ID, nunca del formulario. Los datos que llegan del navegador se tratan como no confiables (recortar, validar contra el vocabulario).
 
+## Recorrido del día (`mis-visitas.js`)
+
+- **Entrada:** el `?id=` de `mi-experiencia.html`.
+- **Endpoint:** `GET https://beyond.pyxoomsaas.com/api/publico/visitas/{id}` (público, sin llave, sin datos personales; CORS solo para `https://beyond.ciisa.com`; límite de 600 peticiones por minuto por IP).
+- **Respuestas:** `200` con `visitadas` (`marca_id`, `nombre`, `catalogo_slugs`) y `pendientes_ruta` (slugs del catálogo); `404` si el ID no existe (la sección no aparece).
+- **Comportamiento:** la sección "Tu recorrido de hoy" sale arriba de la encuesta solo si hay al menos una visita. Usa los logos de `catalogo-data.js` (lo que no está en el catálogo, como CiiSA o los laboratorios, sale como texto). Se refresca cada 3 min con la pestaña visible; si la API tarda más de 4 s o falla, se queda como estaba.
+- La API la mantiene el repo `asistencia-modulos` (privado); los escaneos los hace el staff con la app de asistencia.
+
 ## Laboratorio DevKit AI (`devkit-lab.js`)
 
-Estado: **front listo, apagado** hasta que exista el flujo M (16 oct 2026). Diseño completo: [superpowers/specs/2026-10-16-laboratorio-devkit-design.md](superpowers/specs/2026-10-16-laboratorio-devkit-design.md).
+Estado: **en producción y conectado al flujo M** desde el 16 oct 2026 (las ligas `?id=` las manda el flujo M1). Diseño completo: [superpowers/specs/2026-10-16-laboratorio-devkit-design.md](superpowers/specs/2026-10-16-laboratorio-devkit-design.md).
 
 - **Horarios:** los cuatro "Laboratorio IA - TI" de `agenda-data.js` (10:40, 13:00, 15:00 y 17:20; la clave es la hora de inicio), 10 lugares cada uno, por orden de llegada. Cada horario se cierra a su hora de inicio con el reloj de `beyond-clock.js`.
 - **Entradas:** el modal de gracias del registro, tras el `200` del flujo B (evento `beyond:lead`), con el **correo** que se acaba de escribir (`devkit-lab.js` lo toma al enviar; **`rsvp-form.js` no cambia**); y la liga `index.html?id=BYD-…` del correo M1, con el **ID**.

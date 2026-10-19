@@ -16,6 +16,7 @@
 
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="mi-experiencia.css">
+  <link rel="stylesheet" href="mis-visitas.css">
 
   <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
@@ -45,6 +46,9 @@
       </div>
       <p class="cip-hero__sub cip-hero__sub--center cip-hero__sub--traking">21 OCT 2026 | Monterrey, N.L.</p>
     </header>
+
+    <!-- Recorrido del día (mis-visitas.js): solo aparece si ya visitó alguna marca -->
+    <section class="mx__card mv" id="mis-visitas" hidden aria-live="polite"></section>
 
     <!-- Encuesta -->
     <form class="mx__card" data-mx-form novalidate aria-labelledby="mx-title">
@@ -132,5 +136,6 @@
   <script src="hero-lottie.js" defer></script>
   <script src="catalogo-data.js"></script>
   <script src="mi-experiencia.js"></script>
+  <script src="mis-visitas.js" defer></script>
 </body>
 </html>
